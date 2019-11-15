@@ -34,31 +34,22 @@ Run the test suit with with `yarn test`
 ## Directory Structure
 
 ```
-bootstrap/
-├── css/
-│   ├── bootstrap.css
-│   ├── bootstrap.min.css
-│   ├── bootstrap-theme.css
-│   └── bootstrap-theme.min.css
-├── js/
-│   ├── bootstrap.js
-│   └── bootstrap.min.js
-└── fonts/
-    ├── glyphicons-halflings-regular.eot
-    ├── glyphicons-halflings-regular.svg
-    ├── glyphicons-halflings-regular.ttf
-    └── glyphicons-halflings-regular.woff
+__mocks__/
+└── globalComponenMock.js
 
-bootstrap/
-├── less/
-├── js/
-├── fonts/
-├── dist/
-│   ├── css/
-│   ├── js/
-│   └── fonts/
-└── docs/
-    └── examples/
+__tests__/
+└── integrationTests.js
+
+pages/
+└── completePages.js
+
+components/
+├── blocks/
+│   ├── block/
+│   │   ├── subComponent.js
+│   │   └── subComponent.js
+└── elements/
+    └── component.js
 ```
 
 ## Technology
