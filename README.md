@@ -5,9 +5,15 @@ the range of collateral types currently approved by Maker voters.
 
 **Note**: Collateralised Debt Position -> renamed to -> Vault.
 
+## Why
+
+To create a brutally simple tool for members of the MakerDAO community to use to 
+create and maintain Vaults.
+
 ## Installation
 
-Clone the repository `git@github.com:BackToTheCode/project.mcd-vault-manager.git`
+Clone the repository `git clone git@github.com:BackToTheCode/project.mcd-vault-manager.git`
+
 Install dependencies `yarn install`
 
 ## Run
@@ -17,11 +23,6 @@ Start the development server `yarn dev`
 ## Test
 
 Run the test suit `yarn test`
-
-## Why
-
-To create a brutally simple tool for members of the MakerDAO community to use to 
-create and maintain Vaults.
 
 ## Process
 
