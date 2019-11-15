@@ -1,41 +1,52 @@
-# TypeScript & Styled Components Next.js example
+# Title
 
-This is a really simple project that show the usage of Next.js with TypeScript and Styled Components.
-
-## How to use it?
-
-### Using `create-next-app`
-
-Execute [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app) with [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) or [npx](https://github.com/zkat/npx#readme) to bootstrap the example:
+Normal text
+[`google`](https://google.com)
 
 ```bash
-npx create-next-app --example with-typescript-styled-components with-typescript-app
-# or
-yarn create next-app --example with-typescript-styled-components with-typescript-app
+echo "some code"
 ```
+- A list item
+- Another list item
 
-### Download manually
+## Header
 
-Download the example:
+### Subheader
 
-```bash
-curl https://codeload.github.com/zeit/next.js/tar.gz/canary | tar -xz --strip=2 next.js-canary/examples/with-typescript-styled-components
-cd with-typescript-styled-components
-```
+# Multi-Collateral DAI Vault Manager
 
-Install it and run:
+## Objective
 
-```bash
-npm install
-npm run dev
-# or
-yarn
-yarn dev
-```
+## Process
 
-## The idea behind the example
+## Technology
 
-This is an amalgamation of the 2 existing examples:
+### DAI.JS
 
-- [with-typescript](https://github.com/zeit/next.js/tree/canary/examples/with-typescript)
-- [with-styled-components](https://github.com/zeit/next.js/tree/canary/examples/with-styled-components)
+### React / Next.JS
+
+### Typescript
+
+### Styled Components / Rebass
+- BEM
+
+### Storybook
+
+## Deployment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
