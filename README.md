@@ -5,7 +5,20 @@ the range of collateral types currently approved by Maker voters.
 
 **Note**: Collateralised Debt Position -> renamed to -> Vault.
 
-## Objective
+## Installation
+
+Clone the repository `git@github.com:BackToTheCode/project.mcd-vault-manager.git`
+Install dependencies `yarn install`
+
+## Run
+
+Start the development server `yarn dev`
+
+## Test
+
+Run the test suit `yarn test`
+
+## Why
 
 To create a brutally simple tool for members of the MakerDAO community to use to 
 create and maintain Vaults.
@@ -19,28 +32,28 @@ create and maintain Vaults.
 
 ## Technology
 
-### Dai.js
+### 💰Dai.js
 
 Dai.js is a library - developed by the Maker Foundation team - to allow community member developers to quickly and simply build applications on top of MakerDAO's platform of smart contracts. 
 
-### React / Next.JS
+### ⚛️ React / Next.JS
 
 Next.JS is the self described React Framework for production. It is more opinionated than the Facebook developed create-react-app bootstrapping library.
 Next.JS also comes with some major performance optimizations and the ability to fully export the application as a static site. This static export 
 capability is being leveraged in this project.
 
-### Typescript
+### 🆎Typescript
 
 Typescript brings a degree of type-safety to weakly typed javascripts. It adds some fairly significant overhead during setup and also development.
 
-### Styled Components / Rebass
+### 💅Styled Components / ⚛️ Rebass
 
 
-### Storybook
+### 📚Storybook
 
 Storybook is a front-end tool that allows engineers to maintain a living record of all their applications components. All versions/states of each component are listed alongside one another.
 
-## Deployment
+## 📤Deployment
 
 Both the design system and the app itself are being deployed as static sites via Netlify.
 
