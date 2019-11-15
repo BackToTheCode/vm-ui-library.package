@@ -3,6 +3,7 @@
   "author": "James Tuckett <james@tuckett.me>",
   "version": "1.0.0",
   "scripts": {
+    "build-storybook": "build-storybook -c .storybook",
     "storybook": "start-storybook",
     "dev": "next",
     "test": "jest",
