@@ -2,3 +2,5 @@
 .env
 /.vscode
 /storybook-static
+/out
+/.next
