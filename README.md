@@ -26,7 +26,7 @@ Run the test suit with with `yarn test`
 
 ## Process
 
-- Firstly, simple wireframes were drawn on paper to help the author understand the necessary flows [`Wireframes on InvisionApp`](https://projects.invisionapp.com/boards/FD3XNJ8SM8Q/).
+- Firstly, simple wireframes were drawn on paper to help the author understand the necessary flows [`Wireframes - InvisionApp`](https://projects.invisionapp.com/boards/FD3XNJ8SM8Q/).
 - Secondly, a kanban board was prepared populated with all the necessary tickets [`MCD Vault Manager Board`](https://trello.com/b/H0NV22h9/mcd-vault-manager).
 - Thirdly, setup storybook to create a design-system for the tool [`MCD Vault Manager Design System`](https://adoring-leavitt-ad4453.netlify.com).
 - Finally, built out the tool itself using Next.JS / Dai.js and an array of other tools and libraries.
