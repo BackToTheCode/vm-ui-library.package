@@ -37,7 +37,7 @@ Run the test suit with with `yarn test`
 
 Dai.js is a library - developed by the Maker Foundation team - to allow community member developers to quickly and simply build applications on top of MakerDAO's platform of smart contracts. 
 
-### ⚛️  React / Next.JS
+### ⚛️  React / Next.js
 
 Next.JS is the self described React Framework for production. It is more opinionated than the Facebook developed create-react-app bootstrapping library.
 Next.JS also comes with some major performance optimizations and the ability to fully export the application as a static site. This static export 
