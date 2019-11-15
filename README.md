@@ -12,17 +12,17 @@ create and maintain Vaults.
 
 ## Installation
 
-Clone the repository `git clone git@github.com:BackToTheCode/project.mcd-vault-manager.git`
+Clone the repository with `git clone git@github.com:BackToTheCode/project.mcd-vault-manager.git`
 
-Install dependencies `yarn install`
+Install dependencies with `yarn install`
 
 ## Run
 
-Start the development server `yarn dev`
+Start the development server with `yarn dev`
 
 ## Test
 
-Run the test suit `yarn test`
+Run the test suit with with `yarn test`
 
 ## Process
 
@@ -37,24 +37,50 @@ Run the test suit `yarn test`
 
 Dai.js is a library - developed by the Maker Foundation team - to allow community member developers to quickly and simply build applications on top of MakerDAO's platform of smart contracts. 
 
-### ⚛️ React / Next.JS
+### ⚛️  React / Next.JS
 
 Next.JS is the self described React Framework for production. It is more opinionated than the Facebook developed create-react-app bootstrapping library.
 Next.JS also comes with some major performance optimizations and the ability to fully export the application as a static site. This static export 
 capability is being leveraged in this project.
 
-### 🆎Typescript
+### 🆎 Typescript
 
 Typescript brings a degree of type-safety to weakly typed javascripts. It adds some fairly significant overhead during setup and also development.
 
-### 💅Styled Components / ⚛️ Rebass
+### 💅 Styled Components / ⚛️  Rebass
 
+We're using the UI component library Rebass along with Styled Components. Rebass and Styled Components play well together with Styled Components easily overriding Rebass component styles.
 
-### 📚Storybook
+We're also taking inspiration from BEM naming by creating blocks with parent components and child component naming.
+
+Here's an example.
+
+```
+<Card>
+  <Card.Header>
+    <Card.Image
+      alt=”bob-ross-headshot”
+      src=”www.example.com/bob-ross.jpg”
+    />
+    <Card.Title>
+      Bob Ross
+    </Card.Title>
+  </Card.Header>
+  <Card.Text>
+    Robert Norman Ross (October 29, 1942 – July 4, 1995) was an American painter,
+    art instructor, and television host. He was the creator and host of
+    The Joy of Painting, an instructional television program that aired from
+    1983 to 1994 on PBS in the United States…
+  </Card.Text>
+</Card>
+
+```
+
+### 📚 Storybook
 
 Storybook is a front-end tool that allows engineers to maintain a living record of all their applications components. All versions/states of each component are listed alongside one another.
 
-## 📤Deployment
+## 📤 Deployment
 
 Both the design system and the app itself are being deployed as static sites via Netlify.
 
