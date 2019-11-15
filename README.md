@@ -35,7 +35,7 @@ Run the test suit with with `yarn test`
 
 ```
 __mocks__/
-└── globalComponenMock.js
+└── globalComponentMock.js
 
 __tests__/
 └── integrationTests.js
@@ -51,6 +51,11 @@ components/
 └── elements/
     └── component.js
 ```
+
+- Global Mocks: <placeholder>
+- Integration Tests: <placeholder>
+- Pages: <placeholder>
+- Components: <placeholder>
 
 ## Technology
 
