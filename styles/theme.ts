@@ -1,29 +1,27 @@
-const heading = {
-  fontFamily: 'heading',
-  lineHeight: 'heading',
-  fontWeight: 'heading'
-};
-
 export default {
-  global: {
-    fontSize: '.625rem'
-  },
   fonts: {
     body: `-apple-system, BlinkMacSystemFont, 
     "Segoe UI", "Roboto", "Oxygen", 
     "Ubuntu", "Cantarell", "Fira Sans", 
     "Droid Sans", "Helvetica Neue", sans-serif;`,
-    heading: 'Georgia, serif'
+    heading: `-apple-system, BlinkMacSystemFont, 
+    "Segoe UI", "Roboto", "Oxygen", 
+    "Ubuntu", "Cantarell", "Fira Sans", 
+    "Droid Sans", "Helvetica Neue", sans-serif;`
   },
   breakpoints: ['40em', '52em', '64em'],
   colors: {
-    text: '#000',
+    dark: '#222222',
+    grey: '#48495f',
+    lightGrey: '#e4e4e4',
     primary: '#1AAB9B',
     secondary: '#F4B731',
-    transparent: 'transparent'
+    transparent: 'transparent',
+    lightWarning: '#ffbf00',
+    warning: '#ff0000'
   },
-  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 72],
-  space: [0, 2, 4, 8, 16, 32, 64, 128, 256, 512],
+  fontSizes: [10, 14, 18, 24, 32, 48, 64],
+  space: [0, 2, 4, 6, 8, 16, 20, 32],
   radii: {
     default: 4
   },
@@ -39,52 +37,48 @@ export default {
   borderWidths: {
     default: 2
   },
-  styles: {
-    root: {
-      fontFamily: 'body',
-      lineHeight: 'body',
-      fontWeight: 'body'
-    },
-    h1: {
-      ...heading,
-      fontSize: 5
-    },
-    h2: {
-      ...heading,
-      fontSize: 4
-    },
-    h3: {
-      ...heading,
-      fontSize: 3
-    },
-    h4: {
-      ...heading,
-      fontSize: 2
-    },
-    h5: {
-      ...heading,
-      fontSize: 1
-    },
-    h6: {
-      ...heading,
-      fontSize: 0
-    }
-  },
-  container: {
-    regular: {
-      maxWidth: 1024,
-    },
-    wide: {
-      maxWidth: '100%'
-    }
-  },
   variants: {
+    indicator: {
+      connected: { bg: 'primary' },
+      unconnected: { bg: 'warning' },
+      disconnected: { bg: 'lightWarning' }
+    },
     container: {
       regular: {
         maxWidth: 1024
       },
       wide: {
         maxWidth: '100%'
+      }
+    }
+  },
+  text: {
+    body: {
+      small: {
+        fontSize: 1,
+        fontFamily: 'body',
+        color: 'dark'
+
+      },
+      normal: {
+        fontSize: 2,
+        fontFamily: 'body',
+        color: 'dark'
+      },
+      large: {
+        fontSize: 3,
+        fontFamily: 'body',
+        color: 'dark'
+      }
+    },
+    heading: {
+      normal: {
+        fontSize: 4,
+        fontFamily: 'heading'
+      },
+      large: {
+        fontSize: 5,
+        fontFamily: 'heading'
       }
     }
   },

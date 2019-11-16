@@ -11,14 +11,15 @@ export interface IButtonProps {
 
 const styles = {
   fontWeight: 'body',
-  fontSize: 2,
+  fontSize: 2 ,
   paddingTop: 1,
   paddingBottom: 1,
   padding: 3
 };
-  
+
 const Button: React.FC<IButtonProps> = ({ variant, children }) => (
-  <BaseButton sx={styles} variant={variant}>{children}
+  <BaseButton sx={styles} variant={variant}>
+    {children}
   </BaseButton>
 );
 

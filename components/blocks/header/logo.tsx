@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import styled from '@emotion/styled';
+import { Box } from 'rebass';
 import React from 'react';
 import { Image } from 'rebass';
 
@@ -11,18 +11,13 @@ export interface ILogoProps {
 }
 
 const styles = {
-  width: '100%',
-  borderRadius: 8
+  width: '100%'
 };
 
-const LogoContainer = styled.div({
-  width: '100px'
-});
-
 const Logo: React.FC<ILogoProps> = ({ image }) => (
-  <LogoContainer>
+  <Box width={'100px'}>
     <Image src={image} sx={styles} />
-  </LogoContainer>
+  </Box>
 );
 
 export default Logo;

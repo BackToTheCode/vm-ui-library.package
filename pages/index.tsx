@@ -8,16 +8,11 @@ import emotionNormalize from 'emotion-normalize';
 export default () => (
   <ThemeProvider theme={appTheme}>
     <Global
-      styles={theme =>
-        css`
-          ${emotionNormalize},
-          html {
-            font-size: ${theme.global.fontSize};
-            font-family: ${theme.global.fontFamily};
-          }
-        `
-      }
+      styles={css`
+        ${emotionNormalize}
+      `}
     />
-    <Header />
+    <Header variant={'indicator.connected'} address='0x61049F5e03Bfe3823f274C479158A94bcA26456c' ern='james.eth' />
   </ThemeProvider>
 );
+

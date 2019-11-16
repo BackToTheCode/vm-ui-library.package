@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import React from 'react';
-import { Box } from 'rebass';
+import { Flex } from 'rebass';
 
 export interface IContainerProps {
   variant?: string;
@@ -13,9 +13,9 @@ const styles = {
 };
 
 const Container: React.FC<IContainerProps> = ({ children, variant }) => (
-  <Box sx={styles} variant={variant}>
+  <Flex sx={styles} variant={variant}>
     {children}
-  </Box>
+  </Flex>
 );
 
 export default Container;

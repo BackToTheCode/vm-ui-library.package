@@ -17,23 +17,6 @@ addParameters(storyBookThemeParameters);
 const ThemeDecorator = (storyFn: any) => (
   <ThemeProvider theme={appTheme}>{storyFn()}</ThemeProvider>
 );
-const FontDecorator = (storyFn: any) => (
-  <div>
-      <Global
-        styles={theme =>
-          css`
-            html {
-              font-size: ${theme.global.fontSize};
-              font-family: ${theme.global.fontFamily};
-            }
-          `
-        }
-      />
-    {storyFn()}
-  </div>
-);
-
-addDecorator(FontDecorator);
 addDecorator(ThemeDecorator);
 
 configure(require.context('../components', true, /\.stories.tsx$/), module);

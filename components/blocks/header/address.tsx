@@ -1,28 +1,57 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import styled from '@emotion/styled';
 import React from 'react';
-import { Box } from 'rebass';
+import { Flex, Box, Text } from 'rebass';
 
-export interface ILogoProps {
+export interface IAddressProps {
   variant?: string;
-  image: string;
   children?: React.ReactNode;
+  address?: string;
+  ern?: string;
 }
 
 const styles = {
-  width: '100%',
-  borderRadius: 8
+  container: {
+    width: '100%',
+    justifyContent: 'flex-end',
+    mr: 20,
+    alignItems: 'center'
+  },
+  indicator: {
+    borderRadius: '50%',
+    position: 'relative',
+    width: '8px',
+    height: '8px',
+    right: 6,
+    top: 6
+  },
+  addressContainer: {
+    px: 4,
+    py: 3,
+    bg: 'lightGrey',
+    borderRadius: '4px'
+  }
 };
 
-const LogoContainer = styled.div({
-  width: '100px'
-});
-
-const Logo: React.FC<ILogoProps> = ({ image }) => (
-  <LogoContainer>
-    <Image src={image} sx={styles} />
-  </LogoContainer>
+const Address: React.FC<IAddressProps> = ({ variant, address, ern }) => (
+  <Flex width={1} sx={styles.container}>
+    <Box sx={{ textAlign: 'left', flexDirection: 'column', maxWidth: '130px' }}>
+      <Box variant={variant} sx={styles.indicator} />
+      <Box sx={styles.addressContainer}>
+        <Text
+          sx={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
+          variant={'body.normal'}
+        >
+          {address ? address : 'Not connected'} 
+        </Text>
+      </Box>
+      {ern && (
+        <Box sx={{ marginTop: 2 }}>
+          <Text variant={'body.small'} sx={{color: 'grey'}}>{ern}</Text>
+        </Box>
+      )}
+    </Box>
+  </Flex>
 );
 
-export default Logo;
+export default Address;

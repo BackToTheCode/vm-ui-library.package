@@ -58,10 +58,10 @@ components/
 
 ## Testing approach
 
-- This project draws heavily on Kent C Dodds testing philosophy.
-- No snapshots tests as any changes typically are intentionally. 
-- Few unit tests given the likelihood of testing implementation details. Use react-testing-library to address this issue.
-- Heavily favour integration tests using react-testing-library to test real world application behaviour.
+- This project draws heavily on Kent C Dodds testing philosophy
+- No snapshots tests as any changes typically are intentionally
+- Few unit tests given the likelihood of testing implementation details. Use react-testing-library to address this issue
+- Heavily favour integration tests using react-testing-library to test real world application behaviour
 
 ## Technology
 
