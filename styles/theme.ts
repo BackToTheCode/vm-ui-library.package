@@ -70,6 +70,24 @@ export default {
       fontSize: 0
     }
   },
+  container: {
+    regular: {
+      maxWidth: 1024,
+    },
+    wide: {
+      maxWidth: '100%'
+    }
+  },
+  variants: {
+    container: {
+      regular: {
+        maxWidth: 1024
+      },
+      wide: {
+        maxWidth: '100%'
+      }
+    }
+  },
   buttons: {
     primary: {
       color: 'white',

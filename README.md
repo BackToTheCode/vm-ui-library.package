@@ -1,6 +1,6 @@
-# Multi-Collateral DAI Vault Manager
+# Vault Maker
 
-The MCD DAI Vault Manager gives users the opportunity to set up and manage Vaults covering 
+Vault Maker gives users the opportunity to set up and manage Vaults covering 
 the range of collateral types currently approved by Maker voters.
 
 **Note**: Collateralised Debt Position -> renamed to -> Vault.
@@ -26,7 +26,7 @@ Run the test suit with with `yarn test`
 
 ## Process
 
-- Firstly, simple wireframes were drawn on paper to help the author understand the necessary flows [`Wireframes - InvisionApp`](https://projects.invisionapp.com/boards/FD3XNJ8SM8Q/)
+- Firstly, simple wireframes were drawn on paper to help the author understand the necessary flows. These are open to change as the project progresses [`Wireframes - InvisionApp`](https://projects.invisionapp.com/boards/FD3XNJ8SM8Q/)
 - Secondly, a kanban board was prepared populated with all the necessary tickets [`MCD Vault Manager Board`](https://trello.com/b/H0NV22h9/mcd-vault-manager)
 - Thirdly, setup storybook to create a design-system for the tool [`MCD Vault Manager Design System`](https://adoring-leavitt-ad4453.netlify.com)
 - Finally, built out the tool itself using Next.JS / Dai.js and an array of other tools and libraries
@@ -52,17 +52,16 @@ components/
     └── component.js
 ```
 
-- Global Mocks: <placeholder>
-- Integration Tests: <placeholder>
-- Pages: <placeholder>
-- Components: <placeholder>
+- Global Mocks: Any shared mocks will be in here
+- Integration Tests: All integration tests will be housed in this folder
+- Components: Any component that is not a page can be found here. The folder is subdivided into atomic components (elements) and molecular components (blocks)
 
 ## Testing approach
 
-No snapshots.
-Few unit tests.
-Mostly integration.
-Kent C dodds
+This project draws heavily on Kent C Dodds testing philosophy.
+No snapshots tests as any changes typically are intentionally. 
+Few unit tests given the likelihood of testing implementation details. Use react-testing-library to address this issue.
+Heavily favour integration tests using react-testing-library to test real world application behaviour.
 
 ## Technology
 
