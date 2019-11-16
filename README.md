@@ -31,7 +31,7 @@ Run the test suit with with `yarn test`
 - Thirdly, setup storybook to create a design-system for the tool [`MCD Vault Manager Design System`](https://adoring-leavitt-ad4453.netlify.com)
 - Finally, built out the tool itself using Next.JS / Dai.js and an array of other tools and libraries
 
-## Directory Structure
+## Structure
 
 ```
 __mocks__/
@@ -57,6 +57,13 @@ components/
 - Pages: <placeholder>
 - Components: <placeholder>
 
+## Testing approach
+
+No snapshots.
+Few unit tests.
+Mostly integration.
+Kent C dodds
+
 ## Technology
 
 ### 💰Dai.js
@@ -73,9 +80,9 @@ capability is being leveraged in this project.
 
 Typescript brings a degree of type-safety to weakly typed javascripts. It adds some fairly significant overhead during setup and also development.
 
-### 💅 Styled Components / ⚛️  Rebass
+### 💅 Emotion Theming / ⚛️  Rebass
 
-We're using the UI component library Rebass along with Styled Components. Rebass and Styled Components play well together with Styled Components easily overriding Rebass component styles.
+We're using the UI component library Rebass along with Emotion Theming. Rebass and Emotion Theming play well together with Emotion Theming easily overriding Rebass component styles.
 
 We're also taking inspiration from BEM naming by creating blocks with parent components and child component naming.
 

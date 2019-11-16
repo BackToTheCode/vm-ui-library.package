@@ -1,0 +1,40 @@
+{
+    "compilerOptions": {
+      "baseUrl": "./",
+      "allowSyntheticDefaultImports": true,
+      "target": "esnext",
+      "module": "esnext",
+      "lib": ["dom", "es2017"],
+      "sourceMap": true,
+      "allowJs": false,
+      "jsx": "react",
+      "moduleResolution": "node",
+      "rootDirs": [
+        "components",
+        "stories",
+        ".storybook"
+      ],
+      "outDir": "dist",
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noImplicitAny": false,
+      "skipLibCheck": true,
+      "strictNullChecks": true,
+      "declaration": true
+    },
+    "include": [
+      "components",
+      "stories",
+      ".storybook"
+    ],
+    "exclude": [
+      "node_modules",
+      "__mocks__",
+      "__tests__",
+      ".vscode",
+      "out",
+      "storybook-static",
+      "public",
+      "typings"
+    ]
+  }

@@ -1,9 +1,12 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import Button from '../components/elements/button/button';
+import appTheme from '../styles/theme';
+import { ThemeProvider } from 'emotion-theming';
+import Header from '../components/blocks/header/index'
 
-const Title = styled.h1`
-  color: red;
-  font-size: 50px;
-`
-
-export default () => <Title>My page</Title>
+export default () => (
+  <ThemeProvider theme={appTheme}>
+    <Header />
+    <Button>I'm a button</Button>
+  </ThemeProvider>
+);
