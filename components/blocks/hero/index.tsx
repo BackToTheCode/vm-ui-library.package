@@ -4,6 +4,8 @@ import React from 'react';
 import Button from '../../elements/button/button';
 import Container from '../../elements/container/index';
 import metamaskLogo from '../../../public/images/metamask-fox.svg';
+import ledgerLogo from '../../../public/images/ledger-logo.png';
+import trezorLogo from '../../../public/images/trezor-logo.png';
 import { Image, Box, Text } from 'rebass';
 
 export interface IHeroProps {
@@ -21,7 +23,6 @@ const logoStyles = {
     width: '20px',
     position: 'relative',
     top: '4px'
-
   }
 };
 
@@ -29,7 +30,7 @@ const buttonStyles = {
   display: 'block',
   margin: 'auto',
   mb: 3,
-  width: '320px',
+  width: '320px'
 };
 
 const Hero: React.FC<IHeroProps> = () => (
@@ -59,15 +60,23 @@ const Hero: React.FC<IHeroProps> = () => (
         </Box>
         Connect with Metamask
       </Button>
-      <Button disable={true} variant={true ? "outline.disabled" : "outline"} style={buttonStyles}>
-        <Box sx={logoStyles.logoHolder}>
-          <Image sx={logoStyles.logo} src={metamaskLogo} />
+      <Button
+        disable={true}
+        variant={true ? 'outline.disabled' : 'outline'}
+        style={buttonStyles}
+      > 
+        <Box sx={{ ...logoStyles.logoHolder, ...{ padding: '1px', top: '-1px', position: 'relative' } }}>
+          <Image sx={logoStyles.logo} src={ledgerLogo} />
         </Box>
         Trezor - coming soon...
       </Button>
-      <Button disable={true} variant={true ? "outline.disabled" : "outline"} style={buttonStyles}>
+      <Button
+        disable={true}
+        variant={true ? 'outline.disabled' : 'outline'}
+        style={buttonStyles}
+      >
         <Box sx={logoStyles.logoHolder}>
-          <Image sx={logoStyles.logo} src={metamaskLogo} />
+          <Image sx={logoStyles.logo} src={trezorLogo} />
         </Box>
         Ledger Blue - coming soon...
       </Button>
