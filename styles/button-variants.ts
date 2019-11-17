@@ -1,15 +1,3 @@
-const base = {
-  fontWeight: 'body',
-  fontSize: 2,
-  cursor: 'pointer',
-  fontFamily: 'body',
-  borderStyle: 'solid',
-  borderWidth: 2,
-  '&:focus': {
-    outline: 0
-  }
-}
-
 let buttons: any = {
   primary: {
     color: 'white',
@@ -42,9 +30,6 @@ let buttons: any = {
   }
 };
 
-buttons.primary = { ...buttons.primary, ...base };
-buttons.secondary = { ...buttons.secondary, ...base };
-buttons.outline = { ...buttons.outline, ...base };
 buttons.outline.disabled = { ...buttons.outline, ...buttons.outline.disabled };
 
 export default buttons;

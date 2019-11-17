@@ -11,13 +11,20 @@ export interface IButtonProps {
   onClick?: (e: any) => void;
 }
 
-const buttonStyles = {
+const baseStyle = {
   fontWeight: 'body',
   fontSize: 2,
-};
+  cursor: 'pointer',
+  fontFamily: 'body',
+  borderStyle: 'solid',
+  borderWidth: 2,
+  '&:focus': {
+    outline: 0
+  }
+}
 
 const Button: React.FC<IButtonProps> = ({ variant, children, style, disable }) => (
-  <BaseButton disabled={disable} sx={{...buttonStyles, ...style}} variant={variant}>
+  <BaseButton disabled={disable} sx={{...baseStyle, ...style}} variant={variant}>
     {children}
   </BaseButton>
 );
