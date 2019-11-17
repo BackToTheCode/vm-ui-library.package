@@ -22,7 +22,7 @@ let text = {
         fontFamily: 'heading'
       },
       large: {
-        fontSize: 5,
+        fontSize: [4, 5, 5],
         fontFamily: 'heading'
       }
     }

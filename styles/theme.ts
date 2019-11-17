@@ -24,7 +24,7 @@ export default {
     lightWarning: '#ffbf00',
     warning: '#ff0000'
   },
-  fontSizes: [10, 14, 18, 24, 32, 48, 64],
+  fontSizes: [10, 14, 18, 26, 34, 48, 64],
   space: [0, 2, 4, 6, 8, 16, 20, 32],
   radii: {
     default: 4
