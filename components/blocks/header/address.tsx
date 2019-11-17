@@ -40,7 +40,7 @@ const Address: React.FC<IAddressProps> = ({ variant, address, ern }) => (
       <Box sx={styles.addressContainer}>
         <Text
           sx={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
-          variant={'body.normal'}
+          variant={'body.regular'}
         >
           {address ? address : 'Not connected'} 
         </Text>

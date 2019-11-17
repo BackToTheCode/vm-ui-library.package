@@ -6,14 +6,11 @@ import { Flex } from 'rebass';
 export interface IContainerProps {
   variant?: string;
   children?: React.ReactNode;
+  style?: any;
 }
 
-const styles = {
-  mx: 'auto'
-};
-
-const Container: React.FC<IContainerProps> = ({ children, variant }) => (
-  <Flex sx={styles} variant={variant}>
+const Container: React.FC<IContainerProps> = ({ children, variant, style }) => (
+  <Flex sx={{mx: 'auto', ...style}} variant={variant}>
     {children}
   </Flex>
 );

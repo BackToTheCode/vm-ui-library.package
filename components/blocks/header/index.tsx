@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import React from 'react';
 import Logo from './logo';
 import Address from './address';
-import logoImage from '../../../public/images/Mark_Maker.svg';
+import logoImage from '../../../public/images/mark-maker.svg';
 import Container from '../../elements/container/index';
 
 export interface IHeaderProps {

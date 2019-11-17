@@ -49,6 +49,10 @@ export default {
       },
       wide: {
         maxWidth: '100%'
+      },
+      regularTall: {
+        maxWidth: 1024,
+        height: '75vh'
       }
     }
   },
@@ -58,9 +62,8 @@ export default {
         fontSize: 1,
         fontFamily: 'body',
         color: 'dark'
-
       },
-      normal: {
+      regular: {
         fontSize: 2,
         fontFamily: 'body',
         color: 'dark'
@@ -86,23 +89,35 @@ export default {
     primary: {
       color: 'white',
       bg: 'primary',
+      fontFamily: 'body',
       borderWidth: 2,
       borderStyle: 'solid',
-      borderColor: 'primary'
+      borderColor: 'primary',
+      py: 3,
+      px: 4
     },
     secondary: {
       color: 'white',
       bg: 'secondary',
+      fontFamily: 'body',
       borderWidth: 2,
       borderStyle: 'solid',
-      borderColor: 'secondary'
+      borderColor: 'secondary',
+      py: 1,
+      px: 3
     },
     outline: {
       color: 'primary',
       bg: 'transparent',
+      fontFamily: 'body',
       borderColor: 'primary',
       borderStyle: 'solid',
-      borderWidth: 2
+      borderWidth: 2,
+      py: 5,
+      px: 6,
+      '&:hover': {
+        backgroundColor: 'rgba(26, 171, 155, 0.1)'
+      }
     }
   }
 };

@@ -5,20 +5,19 @@ import { Button as BaseButton } from 'rebass';
 
 export interface IButtonProps {
   variant?: string;
+  style?: any;
   children?: React.ReactNode;
   onClick?: (e: any) => void;
 }
 
-const styles = {
+const buttonStyles = {
   fontWeight: 'body',
-  fontSize: 2 ,
-  paddingTop: 1,
-  paddingBottom: 1,
-  padding: 3
+  fontSize: 2,
+  cursor: 'pointer'
 };
 
-const Button: React.FC<IButtonProps> = ({ variant, children }) => (
-  <BaseButton sx={styles} variant={variant}>
+const Button: React.FC<IButtonProps> = ({ variant, children, style }) => (
+  <BaseButton sx={{...buttonStyles, ...style}} variant={variant}>
     {children}
   </BaseButton>
 );
