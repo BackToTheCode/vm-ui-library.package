@@ -12,6 +12,8 @@
     "export": "yarn build && next export"
   },
   "dependencies": {
+    "@makerdao/dai": "^0.22.0",
+    "@makerdao/dai-plugin-mcd": "^1.0.0",
     "@rebass/preset": "^4.0.5",
     "@testing-library/react": "^9.3.2",
     "@types/rebass": "^4.0.3",

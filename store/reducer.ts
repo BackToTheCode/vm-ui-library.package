@@ -1,11 +1,11 @@
-export const initialState = { count: 0, variant: "unconnected" };
+export const initialState = { connected: false, variant: "unconnected", maker: 'false' };
 
 const reducer = (state: any, action: any) => {
   switch (action.type) {
-    case 'increment':
-      return { count: state.count + 1 };
-    case 'decrement':
-      return { count: state.count - 1 };
+    case 'connected':
+      return { connected: !state.connected };
+    case 'disconnect':
+      return { connected: !state.connected };
     default:
       throw new Error();
   }

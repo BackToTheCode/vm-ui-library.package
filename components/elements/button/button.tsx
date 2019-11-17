@@ -23,8 +23,8 @@ const baseStyle = {
   }
 }
 
-const Button: React.FC<IButtonProps> = ({ variant, children, style, disable }) => (
-  <BaseButton disabled={disable} sx={{...baseStyle, ...style}} variant={variant}>
+const Button: React.FC<IButtonProps> = ({ onClick, variant, children, style, disable }) => (
+  <BaseButton onClick={onClick} disabled={disable} sx={{...baseStyle, ...style}} variant={variant}>
     {children}
   </BaseButton>
 );

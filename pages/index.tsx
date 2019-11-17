@@ -6,21 +6,26 @@ import { Global, css } from '@emotion/core';
 import emotionNormalize from 'emotion-normalize';
 import Hero from '../components/blocks/hero/index';
 import logoImage from '../public/images/mark-maker.svg';
-import reducer, { initialState } from '../reducers/reducer';
+import reducer, { initialState } from '../store/reducer';
 
-export default (props: any) => {
-  const [state] = useReducer(reducer, initialState);
+export const Context = React.createContext(null);
+const Provider = Context.Provider;
 
-  const renderHeader = (props: any, { variant }: any) => {
+export default () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const renderHeader = () => {
     return (
-      <Header {...props} variant={'indicator.unconnected'}>
+      <Header.Wrapped variant={'indicator.unconnected'}>
         <Header.Logo image={logoImage} />
-        <Header.Address variant={variant} />
-      </Header>
+        <Header.Address />
+      </Header.Wrapped>
     );
   };
 
-  const renderHero = (props: any) => <Hero {...props} />;
+  const renderHero = () => (
+    <Hero />
+  );
 
   return (
     <ThemeProvider theme={appTheme}>
@@ -29,8 +34,21 @@ export default (props: any) => {
           ${emotionNormalize}
         `}
       />
-      {renderHeader(props, state)}
-      {renderHero(props)}
+      <Provider value={{state, dispatch}}>
+        {renderHeader()}
+        {renderHero()}
+      </Provider>
     </ThemeProvider>
   );
 };
+
+// state = {
+//   maker: 'false',
+//   load: false,
+// }
+// handleMetamask = async () => {
+//   this.setState({load: true})
+//   maker = await connect()
+//   getWeb3()
+//   this.setState({ maker: true })
+// }
