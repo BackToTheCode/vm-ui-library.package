@@ -13,7 +13,7 @@ export default () => (
         ${emotionNormalize}
       `}
     />
-    <Header variant={'indicator.connected'} address='0x61049F5e03Bfe3823f274C479158A94bcA26456c' ern='james.eth' />
+    <Header variant={'indicator.unconnected'} />
     <Hero /> 
   </ThemeProvider>
 );

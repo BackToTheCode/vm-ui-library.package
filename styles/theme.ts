@@ -117,6 +117,22 @@ export default {
       px: 6,
       '&:hover': {
         backgroundColor: 'rgba(26, 171, 155, 0.1)'
+      },
+      disabled: {
+        color: 'primary',
+        bg: 'transparent',
+        fontFamily: 'body',
+        borderColor: 'primary',
+        borderStyle: 'solid',
+        borderWidth: 2,
+        py: 5,
+        px: 6,
+        '&:hover': {
+          backgroundColor: 'rgba(26, 171, 155, 0.1)'
+        },
+        cursor: 'initial',
+        opacity: '0.7',
+        filter: 'grayscale(1)'
       }
     }
   }

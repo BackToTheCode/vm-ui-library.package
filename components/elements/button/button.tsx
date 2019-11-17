@@ -7,6 +7,7 @@ export interface IButtonProps {
   variant?: string;
   style?: any;
   children?: React.ReactNode;
+  disable?: boolean;
   onClick?: (e: any) => void;
 }
 
@@ -16,8 +17,8 @@ const buttonStyles = {
   cursor: 'pointer'
 };
 
-const Button: React.FC<IButtonProps> = ({ variant, children, style }) => (
-  <BaseButton sx={{...buttonStyles, ...style}} variant={variant}>
+const Button: React.FC<IButtonProps> = ({ variant, children, style, disable }) => (
+  <BaseButton disabled={disable} sx={{...buttonStyles, ...style}} variant={variant}>
     {children}
   </BaseButton>
 );
