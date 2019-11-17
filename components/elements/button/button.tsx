@@ -14,7 +14,6 @@ export interface IButtonProps {
 const buttonStyles = {
   fontWeight: 'body',
   fontSize: 2,
-  cursor: 'pointer'
 };
 
 const Button: React.FC<IButtonProps> = ({ variant, children, style, disable }) => (

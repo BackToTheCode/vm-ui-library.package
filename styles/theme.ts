@@ -1,3 +1,7 @@
+import buttons from './button-variants';
+import variants from './general-variants';
+import text from './text-variants';
+
 export default {
   fonts: {
     body: `-apple-system, BlinkMacSystemFont, 
@@ -37,103 +41,9 @@ export default {
   borderWidths: {
     default: 2
   },
-  variants: {
-    indicator: {
-      connected: { bg: 'primary' },
-      unconnected: { bg: 'warning' },
-      disconnected: { bg: 'lightWarning' }
-    },
-    container: {
-      regular: {
-        maxWidth: 1024
-      },
-      wide: {
-        maxWidth: '100%'
-      },
-      regularTall: {
-        maxWidth: 1024,
-        height: '75vh'
-      }
-    }
-  },
-  text: {
-    body: {
-      small: {
-        fontSize: 1,
-        fontFamily: 'body',
-        color: 'dark'
-      },
-      regular: {
-        fontSize: 2,
-        fontFamily: 'body',
-        color: 'dark'
-      },
-      large: {
-        fontSize: 3,
-        fontFamily: 'body',
-        color: 'dark'
-      }
-    },
-    heading: {
-      normal: {
-        fontSize: 4,
-        fontFamily: 'heading'
-      },
-      large: {
-        fontSize: 5,
-        fontFamily: 'heading'
-      }
-    }
-  },
-  buttons: {
-    primary: {
-      color: 'white',
-      bg: 'primary',
-      fontFamily: 'body',
-      borderWidth: 2,
-      borderStyle: 'solid',
-      borderColor: 'primary',
-      py: 3,
-      px: 4
-    },
-    secondary: {
-      color: 'white',
-      bg: 'secondary',
-      fontFamily: 'body',
-      borderWidth: 2,
-      borderStyle: 'solid',
-      borderColor: 'secondary',
-      py: 1,
-      px: 3
-    },
-    outline: {
-      color: 'primary',
-      bg: 'transparent',
-      fontFamily: 'body',
-      borderColor: 'primary',
-      borderStyle: 'solid',
-      borderWidth: 2,
-      py: 5,
-      px: 6,
-      '&:hover': {
-        backgroundColor: 'rgba(26, 171, 155, 0.1)'
-      },
-      disabled: {
-        color: 'primary',
-        bg: 'transparent',
-        fontFamily: 'body',
-        borderColor: 'primary',
-        borderStyle: 'solid',
-        borderWidth: 2,
-        py: 5,
-        px: 6,
-        '&:hover': {
-          backgroundColor: 'rgba(26, 171, 155, 0.1)'
-        },
-        cursor: 'initial',
-        opacity: '0.7',
-        filter: 'grayscale(1)'
-      }
-    }
-  }
+  variants: variants,
+  text: text,
+  buttons: buttons
 };
+
+
