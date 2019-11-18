@@ -7,7 +7,8 @@ import metamaskLogo from '../../../public/images/metamask-fox.svg';
 import ledgerLogo from '../../../public/images/ledger-logo.png';
 import trezorLogo from '../../../public/images/trezor-logo.png';
 import { Image, Box, Text } from 'rebass';
-import connect from '../../../store/connect';
+import { connect as makerConnect } from '../../../utils/web3'
+
 
 export interface IHeroProps {
   variant?: string;
@@ -15,7 +16,7 @@ export interface IHeroProps {
 }
 
 type THero = {
-  Wrapped: any;
+  Wrapped?: any;
 };
 
 
@@ -45,7 +46,7 @@ const Hero: React.FC<IHeroProps> & THero = (props: any) => {
   const handleMetamask = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-    await connect();
+    await makerConnect();
     props.dispatchConnect();
     setLoading(false);
     
@@ -72,7 +73,7 @@ const Hero: React.FC<IHeroProps> & THero = (props: any) => {
         >
           Connect to the Ethereum network
         </Text>
-        <Button variant="outline" style={buttonStyles} onClick={handleMetamask}>
+        <Button variant='outline.tall' style={buttonStyles} onClick={handleMetamask}>
           <Box sx={logoStyles.logoHolder}>
             <Image sx={logoStyles.logo} src={metamaskLogo} />
           </Box>
@@ -80,7 +81,7 @@ const Hero: React.FC<IHeroProps> & THero = (props: any) => {
         </Button>
         <Button
           disable={true}
-          variant={true ? 'outline.disabled' : 'outline'}
+          variant={true ? 'outline.disabled.tall' : 'outline.tall'}
           style={buttonStyles}
         >
           <Box
@@ -95,7 +96,7 @@ const Hero: React.FC<IHeroProps> & THero = (props: any) => {
         </Button>
         <Button
           disable={true}
-          variant={true ? 'outline.disabled' : 'outline'}
+          variant={true ? 'outline.disabled.tall' : 'outline.tall'}
           style={buttonStyles}
         >
           <Box sx={logoStyles.logoHolder}>
@@ -108,20 +109,16 @@ const Hero: React.FC<IHeroProps> & THero = (props: any) => {
   );
 };
 
-function mapStateToProps(state: any) {
-  return {
-    books: state.Books
-  };
-}
-function mapDispatchToProps(dispatch: any) {
-  return {
-    dispatchConnect: (payload: any) => dispatch({ type: 'CONNECT', payload }),
-    dispatchDisconnect: (payload: any) => dispatch({ type: 'DISCONNECT', payload })
-  };
-}
+// function mapDispatchToProps(dispatch: any) {
+//   return {
+//     dispatchConnect: (payload: any) => dispatch({ type: 'CONNECT', payload }),
+//     dispatchDisconnect: (payload: any) => dispatch({ type: 'DISCONNECT', payload })
+//   };
+// }
 
-const Wrapped = connect(mapStateToProps, mapDispatchToProps)(Hero);
+// const Wrapped = connect(null, mapDispatchToProps)(Hero);
 
-Hero.Wrapped = Wrapped;
+// Hero.Wrapped = Wrapped;
+
 
 export default Hero;

@@ -4,7 +4,6 @@ import React, { Children } from 'react';
 import Logo, { ILogoProps } from './logo';
 import Address, { IAddressProps } from './address';
 import Container from '../../elements/container/index';
-import connect from '../../../store/connect';
 
 export interface IHeaderProps {
   variant?: string;
@@ -17,7 +16,7 @@ export interface IHeaderProps {
 type THeader = {
   Logo: React.FC<ILogoProps>;
   Address: React.FC<IAddressProps>;
-  Wrapped: any;
+  Wrapped?: any;
 };
 
 const Header: React.FC<IHeaderProps> & THeader = props => {
@@ -39,15 +38,6 @@ const Header: React.FC<IHeaderProps> & THeader = props => {
   );
 };
 
-function mapStateToProps(state: any) {
-  return {
-    connected: state.connected
-  };
-}
-
-const Wrapped = connect(mapStateToProps)(Header);
-
-Header.Wrapped = Wrapped;
 Header.Logo = Logo;
 Header.Address = Address;
 

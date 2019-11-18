@@ -18,6 +18,7 @@ const baseStyle = {
   fontFamily: 'body',
   borderStyle: 'solid',
   borderWidth: 2,
+  px: 6,
   '&:focus': {
     outline: 0
   }

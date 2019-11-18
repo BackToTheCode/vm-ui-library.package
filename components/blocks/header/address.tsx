@@ -37,6 +37,7 @@ const styles = {
 const Address: React.FC<IAddressProps> = ({ connected, address, ern }) => {
 
   const variant = connected ? 'indicator.connected' : 'indicator.unconnected';
+  const connectedMessage = connected ? address ? address : 'Connected' : 'Not connected';
 
   return (
     <Flex width={1} sx={styles.container}>
@@ -49,7 +50,7 @@ const Address: React.FC<IAddressProps> = ({ connected, address, ern }) => {
             sx={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
             variant={'body.regular'}
           >
-            {address ? address : 'Not connected'}
+            {connectedMessage}
           </Text>
         </Box>
         {ern && (

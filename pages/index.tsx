@@ -1,10 +1,10 @@
 import React, { useReducer } from 'react';
 import appTheme from '../styles/theme';
 import { ThemeProvider } from 'emotion-theming';
-import Header from '../components/blocks/header/index';
+import Header from '../components/blocks/header/wrapped';
 import { Global, css } from '@emotion/core';
 import emotionNormalize from 'emotion-normalize';
-import Hero from '../components/blocks/hero/index';
+import Hero from '../components/blocks/hero';
 import logoImage from '../public/images/mark-maker.svg';
 import reducer, { initialState } from '../store/reducer';
 
