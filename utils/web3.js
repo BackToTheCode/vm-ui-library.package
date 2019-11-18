@@ -1,37 +1,37 @@
 import Maker from '@makerdao/dai';
-import McdPlugin, { ETH, REP, BAT } from '@makerdao/dai-plugin-mcd';
+import McdPlugin, { ETH, REP } from '@makerdao/dai-plugin-mcd';
 import dsTokenAbi from './dsToken.abi.json';
 
 let maker = null;
 let web3 = null;
 
 const connect = async () => {
-    maker = await Maker.create('browser', {
-        plugins: [
-            [
-                McdPlugin,
-                {
-                    network: 'kovan',
-                    cdpTypes: [
-                        { currency: ETH, ilk: 'ETH-A' },
-                        { currency: REP, ilk: 'REP-A' },
-                        { currency: BAT, ilk: 'BAT-A' }
-                    ]
-                }
-            ]
-        ]
-    });
-    await maker.authenticate();
-    await maker.service('proxy').ensureProxy();
+  maker = await Maker.create('browser', {
+    plugins: [
+      [
+        McdPlugin,
+        {
+          network: 'kovan',
+          cdpTypes: [
+            { currency: ETH, ilk: 'ETH-A' },
+            { currency: REP, ilk: 'REP-A' },
+            { currency: BAT, ilk: 'BAT-A'}
+          ]
+        }
+      ]
+    ]
+  });
+  await maker.authenticate();
+  await maker.service('proxy').ensureProxy();
 
-    return maker;
-}
-
+  console.log('THIS JUST RAN')
+  return maker;
+};
 
 const getWeb3 = async () => {
-    web3 = await maker.service('web3')._web3;
-    return web3;
-}
+  web3 = await maker.service('web3')._web3;
+  return web3;
+};
 
 // const requestTokens = async () => {
 //     try {
@@ -43,64 +43,62 @@ const getWeb3 = async () => {
 //         const faucetContract = new web3.eth.Contract(faucetABI, faucetAddress);
 //         await faucetContract.methods.gulp(REP).send({ from: accounts[0] }, (error, result) => console.log(error))
 
-
 //     } catch (error) {
 //         console.log('Request Tokens error', error)
 //     }
 // }
 
 const approveProxyInREP = async () => {
-    try {
-        let accounts = await web3.eth.getAccounts();
-        let proxy = await maker.currentProxy();
-        let REPAddress = '0xc7aa227823789e363f29679f23f7e8f6d9904a9b'
-        const REPAbi = dsTokenAbi;
-        const REPContract = new web3.eth.Contract(REPAbi, REPAddress);
-        return new Promise(async (resolve, reject) => {
-            await REPContract.methods.approve(proxy, 'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff').send({ from: accounts[0] }, (error, result) => {
-                if (error) {
-                    console.log('error in approving REP token', error)
-                    reject(error)
-                }
-                console.log('result in approving REP token', result)
-                resolve(result)
-            })
-
-        })
-    } catch (error) {
-        console.log(error)
-    }
-
-}
-const approveProxyInDai = async () => {
-    try {
-        let accounts = await web3.eth.getAccounts();
-        let proxy = await maker.currentProxy();
-        let daiAddress = '0x1f9beaf12d8db1e50ea8a5ed53fb970462386aa0';
-        const daiAbi = dsTokenAbi;
-        const REPContract = new web3.eth.Contract(daiAbi, daiAddress);
-        return new Promise(async (resolve, reject) => {
-            await REPContract.methods.approve(proxy, 'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff').send({ from: accounts[0] }, (error, result) => {
-                if (error) {
-                    console.log('error in approving DAI token', error)
-                    reject(error);
-                }
-                console.log('result in approving DAI token', result)
-                resolve(result);
-            })
-
-        })
-    } catch (error) {
-        console.log(error)
-    }
-
-}
-
-
-
-export {
-    getWeb3,
-    connect,
-    approveProxyInREP,
-    approveProxyInDai
+  try {
+    let accounts = await web3.eth.getAccounts();
+    let proxy = await maker.currentProxy();
+    let REPAddress = '0xc7aa227823789e363f29679f23f7e8f6d9904a9b';
+    const REPAbi = dsTokenAbi;
+    const REPContract = new web3.eth.Contract(REPAbi, REPAddress);
+    return new Promise(async (resolve, reject) => {
+      await REPContract.methods
+        .approve(
+          proxy,
+          'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
+        )
+        .send({ from: accounts[0] }, (error, result) => {
+          if (error) {
+            console.log('error in approving REP token', error);
+            reject(error);
+          }
+          console.log('result in approving REP token', result);
+          resolve(result);
+        });
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
+const approveProxyInDai = async () => {
+  try {
+    let accounts = await web3.eth.getAccounts();
+    let proxy = await maker.currentProxy();
+    let daiAddress = '0x1f9beaf12d8db1e50ea8a5ed53fb970462386aa0';
+    const daiAbi = dsTokenAbi;
+    const REPContract = new web3.eth.Contract(daiAbi, daiAddress);
+    return new Promise(async (resolve, reject) => {
+      await REPContract.methods
+        .approve(
+          proxy,
+          'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
+        )
+        .send({ from: accounts[0] }, (error, result) => {
+          if (error) {
+            console.log('error in approving DAI token', error);
+            reject(error);
+          }
+          console.log('result in approving DAI token', result);
+          resolve(result);
+        });
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { getWeb3, connect, approveProxyInREP, approveProxyInDai };

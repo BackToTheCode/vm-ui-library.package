@@ -41,8 +41,6 @@ const Hero: React.FC<IHeroProps> = () => {
     e.preventDefault();
     setLoading(true);
     await connect();
-    console.log('click being handled')
-    // getWeb3();
     setLoading(false);
   };
 
