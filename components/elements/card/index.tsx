@@ -10,8 +10,8 @@ export interface IContainerProps {
 }
 
 const baseStyle = {
-  maxWidth: '400px',
-  width: '100%',
+  maxWidth: '350px',
+  width: '90%',
   height: '100%',
   maxHeight: '500px',
   borderRadius: '4px',
@@ -19,8 +19,8 @@ const baseStyle = {
   bg: '#ffffff'
 };
 
-const Card: React.FC<IContainerProps> = ({ children }: any) => (
-  <Box sx={baseStyle}>{children}</Box>
+const Card: React.FC<IContainerProps> = ({ style, children }: any) => (
+  <Box sx={{...baseStyle, ...style}}>{children}</Box>
 );
 
 export default Card;

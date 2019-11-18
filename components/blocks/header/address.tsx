@@ -42,12 +42,12 @@ const Address: React.FC<IAddressProps> = ({ connected, address, ern }) => {
   return (
     <Flex width={1} sx={styles.container}>
       <Box
-        sx={{ textAlign: 'left', flexDirection: 'column', maxWidth: '140px' }}
+        sx={{ textAlign: 'left', flexDirection: 'column', maxWidth: '140px', position: 'relative', top: '-5px' }}
       >
         <Box variant={variant} sx={styles.indicator} />
         <Box sx={styles.addressContainer}>
           <Text
-            sx={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
+            sx={{ overflow: 'hidden', textOverflow: 'ellipsis' }} 
             variant={'body.regular'}
           >
             {connectedMessage}

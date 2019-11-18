@@ -17,11 +17,12 @@ export default {
   colors: {
     dark: '#222222',
     grey: '#48495f',
+    midGrey: '#7a7b86',
     lightGrey: '#e4e4e4',
     superLightGrey: '#f5f5f5',
     primary: '#1AAB9B',
     secondary: '#F4B731',
-    transparent: 'transparent',
+    transparent: 'transparent', 
     lightWarning: '#ffbf00',
     warning: '#ff0000'
   },
