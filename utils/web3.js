@@ -5,7 +5,9 @@ import dsTokenAbi from './dsToken.abi.json';
 let maker = null;
 let web3 = null;
 
-const connect = async () => {
+const setup = async () => {
+  if (maker) return maker;
+
   maker = await Maker.create('browser', {
     plugins: [
       [
@@ -15,20 +17,27 @@ const connect = async () => {
           cdpTypes: [
             { currency: ETH, ilk: 'ETH-A' },
             { currency: REP, ilk: 'REP-A' },
-            { currency: BAT, ilk: 'BAT-A'}
+            { currency: BAT, ilk: 'BAT-A' }
           ]
         }
       ]
     ]
   });
-  await maker.authenticate();
-  await maker.service('proxy').ensureProxy();
 
-  console.log('THIS JUST RAN')
   return maker;
 };
 
+const authenticate = async () => {
+  await maker.authenticate();
+  await maker.service('proxy').ensureProxy();
+
+  return maker;
+}
+
 const getWeb3 = async () => {
+  if (web3) {
+    return web3;
+  }
   web3 = await maker.service('web3')._web3;
   return web3;
 };
@@ -101,4 +110,4 @@ const approveProxyInDai = async () => {
   }
 };
 
-export { getWeb3, connect, approveProxyInREP, approveProxyInDai };
+export { setup, authenticate, getWeb3, approveProxyInREP, approveProxyInDai };

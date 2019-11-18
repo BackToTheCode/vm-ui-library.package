@@ -1,14 +1,15 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import React, { useState } from 'react';
-import Button from '../../elements/button/button';
 import Container from '../../elements/container/index';
-import metamaskLogo from '../../../public/images/metamask-fox.svg';
-import ledgerLogo from '../../../public/images/ledger-logo.png';
-import trezorLogo from '../../../public/images/trezor-logo.png';
-import { Image, Box, Text } from 'rebass';
-import { connect as makerConnect } from '../../../utils/web3'
-
+import {
+  setup as makerSetup,
+  authenticate as makerAuthenticate,
+  getWeb3 as makerGetWeb3
+} from '../../../utils/web3';
+import Loading from '../../elements/loading/loading';
+import VaultBuilder from '../vault-maker';
+import Wallet from './wallet';
 
 export interface IHeroProps {
   variant?: string;
@@ -19,106 +20,53 @@ type THero = {
   Wrapped?: any;
 };
 
-
-const logoStyles = {
-  logoHolder: {
-    width: '20px',
-    display: 'inline-block',
-    mr: 3
-  },
-  logo: {
-    width: '20px',
-    position: 'relative',
-    top: '4px'
-  }
-};
-
-const buttonStyles = {
-  display: 'block',
-  margin: 'auto',
-  mb: 3,
-  width: '320px'
-};
+const baseStyle = { justifyContent: 'center', alignItems: 'center' }
 
 const Hero: React.FC<IHeroProps> & THero = (props: any) => {
   const [isLoading, setLoading] = useState(false);
+  const { connected: isConnected } = props;
+
+  const getAccounts = async () => {
+    await makerSetup();
+    const web3 = (await makerGetWeb3()) as any;
+    if (web3) {
+      const accounts = await web3.eth.getAccounts();
+      const userAccount = accounts[0];
+
+      return userAccount;
+    }
+  };
 
   const handleMetamask = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-    await makerConnect();
-    props.dispatchConnect();
+    await makerSetup();
+    await makerAuthenticate();
+    const userAccount = await getAccounts();
+    props.dispatchConnect({ address: userAccount });
     setLoading(false);
-    
   };
 
-  return (  
+  const renderWallet = (
+    isConnected: boolean,
+    isLoading: boolean,
+    handleMetamask: (e: any) => Promise<void>
+  ) =>
+    !isConnected &&
+    (isLoading ? <Loading /> : <Wallet handleMetamask={handleMetamask} />);
+
+  const renderVaultBuilder = (isConnected: boolean) => isConnected && <VaultBuilder />;
+
+  return (
     <Container
-      style={{ justifyContent: 'center', alignItems: 'center' }}
+      style={baseStyle}
       variant="container.regularTall"
     >
-      {isLoading ? <p>Loading...</p> : <Box>
-        <Text variant="heading.large" sx={{ mb: 5, textAlign: 'center' }}>
-          Start Making a Vault
-        </Text>
-        <Text
-          variant="body.regular"
-          sx={{
-            mb: 7,
-            color: 'grey',
-            mx: 'auto',
-            display: 'block',
-            textAlign: 'center'
-          }}
-        >
-          Connect to the Ethereum network
-        </Text>
-        <Button variant='outline.tall' style={buttonStyles} onClick={handleMetamask}>
-          <Box sx={logoStyles.logoHolder}>
-            <Image sx={logoStyles.logo} src={metamaskLogo} />
-          </Box>
-          Connect with Metamask
-        </Button>
-        <Button
-          disable={true}
-          variant={true ? 'outline.disabled.tall' : 'outline.tall'}
-          style={buttonStyles}
-        >
-          <Box
-            sx={{
-              ...logoStyles.logoHolder,
-              ...{ padding: '1px', top: '-1px', position: 'relative' }
-            }}
-          >
-            <Image sx={logoStyles.logo} src={ledgerLogo} />
-          </Box>
-          Trezor - coming soon...
-        </Button>
-        <Button
-          disable={true}
-          variant={true ? 'outline.disabled.tall' : 'outline.tall'}
-          style={buttonStyles}
-        >
-          <Box sx={logoStyles.logoHolder}>
-            <Image sx={logoStyles.logo} src={trezorLogo} />
-          </Box>
-          Ledger Blue - coming soon...
-        </Button>
-      </Box>}
+      {renderWallet(isConnected, isLoading, handleMetamask)}
+      {renderVaultBuilder(isConnected)}
+
     </Container>
   );
 };
-
-// function mapDispatchToProps(dispatch: any) {
-//   return {
-//     dispatchConnect: (payload: any) => dispatch({ type: 'CONNECT', payload }),
-//     dispatchDisconnect: (payload: any) => dispatch({ type: 'DISCONNECT', payload })
-//   };
-// }
-
-// const Wrapped = connect(null, mapDispatchToProps)(Hero);
-
-// Hero.Wrapped = Wrapped;
-
 
 export default Hero;

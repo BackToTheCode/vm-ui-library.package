@@ -9,6 +9,12 @@ export default {
   decorators: [checkA11y]
 };
 
+export const WithAddress = () => (
+  <Header connected>
+    <Header.Logo image={logoImage} />
+    <Header.Address ern="james.eth" address="0x61049F5e03Bfe3823f274C479158A94bcA26456c" />
+  </Header>
+);
 export const Connected = () => (
   <Header connected>
     <Header.Logo image={logoImage} />

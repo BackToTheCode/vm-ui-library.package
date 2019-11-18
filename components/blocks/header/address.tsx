@@ -54,7 +54,7 @@ const Address: React.FC<IAddressProps> = ({ connected, address, ern }) => {
           </Text>
         </Box>
         {ern && (
-          <Box sx={{ marginTop: 2 }}>
+          <Box sx={{ marginTop: 3, fontWeight: 'bold', textTransform: 'uppercase' }}>
             <Text variant={'body.small'} sx={{ color: 'grey' }}>
               {ern}
             </Text>

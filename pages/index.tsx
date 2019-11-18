@@ -1,10 +1,10 @@
 import React, { useReducer } from 'react';
 import appTheme from '../styles/theme';
-import { ThemeProvider } from 'emotion-theming';
+import { withTheme, ThemeProvider } from 'emotion-theming';
 import Header from '../components/blocks/header/wrapped';
 import { Global, css } from '@emotion/core';
 import emotionNormalize from 'emotion-normalize';
-import Hero from '../components/blocks/hero';
+import Hero from '../components/blocks/hero/wrapped';
 import logoImage from '../public/images/mark-maker.svg';
 import reducer, { initialState } from '../store/reducer';
 
@@ -23,18 +23,23 @@ export default () => {
     );
   };
 
-  const renderHero = () => (
-    <Hero />
-  );
+  const renderHero = () => <Hero.Wrapped />;
+
+  const makeGlobalStyles = (theme: any) => css`
+    ${emotionNormalize}
+    body {
+      background: ${theme.colors.superLightGrey};
+    }
+  `;
+
+  const GlobalStyles = withTheme(({ theme }) => (
+    <Global styles={makeGlobalStyles(theme)} />
+  ));
 
   return (
     <ThemeProvider theme={appTheme}>
-      <Global
-        styles={css`
-          ${emotionNormalize}
-        `}
-      />
-      <Provider value={{state, dispatch}}>
+      <GlobalStyles />
+      <Provider value={{ state, dispatch }}>
         {renderHeader()}
         {renderHero()}
       </Provider>

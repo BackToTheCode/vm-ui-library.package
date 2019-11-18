@@ -13,7 +13,7 @@ let variants = {
     },
     regularTall: {
       maxWidth: 1024,
-      height: '75vh'
+      height: '85vh;'
     }
   }
 };
