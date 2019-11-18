@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import React, { useState } from 'react';
+import React from 'react';
 import { Flex, Box, Text } from 'rebass';
 
 export interface IAddressProps {
@@ -35,21 +35,8 @@ const styles = {
 };
 
 const Address: React.FC<IAddressProps> = ({ connected, address, ern }) => {
-  const [wasConnected, setWasConnected] = useState(false);
-  const [isConnected, setConnected] = useState(false);
 
-  if (!connected && isConnected) {
-    setWasConnected(true);
-  }
-  if (isConnected !== connected) {
-    setConnected(connected);
-  }
-
-  const variant = connected
-    ? 'indicator.connected'
-    : wasConnected
-    ? 'indicator.disconnected'
-    : 'indicator.unconnected';
+  const variant = connected ? 'indicator.connected' : 'indicator.unconnected';
 
   return (
     <Flex width={1} sx={styles.container}>

@@ -2,10 +2,10 @@ export const initialState = { connected: false, variant: "unconnected", maker: '
 
 const reducer = (state: any, action: any) => {
   switch (action.type) {
-    case 'connected':
-      return { connected: !state.connected };
-    case 'disconnect':
-      return { connected: !state.connected };
+    case 'CONNECT':
+      return { ...state, connected: true };
+    case 'DISCONNECT':
+      return { ...state, connected: false };
     default:
       throw new Error();
   }

@@ -41,16 +41,11 @@ const Header: React.FC<IHeaderProps> & THeader = props => {
 
 function mapStateToProps(state: any) {
   return {
-    books: state.Books
-  };
-}
-function mapDispatchToProps(dispatch: any) {
-  return {
-    dispatchAddBook: (payload: any) => dispatch({ type: 'ADD_BOOK', payload })
+    connected: state.connected
   };
 }
 
-const Wrapped = connect(mapStateToProps, mapDispatchToProps)(Header);
+const Wrapped = connect(mapStateToProps)(Header);
 
 Header.Wrapped = Wrapped;
 Header.Logo = Logo;

@@ -7,12 +7,17 @@ import metamaskLogo from '../../../public/images/metamask-fox.svg';
 import ledgerLogo from '../../../public/images/ledger-logo.png';
 import trezorLogo from '../../../public/images/trezor-logo.png';
 import { Image, Box, Text } from 'rebass';
-import { connect } from '../../../utils/web3';
+import connect from '../../../store/connect';
 
 export interface IHeroProps {
   variant?: string;
   children?: React.ReactNode;
 }
+
+type THero = {
+  Wrapped: any;
+};
+
 
 const logoStyles = {
   logoHolder: {
@@ -34,14 +39,16 @@ const buttonStyles = {
   width: '320px'
 };
 
-const Hero: React.FC<IHeroProps> = () => {
+const Hero: React.FC<IHeroProps> & THero = (props: any) => {
   const [isLoading, setLoading] = useState(false);
 
   const handleMetamask = async (e: any) => {
     e.preventDefault();
     setLoading(true);
     await connect();
+    props.dispatchConnect();
     setLoading(false);
+    
   };
 
   return (  
@@ -100,5 +107,21 @@ const Hero: React.FC<IHeroProps> = () => {
     </Container>
   );
 };
+
+function mapStateToProps(state: any) {
+  return {
+    books: state.Books
+  };
+}
+function mapDispatchToProps(dispatch: any) {
+  return {
+    dispatchConnect: (payload: any) => dispatch({ type: 'CONNECT', payload }),
+    dispatchDisconnect: (payload: any) => dispatch({ type: 'DISCONNECT', payload })
+  };
+}
+
+const Wrapped = connect(mapStateToProps, mapDispatchToProps)(Hero);
+
+Hero.Wrapped = Wrapped;
 
 export default Hero;
