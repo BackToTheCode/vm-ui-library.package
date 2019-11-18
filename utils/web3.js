@@ -1,5 +1,5 @@
 import Maker from '@makerdao/dai';
-import McdPlugin, { ETH, REP } from '@makerdao/dai-plugin-mcd';
+import McdPlugin, { ETH, REP, BAT } from '@makerdao/dai-plugin-mcd';
 import dsTokenAbi from './dsToken.abi.json';
 
 let maker = null;
