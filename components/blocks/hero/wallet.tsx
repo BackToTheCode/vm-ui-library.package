@@ -1,88 +1,92 @@
-import { Box, Image, Text } from 'rebass';
-import Button from '../../elements/button/button';
-import metamaskLogo from '../../../public/images/metamask-fox.svg';
-import ledgerLogo from '../../../public/images/ledger-logo.png';
-import trezorLogo from '../../../public/images/trezor-logo.png';
+import React, { Children } from 'react';
+import { Box, Image, Text, TextProps } from 'rebass';
+import { LargeButton, IButtonProps } from '../../elements/button/button';
 
-export interface IWalletProps {
-  handleMetamask: (e: any) => Promise<void>;
-}
-
-const logoStyles = {
-  logoHolder: {
-    width: '20px',
-    display: 'inline-block',
-    mr: 3
-  },
-  logo: {
-    width: '20px',
-    position: 'relative',
-    top: '4px'
-  }
+type Wallet = {
+  Header: React.FC<TextProps>;
+  SubHeader: React.FC<TextProps>;
+  Button: React.FC<IButtonProps>;
 };
 
-const buttonStyles = {
-  display: 'block',
-  margin: 'auto',
-  mb: 3,
-  width: '320px'
-};
-
-const Wallet: React.FC<IWalletProps>  = ({ handleMetamask }: IWalletProps) => {
+const Wallet: React.FC<any> & Wallet = props => {
+  const { children } = props;
   return (
     <Box>
-      <Text variant="heading.large" sx={{ mb: 5, textAlign: 'center' }}>
-        Start Making a Vault
-      </Text>
-      <Text
-        variant="body.regular"
-        sx={{
-          mb: 7,
-          color: 'grey',
-          mx: 'auto',
-          display: 'block',
-          textAlign: 'center'
-        }}
-      >
-        Connect to the Ethereum network
-      </Text>
-      <Button
-        variant="outline.tall"
-        style={buttonStyles}
-        onClick={handleMetamask}
-      >
-        <Box sx={logoStyles.logoHolder}>
-          <Image sx={logoStyles.logo} src={metamaskLogo} />
-        </Box>
-        Connect with Metamask
-      </Button>
-      <Button
-        disable={true}
-        variant={true ? 'outline.disabled.tall' : 'outline.tall'}
-        style={buttonStyles}
-      >
-        <Box
-          sx={{
-            ...logoStyles.logoHolder,
-            ...{ padding: '1px', top: '-1px', position: 'relative' }
-          }}
-        >
-          <Image sx={logoStyles.logo} src={ledgerLogo} />
-        </Box>
-        Trezor - coming soon...
-      </Button>
-      <Button
-        disable={true}
-        variant={true ? 'outline.disabled.tall' : 'outline.tall'}
-        style={buttonStyles}
-      >
-        <Box sx={logoStyles.logoHolder}>
-          <Image sx={logoStyles.logo} src={trezorLogo} />
-        </Box>
-        Ledger Blue - coming soon...
-      </Button>
+      {Children.map(children, (child: any) => {
+        if (child.type.name === 'Header') {
+          return React.cloneElement(child, props);
+        }
+
+        if (child.type.name === 'SubHeader') {
+          return React.cloneElement(child, props);
+        }
+
+        if (child.type.name === 'Button') {
+          return React.cloneElement(child, props);
+        }
+
+        return child;
+      })}
     </Box>
   );
 };
+
+Wallet.Header = ({ children }: any) => (
+  <Text variant="heading.large" sx={{ mb: 5, textAlign: 'center' }}>
+    {children}
+  </Text>
+);
+
+Wallet.SubHeader = ({ sx, children }: any) => (
+  <Text
+    variant="body.regular"
+    sx={{
+      ...{
+        mb: 7,
+        color: 'grey',
+        mx: 'auto',
+        display: 'block',
+        textAlign: 'center'
+      },
+      ...sx
+    }}
+  >
+    {children}
+  </Text>
+);
+
+const style = {
+  button: {
+    mx: 'auto',
+    mb: 3,
+    width: '320px'
+  },
+  logo: {
+    container: {
+      width: '20px',
+      display: 'inline-block',
+      mr: 3
+    },
+    icon: {
+      width: '20px',
+      position: 'relative',
+      top: '4px'
+    }
+  }
+};
+
+Wallet.Button = ({ sx, icon, isDisabled, onClick, children }) => (
+  <LargeButton
+    variant="outline"
+    isDisabled={isDisabled}
+    sx={style.button}
+    onClick={onClick}
+  >
+    <Box sx={{ ...style.logo.container, ...sx }}>
+      <Image sx={{ ...style.logo.icon, ...sx }} src={icon} />
+    </Box>
+    {children}
+  </LargeButton>
+);
 
 export default Wallet;

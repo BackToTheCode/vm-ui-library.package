@@ -1,3 +1,9 @@
+const base = {
+  '-webkit-font-smoothing': 'antialiased',
+  '-moz-osx-font-smoothing': 'grayscale'
+}
+
+
 let text = {
     body: {
       small: {
@@ -17,7 +23,11 @@ let text = {
       }
     },
     heading: {
-      normal: {
+      small: {
+        fontSize: '30px',
+        fontFamily: 'heading'
+      },
+      regular: {
         fontSize: 4,
         fontFamily: 'heading'
       },

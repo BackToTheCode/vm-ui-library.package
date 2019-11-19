@@ -2,7 +2,7 @@ import buttons from './button-variants';
 import variants from './general-variants';
 import text from './text-variants';
 
-export default {
+const theme = {
   fonts: {
     body: `-apple-system, BlinkMacSystemFont, 
     "Segoe UI", "Roboto", "Oxygen", 
@@ -21,6 +21,7 @@ export default {
     lightGrey: '#e4e4e4',
     superLightGrey: '#f5f5f5',
     primary: '#1AAB9B',
+    lightPrimary: 'rgb(89, 188, 175)',
     secondary: '#F4B731',
     transparent: 'transparent', 
     lightWarning: '#ffbf00',
@@ -37,7 +38,7 @@ export default {
     bold: 700
   },
   lineHeights: {
-    body: 1.5,
+    body: 1.45,
     heading: 1.25
   },
   borderWidths: {
@@ -48,4 +49,8 @@ export default {
   buttons: buttons
 };
 
+// aliases
+theme.fontSizes.body = theme.fontSizes[2]
+theme.fontSizes.display = theme.fontSizes[5]
 
+export default theme;

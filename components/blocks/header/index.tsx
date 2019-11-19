@@ -13,13 +13,13 @@ export interface IHeaderProps {
   address?: string;
 }
 
-type THeader = {
+type Header = {
   Logo: React.FC<ILogoProps>;
   Address: React.FC<IAddressProps>;
   Wrapped?: any;
 };
 
-const Header: React.FC<IHeaderProps> & THeader = props => {
+const Header: React.FC<IHeaderProps> & Header = props => {
   const { children, connected } = props;
   return (
     <Container variant="container.wide">

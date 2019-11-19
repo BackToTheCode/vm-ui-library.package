@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import React, { useState } from 'react';
-import Container from '../../elements/container/index';
+import { FullContainer } from '../../elements/container/index';
 import {
   setup as makerSetup,
   authenticate as makerAuthenticate,
@@ -10,19 +10,20 @@ import {
 import Loading from '../../elements/loading/loading';
 import VaultBuilder from '../vault-maker';
 import Wallet from './wallet';
+import metamaskLogo from '../../../public/images/metamask-fox.svg';
+import ledgerLogo from '../../../public/images/ledger-logo.png';
+import trezorLogo from '../../../public/images/trezor-logo.png';
 
 export interface IHeroProps {
   variant?: string;
   children?: React.ReactNode;
 }
 
-type THero = {
+type Hero = {
   Wrapped?: any;
 };
 
-const baseStyle = { justifyContent: 'center', alignItems: 'center' }
-
-const Hero: React.FC<IHeroProps> & THero = (props: any) => {
+const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
   const [isLoading, setLoading] = useState(false);
   const { connected: isConnected } = props;
 
@@ -47,25 +48,43 @@ const Hero: React.FC<IHeroProps> & THero = (props: any) => {
     setLoading(false);
   };
 
+  const renderProgress = () => (
+    <div></div>
+  );
+
   const renderWallet = (
     isConnected: boolean,
     isLoading: boolean,
     handleMetamask: (e: any) => Promise<void>
   ) =>
     !isConnected &&
-    (isLoading ? <Loading /> : <Wallet handleMetamask={handleMetamask} />);
+    (isLoading ? (
+      <Loading />
+    ) : (
+      <Wallet>
+        <Wallet.Header>Start Making a Vault</Wallet.Header>
+        <Wallet.SubHeader>Connect to the Ethereum network</Wallet.SubHeader>
+        <Wallet.Button icon={metamaskLogo} onClick={handleMetamask}>
+          Connect with Metamask
+        </Wallet.Button>
+        <Wallet.Button icon={trezorLogo} isDisabled>
+          Trezor - coming soon...
+        </Wallet.Button>
+        <Wallet.Button icon={ledgerLogo} isDisabled>
+          Ledger Blue - coming soon...
+        </Wallet.Button>
+      </Wallet>
+    ));
 
-  const renderVaultBuilder = (isConnected: boolean) => isConnected && <VaultBuilder />;
+  const renderVaultBuilder = (isConnected: boolean) =>
+    isConnected && <VaultBuilder />;
 
   return (
-    <Container
-      style={baseStyle}
-      variant="container.regularTall"
-    >
+    <FullContainer variant="container.default">
+      {isConnected ? renderProgress() : null}
       {renderWallet(isConnected, isLoading, handleMetamask)}
       {renderVaultBuilder(isConnected)}
-
-    </Container>
+    </FullContainer>
   );
 };
 

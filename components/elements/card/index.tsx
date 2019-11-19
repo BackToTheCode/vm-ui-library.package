@@ -6,7 +6,7 @@ import { Box } from 'rebass';
 export interface IContainerProps {
   variant?: string;
   children?: React.ReactNode;
-  style?: any;
+  sx?: any;
 }
 
 const baseStyle = {
@@ -14,13 +14,13 @@ const baseStyle = {
   width: '90%',
   height: '100%',
   maxHeight: '500px',
-  borderRadius: '4px',
-  boxShadow: '3px 3px 2px #e3e3e3',
-  bg: '#ffffff'
+  borderRadius: '8px',
+  boxShadow: '3px 3px 2px lightGrey',
+  bg: 'white'
 };
 
-const Card: React.FC<IContainerProps> = ({ style, children }: any) => (
-  <Box sx={{...baseStyle, ...style}}>{children}</Box>
+const Card: React.FC<IContainerProps> = ({ sx, children }: any) => (
+  <Box sx={{...baseStyle, ...sx}}>{children}</Box>
 );
 
 export default Card;
