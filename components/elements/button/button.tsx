@@ -22,6 +22,7 @@ const baseStyle = {
   cursor: 'pointer',
   py: 4,
   px: 6,
+  transition: '0.2s all',
   '&:hover': {
     transform: 'translateY(-1px)'
   },

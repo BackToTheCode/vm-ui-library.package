@@ -1,6 +1,7 @@
 import React, { Fragment, Children } from 'react';
-import { Box, BoxProps, Text, TextProps, Image } from 'rebass';
+import { Box, BoxProps, Text, TextProps } from 'rebass';
 import Button, { IButtonProps } from '../../elements/button/button';
+import CoinIcon from '../../elements/icon';
 
 const style = {
   button: {
@@ -16,7 +17,7 @@ type ChooseCollateral = {
   OAButton: React.FC<IButtonProps>;
 };
 
-const ChooseCollateral: React.FC<any> & ChooseCollateral = (props: any) => {
+const ConfirmCollateral: React.FC<any> & ChooseCollateral = (props: any) => {
   const { children } = props;
   return (
     <Fragment>
@@ -51,10 +52,9 @@ export interface IconProps extends BoxProps {
   icon: string;
 }
 
-
-ChooseCollateral.Balance = ({ icon }: any) => {
+ConfirmCollateral.Balance = ({ icon }: any) => {
   return (
-    <Box sx={{ flex: 1}}>
+    <Box sx={{ flex: 1 }}>
       <Text
         sx={{
           mb: 3,
@@ -67,31 +67,12 @@ ChooseCollateral.Balance = ({ icon }: any) => {
         BALANCE
       </Text>
       <Text sx={{ mb: 3 }} variant="heading.large">
-       
-        <Text sx={{display: 'inline-block', position: 'relative', top: '-8px'}}>10 ETH</Text>
-        <Box
-          sx={{
-            borderRadius: '50%',
-            padding: '7px',
-            alignSelf: 'flex-end',
-            background: 'rgba(244, 183, 49, 0.10)',
-            justifyContent: 'center',
-            alignItems: 'center',
-            ml: '10px',
-            display: 'inline-flex'
-          }}
+        <Text
+          sx={{ display: 'inline-block', position: 'relative', top: '-8px' }}
         >
-          <Image
-            sx={{
-              width: '45px',
-              height: '45px',
-              padding: '8px',
-              borderRadius: '50%',
-              bg: 'rgba(244, 183, 49, 1)'
-            }}
-            src={icon}
-          />
-        </Box>
+          10 ETH
+        </Text>
+        <CoinIcon sx={{ml: '20px', position: 'relative', top: '-2px'}} icon={icon} />
       </Text>
       <Text sx={{ mb: 6, color: 'grey' }} variant="body.small">
         $2000 @ 80 USD PER ETH
@@ -100,13 +81,13 @@ ChooseCollateral.Balance = ({ icon }: any) => {
   );
 };
 
-ChooseCollateral.Message = ({ children }) => (
-  <Text sx={{ flex: 1}} variant="heading.regular">
+ConfirmCollateral.Message = ({ children }) => (
+  <Text sx={{ flex: 1 }} variant="heading.regular">
     {children}
   </Text>
 );
 
-ChooseCollateral.CTAButton = ({ children }) => (
+ConfirmCollateral.CTAButton = ({ children }) => (
   <Button
     sx={{ ...style.button, ...{ alignContent: 'end' } }}
     variant="primary"
@@ -115,7 +96,7 @@ ChooseCollateral.CTAButton = ({ children }) => (
   </Button>
 );
 
-ChooseCollateral.OAButton = ({ children }) => (
+ConfirmCollateral.OAButton = ({ children }) => (
   <Button
     sx={{
       ...style.button,
@@ -127,4 +108,4 @@ ChooseCollateral.OAButton = ({ children }) => (
   </Button>
 );
 
-export default ChooseCollateral;
+export default ConfirmCollateral;

@@ -1,8 +1,11 @@
 import React from 'react';
 import Card from '../../elements/card';
-import ChooseCollateral from './choose-collateral';
+import ConfirmCollateralChoice from './1-confirm-collateral-choice';
+import ChangeCollateralChoice from './1A-change-collateral-choice';
 import Container from '../../elements/container';
 import ethLogo from '../../../public/images/ethereum-logo.svg';
+import repLogo from '../../../public/images/rep-logo.webp';
+import batLogo from '../../../public/images/bat-logo.png';
 
 const cardBaseStyle = {
     padding: '30px',
@@ -17,22 +20,34 @@ const containerBaseStyle = {
 }
     
 
-const renderChooseCollateral = () => {
+const renderConfirmCollateralChoice = () => {
 
   return (
-    <ChooseCollateral>
-      <ChooseCollateral.Message>We suggest ETH as collateral for your Vault</ChooseCollateral.Message>
-      <ChooseCollateral.Balance icon={ethLogo}/>
-      <ChooseCollateral.CTAButton>Sounds good</ChooseCollateral.CTAButton>
-      <ChooseCollateral.OAButton>Switch collateral type</ChooseCollateral.OAButton>
-    </ChooseCollateral>
+    <ConfirmCollateralChoice>
+      <ConfirmCollateralChoice.Message>We suggest ETH as collateral for your Vault</ConfirmCollateralChoice.Message>
+      <ConfirmCollateralChoice.Balance icon={ethLogo}/>
+      <ConfirmCollateralChoice.CTAButton>Sounds good</ConfirmCollateralChoice.CTAButton>
+      <ConfirmCollateralChoice.OAButton>Switch collateral type</ConfirmCollateralChoice.OAButton>
+    </ConfirmCollateralChoice>
+  )
+}
+
+const renderChangeCollateralChoice = () => {
+  return (
+    <ChangeCollateralChoice>
+      <ChangeCollateralChoice.Option icon={ethLogo}>ETH</ChangeCollateralChoice.Option>
+      <ChangeCollateralChoice.Option icon={repLogo}>REP</ChangeCollateralChoice.Option>
+      <ChangeCollateralChoice.Option icon={batLogo}>BAT</ChangeCollateralChoice.Option>
+      <ChangeCollateralChoice.CTAButton>Confirm selection</ChangeCollateralChoice.CTAButton>
+    </ChangeCollateralChoice>
   )
 }
 
 const VaultMaker = () => (
   <Card sx={cardBaseStyle}>
     <Container sx={containerBaseStyle} variant="container.default">
-      {renderChooseCollateral()}
+      {false && renderConfirmCollateralChoice()}
+      {renderChangeCollateralChoice()}
     </Container>
   </Card>
 );

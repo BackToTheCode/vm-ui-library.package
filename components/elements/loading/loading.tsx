@@ -24,7 +24,7 @@ const baseStyle = {
   }
 };
 
-const Loading: React.FC<{}> = () => (
+const Loading: React.FC<any> = () => (
   <Box>
     <Image src={ringsImg} sx={baseStyle.image}></Image>
     <Text sx={baseStyle.text}>loading...</Text>

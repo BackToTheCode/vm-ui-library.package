@@ -4,8 +4,8 @@ const buttons = {
     bg: 'primary',
     borderColor: 'primary',
     '&:hover': {
-      bg: 'lightPrimary',
-      borderColor: 'lightPrimary'
+      bg: 'darkPrimary',
+      borderColor: 'darkPrimary'
     }
   },
   secondary: {
