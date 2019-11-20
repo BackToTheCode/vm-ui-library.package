@@ -1,57 +1,86 @@
 import React from 'react';
 import Card from '../../elements/card';
-import ConfirmCollateralChoice from './1-confirm-collateral-choice/1-confirm-collateral-choice';
-import ChangeCollateralType from './1A-change-collateral-type/wrapped';
+import ConfirmCollateralChoice from './1-confirm-collateral-choice/wrapped';
+import ChangeCollateralType from './2-change-collateral-type/wrapped';
 import Container from '../../elements/container';
 import ethLogo from '../../../public/images/ethereum-logo.svg';
 import repLogo from '../../../public/images/rep-logo.webp';
 import batLogo from '../../../public/images/bat-logo.png';
 import { useTheme } from 'emotion-theming';
-
-
-const cardBaseStyle = {
-    padding: '30px',
-    alignItems: 'center',
-    // background: 'linear-gradient(34deg, #fff 0%, #fff 65%, #e4e4e4 65%, #e4e4e4 100%)'
-}   
-
-const containerBaseStyle = {
-    alignItems: 'start',
-    flexDirection: 'column',
-    height: '100%'
-}
-    
+import { cardStyle, containerStyle } from './styles';
+import stepNames, { CONFIRM_COLLATERAL_CHOICE, CHANGE_COLLATERAL_CHOICE } from './constants/step-names';
 
 const renderConfirmCollateralChoice = () => {
-
   return (
-    <ConfirmCollateralChoice>
-      <ConfirmCollateralChoice.Message>We suggest ETH as collateral for your Vault</ConfirmCollateralChoice.Message>
-      <ConfirmCollateralChoice.Balance icon={ethLogo}/>
-      <ConfirmCollateralChoice.CTAButton>Sounds good</ConfirmCollateralChoice.CTAButton>
-      <ConfirmCollateralChoice.OAButton>Switch collateral type</ConfirmCollateralChoice.OAButton>
-    </ConfirmCollateralChoice>
-  )
-}
+    <ConfirmCollateralChoice.Wrapped>
+      <ConfirmCollateralChoice.Title sx={{mb: 8}}>
+        We suggest ETH as collateral
+      </ConfirmCollateralChoice.Title>
+      <ConfirmCollateralChoice.Balance icon={ethLogo} />
+      <ConfirmCollateralChoice.CTAButton>
+        Sounds good
+      </ConfirmCollateralChoice.CTAButton>
+      <ConfirmCollateralChoice.OAButton>
+        Switch collateral type
+      </ConfirmCollateralChoice.OAButton>
+    </ConfirmCollateralChoice.Wrapped>
+  );
+};
 
 const renderChangeCollateralType = () => {
   const theme: any = useTheme();
-  console.log('theme', theme);
   return (
     <ChangeCollateralType.Wrapped>
-      <ChangeCollateralType.Option icon={ethLogo} name="option1" brand={theme.colors.ethMain}>ETH</ChangeCollateralType.Option>
-      <ChangeCollateralType.Option icon={repLogo} name="option2" brand={theme.colors.repMain}>REP</ChangeCollateralType.Option>
-      <ChangeCollateralType.Option icon={batLogo} name="option3" brand={theme.colors.batMain}>BAT</ChangeCollateralType.Option>
-      <ChangeCollateralType.CTAButton>Confirm selection</ChangeCollateralType.CTAButton>
+      <ChangeCollateralType.Title sx={{mb: 7}}>
+        Select a collateral type
+      </ChangeCollateralType.Title>
+      <ChangeCollateralType.Option
+        icon={ethLogo}
+        name="option1"
+        brand={theme.colors.ethMain}
+      >
+        ETH
+      </ChangeCollateralType.Option>
+      <ChangeCollateralType.Option
+        icon={repLogo}
+        name="option2"
+        brand={theme.colors.repMain}
+      >
+        REP
+      </ChangeCollateralType.Option>
+      <ChangeCollateralType.Option
+        icon={batLogo}
+        name="option3"
+        brand={theme.colors.batMain}
+      >
+        BAT
+      </ChangeCollateralType.Option>
+      <ChangeCollateralType.CTAButton>
+        Confirm selection
+      </ChangeCollateralType.CTAButton>
     </ChangeCollateralType.Wrapped>
-  )
+  );
+};
+
+export interface VaultMakerProps {
+  children?: any;
+  currentStep?: number;
 }
 
-const VaultMaker = () => (
-  <Card sx={cardBaseStyle}>
-    <Container sx={containerBaseStyle} variant="container.default">
-      {false && renderConfirmCollateralChoice()}
-      {renderChangeCollateralType()}
+type VaultMaker = {
+  Wrapped?: any;
+};
+
+const VaultMaker: React.FC<VaultMakerProps> & VaultMaker = ({
+  currentStep
+}) => (
+  <Card sx={cardStyle}>
+    <Container sx={containerStyle} variant="container.default">
+      {currentStep === stepNames[CONFIRM_COLLATERAL_CHOICE] &&
+        renderConfirmCollateralChoice()}
+
+      {currentStep === stepNames[CHANGE_COLLATERAL_CHOICE] &&
+        renderChangeCollateralType()}
     </Container>
   </Card>
 );

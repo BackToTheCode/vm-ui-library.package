@@ -35,14 +35,14 @@ const theme = {
     repMain: 'rgb(65, 36, 103)',
     batMain: 'rgb(234, 86, 19)'
   },
-  fontSizes: [10, 14, 18, 26, 34, 48, 64],
-  space: [0, 2, 4, 6, 8, 16, 20, 32],
+  fontSizes: [12, 16, 18, 26, 34, 48, 64],
+  space: [0, 2, 4, 6, 8, 16, 20, 32, 64],
   radii: {
     default: 4
   },
   fontWeights: {
     body: 400,
-    heading: 700,
+    heading: 400,
     bold: 700
   },
   lineHeights: {

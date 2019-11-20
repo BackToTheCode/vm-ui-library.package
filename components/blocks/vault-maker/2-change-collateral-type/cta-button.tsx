@@ -9,7 +9,7 @@ export interface CTAButtonProps extends ButtonProps {}
 const style = {
   button: {
     width: '100%',
-    mb: 4
+    mt: 5
   }
 };
 

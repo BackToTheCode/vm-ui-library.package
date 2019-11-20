@@ -3,13 +3,14 @@ import connect from '../../../../store/connect';
 
 function mapStateToProps(state: any) {
   return {
-    selectedOption: state.makeVault.changeCollateral
+    selectedOption: state.makeVault.collateralOption
   };
 }
 
 function mapDispatchToProps(dispatch: any) {
   return {
-    dispatchChangeCollateral: (payload: any) => dispatch({ type: 'CHANGE_COLLATERAL', payload })
+    dispatchSetOption: (payload: any) => dispatch({ type: 'SET_OPTION', payload }),
+    dispatchSetCollateral: (payload: any) => dispatch({ type: 'SET_COLLATERAL', payload })
   };
 }
 

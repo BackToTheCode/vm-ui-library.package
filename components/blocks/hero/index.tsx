@@ -8,7 +8,7 @@ import {
   getWeb3 as makerGetWeb3
 } from '../../../utils/web3';
 import Loading from '../../elements/loading/loading';
-import VaultBuilder from '../vault-maker';
+import VaultBuilder from '../vault-maker/wrapped';
 import Wallet from './wallet';
 import metamaskLogo from '../../../public/images/metamask-fox.svg';
 import ledgerLogo from '../../../public/images/ledger-logo.png';
@@ -77,7 +77,7 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
     ));
 
   const renderVaultBuilder = (isConnected: boolean) => {
-    return (isConnected && <VaultBuilder />);
+    return (isConnected && <VaultBuilder.Wrapped />);
   }
     
   return (

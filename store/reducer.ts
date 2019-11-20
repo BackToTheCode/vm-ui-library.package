@@ -1,22 +1,47 @@
+import { CONFIRM_COLLATERAL_CHOICE_NUM } from '../components/blocks/vault-maker/constants/step-names';
+
 export const initialState = {
   connected: false,
   variant: 'unconnected',
   maker: 'false',
-  makeVault: { 
-    collateralChoice: 'ETH',
-    changeCollateral: 'no option selected'
+  makeVault: {
+    step: CONFIRM_COLLATERAL_CHOICE_NUM,
+    collateral: 'ETH',
+    collateralOption: 'no option selected'
   }
 };
 
 const reducer = (state: any, action: any) => {
-  console.log('action', action)
+  let makeVault = null;
+
   switch (action.type) {
     case 'CONNECT':
       return { ...state, ...action.payload, connected: true };
     case 'DISCONNECT':
       return { ...state, connected: false };
-    case 'CHANGE_COLLATERAL':
-      const makeVault = {...state.makeVault, changeCollateral: action.payload}
+    case 'SET_COLLATERAL':
+      makeVault = null;
+      makeVault = {
+        ...state.makeVault,
+        collateral: action.payload
+      };
+      return { ...state, makeVault };
+      case 'SET_OPTION':
+          makeVault = null;
+          makeVault = {
+            ...state.makeVault,
+            collateralOption: action.payload
+          };
+          const newState = { ...state, makeVault };
+          console.log('newState', newState)
+          return newState;
+    case 'SET_STEP':
+      makeVault = null;
+      makeVault = {
+        ...state.makeVault,
+        step: action.payload
+      };
+
       return { ...state, makeVault };
 
     default:
@@ -25,84 +50,3 @@ const reducer = (state: any, action: any) => {
 };
 
 export default reducer;
-
-// useEffect(() => {
-//     dispatch({ type: FETCH_AVATAR });
-//     fetch(`/avatar/${userName}`).then(
-//       avatar => dispatch({ type: FETCH_AVATAR_SUCCESS, avatar }),
-//       dispatch({ type: FETCH_AVATAR_FAILURE })
-//     );
-//   }, [userName]);
-
-// export const initialState = {
-//   translateX: 0,
-//   translateY: 0,
-//   prevMouseX: 0,
-//   prevMouseY: 0,
-//   scale: 1,
-// };
-
-// const reducer = (state, action) => {
-//   switch(action.type) {
-//     case types.PAN_START:
-//       return {
-//         ...state,
-//         prevMouseX: action.clientX,
-//         prevMouseY: action.clientY,
-//       };
-
-//     case types.PAN:
-//       const deltaMouseX = action.clientX - state.prevMouseX;
-//       const deltaMouseY = action.clientY - state.prevMouseY;
-//       return {
-//         ...state,
-//         translateX: state.translateX + deltaMouseX,
-//         translateY: state.translateY + deltaMouseY,
-//         prevMouseX: action.clientX,
-//         prevMouseY: action.clientY,
-//       };
-
-//     case types.ZOOM:
-//       const scaledTranslate = getScaledTranslate(state, action.zoomFactor);
-//       const mousePositionOnScreen = { x: action.clientX, y: action.clientY };
-//       const zoomOffset = getZoomOffset(action.containerRect, mousePositionOnScreen, action.zoomFactor);
-//       return {
-//         ...state,
-//         scale: state.scale * action.zoomFactor,
-//         translateX: scaledTranslate.x + zoomOffset.x,
-//         translateY: scaledTranslate.y + zoomOffset.y,
-//       };
-
-//     default:
-//       return state;
-//   }
-// };
-
-// const getZoomOffset = (containerRect, mousePositionOnScreen, zoomFactor) => {
-//   const zoomOrigin = {
-//     x: mousePositionOnScreen.x - containerRect.left,
-//     y: mousePositionOnScreen.y - containerRect.top,
-//   }
-
-//   const currentDistanceToCenter = {
-//     x: containerRect.width / 2 - zoomOrigin.x,
-//     y: containerRect.height / 2 - zoomOrigin.y,
-//   };
-
-//   const scaledDistanceToCenter = {
-//     x: currentDistanceToCenter.x * zoomFactor,
-//     y: currentDistanceToCenter.y * zoomFactor,
-//   }
-
-//   const zoomOffset = {
-//     x: currentDistanceToCenter.x - scaledDistanceToCenter.x,
-//     y: currentDistanceToCenter.y - scaledDistanceToCenter.y,
-//   };
-
-//   return zoomOffset;
-// };
-
-// const getScaledTranslate = (state, zoomFactor) => ({
-//   x: state.translateX * zoomFactor,
-//   y: state.translateY * zoomFactor,
-// });

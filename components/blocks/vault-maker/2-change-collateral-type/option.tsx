@@ -10,7 +10,8 @@ export interface OptionProps {
     brand: string;
     name: string;
     selectedOption?: string;
-    handleChange?: (e: any) => void;
+    dispatchSetCollateral?: (payload: string) => void;
+    dispatchSetOption?: (payload: string) => void;
   }
   
   const optionStyle = {
@@ -33,23 +34,27 @@ export interface OptionProps {
     bg: 'lightGrey'
   };
   
-  const Option: React.FC<OptionProps> = ({ icon, name, brand, selectedOption, handleChange, children }) => {
+  const Option: React.FC<OptionProps> = ({ icon, name, brand, selectedOption, dispatchSetOption, dispatchSetCollateral, children }) => {
     const isSelected = name === selectedOption;
     
+    console.log('dispatchSetOption', dispatchSetOption)
+    console.log('dispatchSetCollateral', dispatchSetCollateral)
+
     let mergedStyle = optionStyle;
     if (isSelected) {
       mergedStyle = { ...mergedStyle, ...selectedStyle };
     }
 
-    const handleClick = (e: any) => {
+    const handleEvent = (e: any) => {
         e.preventDefault();
-        handleChange(name);
+        dispatchSetOption(name);
+        dispatchSetCollateral(children.toString())
     }
   
     return (
-      <Box sx={mergedStyle} onClick={handleClick}>
-        <Radio sx={{ml: '20px', mr: '20px'}} checked={isSelected} />
-        <Text sx={{ display: 'inline-block', ml: 5 }} variant="heading.large">
+      <Box sx={mergedStyle} onClick={handleEvent}>
+        <Radio sx={{ml: '20px', mr: '20px'}} onChange={handleEvent} checked={isSelected} />
+        <Text sx={{ display: 'inline-block', ml: 5 }} variant="heading.regular">
           {children}
         </Text>
         <CoinIcon

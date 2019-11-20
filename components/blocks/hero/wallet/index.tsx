@@ -1,6 +1,6 @@
 import React, { Children } from 'react';
-import { Box, Image, Text, TextProps } from 'rebass';
-import { LargeButton, ButtonProps } from '../../elements/button/button';
+import { Box, Heading, Image, Text, TextProps } from 'rebass';
+import { LargeButton, ButtonProps } from '../../../elements/button/button';
 
 type Wallet = {
   Header: React.FC<TextProps>;
@@ -32,9 +32,9 @@ const Wallet: React.FC<any> & Wallet = props => {
 };
 
 Wallet.Header = ({ children }: any) => (
-  <Text variant="heading.large" sx={{ mb: 5, textAlign: 'center' }}>
+  <Heading variant="heading.large" sx={{ mb: 5, textAlign: 'center' }}>
     {children}
-  </Text>
+  </Heading>
 );
 
 Wallet.SubHeader = ({ sx, children }: any) => (
