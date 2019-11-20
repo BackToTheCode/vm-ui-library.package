@@ -34,12 +34,10 @@ export interface OptionProps {
     bg: 'lightGrey'
   };
   
-  const Option: React.FC<OptionProps> = ({ icon, name, brand, selectedOption, dispatchSetOption, dispatchSetCollateral, children }) => {
+  const Option: React.FC<OptionProps> = (props) => {
+    const { icon, name, brand, selectedOption, children } = props;
     const isSelected = name === selectedOption;
-    
-    console.log('dispatchSetOption', dispatchSetOption)
-    console.log('dispatchSetCollateral', dispatchSetCollateral)
-
+  
     let mergedStyle = optionStyle;
     if (isSelected) {
       mergedStyle = { ...mergedStyle, ...selectedStyle };
@@ -47,8 +45,8 @@ export interface OptionProps {
 
     const handleEvent = (e: any) => {
         e.preventDefault();
-        dispatchSetOption(name);
-        dispatchSetCollateral(children.toString())
+        props.dispatchSetOption(name);
+        props.dispatchSetCollateral(children.toString())
     }
   
     return (

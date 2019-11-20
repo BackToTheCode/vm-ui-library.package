@@ -32,7 +32,7 @@ const authenticate = async () => {
   await maker.service('proxy').ensureProxy();
 
   return maker;
-}
+};
 
 const getWeb3 = async () => {
   if (web3) {
@@ -110,4 +110,13 @@ const approveProxyInDai = async () => {
   }
 };
 
-export { setup, authenticate, getWeb3, approveProxyInREP, approveProxyInDai };
+export {
+  setup,
+  authenticate,
+  getWeb3,
+  approveProxyInREP,
+  approveProxyInDai,
+  BAT,
+  REP,
+  ETH
+};

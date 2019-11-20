@@ -8,15 +8,21 @@ import repLogo from '../../../public/images/rep-logo.webp';
 import batLogo from '../../../public/images/bat-logo.png';
 import { useTheme } from 'emotion-theming';
 import { cardStyle, containerStyle } from './styles';
-import stepNames, { CONFIRM_COLLATERAL_CHOICE, CHANGE_COLLATERAL_CHOICE } from './constants/step-names';
+import stepNames, { CONFIRM_COLLATERAL_CHOICE, CHANGE_COLLATERAL_CHOICE } from '../../../constants/step-names';
 
-const renderConfirmCollateralChoice = () => {
+const renderConfirmCollateralChoice = (collateral: string) => {
+  const icons: any = {
+    'ETH': ethLogo,
+    'REP': repLogo,
+    'BAT': batLogo
+  }
+  const icon = icons[collateral];
   return (
     <ConfirmCollateralChoice.Wrapped>
       <ConfirmCollateralChoice.Title sx={{mb: 8}}>
-        We suggest ETH as collateral
+        {`We suggest ${collateral} as collateral`}
       </ConfirmCollateralChoice.Title>
-      <ConfirmCollateralChoice.Balance icon={ethLogo} />
+      <ConfirmCollateralChoice.Balance collateral={collateral} icon={icon} />
       <ConfirmCollateralChoice.CTAButton>
         Sounds good
       </ConfirmCollateralChoice.CTAButton>
@@ -65,6 +71,7 @@ const renderChangeCollateralType = () => {
 export interface VaultMakerProps {
   children?: any;
   currentStep?: number;
+  collateral?: string;
 }
 
 type VaultMaker = {
@@ -72,12 +79,13 @@ type VaultMaker = {
 };
 
 const VaultMaker: React.FC<VaultMakerProps> & VaultMaker = ({
-  currentStep
+  currentStep,
+  collateral
 }) => (
   <Card sx={cardStyle}>
     <Container sx={containerStyle} variant="container.default">
       {currentStep === stepNames[CONFIRM_COLLATERAL_CHOICE] &&
-        renderConfirmCollateralChoice()}
+        renderConfirmCollateralChoice(collateral)}
 
       {currentStep === stepNames[CHANGE_COLLATERAL_CHOICE] &&
         renderChangeCollateralType()}

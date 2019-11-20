@@ -1,6 +1,6 @@
 import React from 'react';
 import Button, { ButtonProps } from '../../../elements/button/button';
-import { CHANGE_COLLATERAL_CHOICE_NUM} from '../constants/step-names';
+import { CHANGE_COLLATERAL_CHOICE_NUM} from '../../../../constants/step-names';
 
 export interface OAButtonProps extends ButtonProps {
   children: any;

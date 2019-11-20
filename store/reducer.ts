@@ -1,9 +1,25 @@
-import { CONFIRM_COLLATERAL_CHOICE_NUM } from '../components/blocks/vault-maker/constants/step-names';
+import { CONFIRM_COLLATERAL_CHOICE_NUM } from '../constants/step-names';
 
 export const initialState = {
   connected: false,
   variant: 'unconnected',
-  maker: 'false',
+  balances: {
+    eth: {
+      name: 'ETH',
+      bal: 0,
+      price: 0
+    },
+    rep: {
+      name: 'REP',
+      bal: 0,
+      price: 0
+    },
+    bat: {
+      name: 'BAT',
+      bal: 0,
+      price: 0
+    }
+  },
   makeVault: {
     step: CONFIRM_COLLATERAL_CHOICE_NUM,
     collateral: 'ETH',
@@ -13,7 +29,7 @@ export const initialState = {
 
 const reducer = (state: any, action: any) => {
   let makeVault = null;
-
+  console.log('action', action)
   switch (action.type) {
     case 'CONNECT':
       return { ...state, ...action.payload, connected: true };
@@ -25,16 +41,18 @@ const reducer = (state: any, action: any) => {
         ...state.makeVault,
         collateral: action.payload
       };
+       return { ...state, makeVault };
+    case 'SET_OPTION':
+      makeVault = null;
+      makeVault = {
+        ...state.makeVault,
+        collateralOption: action.payload
+      };
       return { ...state, makeVault };
-      case 'SET_OPTION':
-          makeVault = null;
-          makeVault = {
-            ...state.makeVault,
-            collateralOption: action.payload
-          };
-          const newState = { ...state, makeVault };
-          console.log('newState', newState)
-          return newState;
+
+    case 'SET_BALANCES':
+        return { ...state, balances: action.payload };
+
     case 'SET_STEP':
       makeVault = null;
       makeVault = {

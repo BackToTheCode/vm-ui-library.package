@@ -3,7 +3,8 @@ import connect from '../../../store/connect';
 
 function mapStateToProps(state: any) {
   return {
-    currentStep: state.makeVault.step
+    currentStep: state.makeVault.step,
+    collateral: state.makeVault.collateral
   };
 }
 
