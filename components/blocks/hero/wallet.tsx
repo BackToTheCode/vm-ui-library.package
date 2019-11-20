@@ -1,11 +1,11 @@
 import React, { Children } from 'react';
 import { Box, Image, Text, TextProps } from 'rebass';
-import { LargeButton, IButtonProps } from '../../elements/button/button';
+import { LargeButton, ButtonProps } from '../../elements/button/button';
 
 type Wallet = {
   Header: React.FC<TextProps>;
   SubHeader: React.FC<TextProps>;
-  Button: React.FC<IButtonProps>;
+  Button: React.FC<ButtonProps>;
 };
 
 const Wallet: React.FC<any> & Wallet = props => {
@@ -58,7 +58,7 @@ Wallet.SubHeader = ({ sx, children }: any) => (
 const style = {
   button: {
     mx: 'auto',
-    mb: 3,
+    mb: 4,
     width: '320px'
   },
   logo: {

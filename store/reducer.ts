@@ -1,11 +1,24 @@
-export const initialState = { connected: false, variant: "unconnected", maker: 'false' };
+export const initialState = {
+  connected: false,
+  variant: 'unconnected',
+  maker: 'false',
+  makeVault: { 
+    collateralChoice: 'ETH',
+    changeCollateral: 'no option selected'
+  }
+};
 
 const reducer = (state: any, action: any) => {
+  console.log('action', action)
   switch (action.type) {
     case 'CONNECT':
       return { ...state, ...action.payload, connected: true };
     case 'DISCONNECT':
       return { ...state, connected: false };
+    case 'CHANGE_COLLATERAL':
+      const makeVault = {...state.makeVault, changeCollateral: action.payload}
+      return { ...state, makeVault };
+
     default:
       throw new Error();
   }

@@ -2,6 +2,7 @@
   "name": "mcd-vault-manager",
   "author": "James Tuckett <james@tuckett.me>",
   "version": "1.0.0",
+  "typings": "typings",
   "scripts": {
     "build-storybook": "build-storybook -c .storybook",
     "storybook": "start-storybook",
@@ -14,6 +15,7 @@
   "dependencies": {
     "@makerdao/dai": "0.18.8",
     "@makerdao/dai-plugin-mcd": "0.2.14-2",
+    "@rebass/forms": "^4.0.6",
     "@rebass/preset": "^4.0.5",
     "@testing-library/react": "^9.3.2",
     "@types/rebass": "^4.0.3",

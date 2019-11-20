@@ -8,29 +8,41 @@ export interface IconProps {
   icon: string;
 }
 
-const Icon: React.FC<IconProps> = ({sx, icon}: IconProps) => (
-  <Box
-    sx={{...{
-      borderRadius: '50%',
-      padding: '7px',
-      alignSelf: 'flex-end',
-      background: 'lightSecondary',
-      justifyContent: 'center',
-      alignItems: 'center',
-      display: 'inline-flex'
-    }, ...sx}}
-  >
-    <Image
+const Icon: React.FC<IconProps> = ({ sx, icon }: IconProps) => {
+  const brandPrimary = sx.bg;
+  let mainBgColor = null;
+  let glowBgColor = null;
+  if (brandPrimary.indexOf('a') == -1) {
+    mainBgColor = brandPrimary.replace(')', ', 0.50)').replace('rgb', 'rgba');
+    glowBgColor = brandPrimary.replace(')', ', 0.20)').replace('rgb', 'rgba');
+  }
+
+  return (
+    <Box
       sx={{
-        width: '45px',
-        height: '45px',
-        padding: '8px',
-        borderRadius: '50%',
-        bg: 'secondary'
+        ...{
+          borderRadius: '50%',
+          padding: '7px',
+          justifyContent: 'center',
+          alignItems: 'center',
+          display: 'inline-flex',
+        },
+        ...sx,
+        ...{bg: glowBgColor}
       }}
-      src={icon}
-    />
-  </Box>
-);
+    >
+      <Image
+        sx={{
+          width: '45px',
+          height: '45px',
+          padding: '8px',
+          borderRadius: '50%',
+          bg: mainBgColor
+        }}
+        src={icon}
+      />
+    </Box>
+  );
+};
 
 export default Icon;

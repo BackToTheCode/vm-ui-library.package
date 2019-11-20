@@ -1,7 +1,8 @@
 import React, { Fragment, Children } from 'react';
 import { Box, BoxProps, Text, TextProps } from 'rebass';
-import Button, { IButtonProps } from '../../elements/button/button';
-import CoinIcon from '../../elements/icon';
+import Button, { ButtonProps } from '../../../elements/button/button';
+import CoinIcon from '../../../elements/icon';
+import { useTheme } from 'emotion-theming';
 
 const style = {
   button: {
@@ -13,8 +14,8 @@ const style = {
 type ChooseCollateral = {
   Balance: React.FC<any>;
   Message: React.FC<TextProps>;
-  CTAButton: React.FC<IButtonProps>;
-  OAButton: React.FC<IButtonProps>;
+  CTAButton: React.FC<ButtonProps>;
+  OAButton: React.FC<ButtonProps>;
 };
 
 const ConfirmCollateral: React.FC<any> & ChooseCollateral = (props: any) => {
@@ -53,6 +54,7 @@ export interface IconProps extends BoxProps {
 }
 
 ConfirmCollateral.Balance = ({ icon }: any) => {
+  const theme: any = useTheme();
   return (
     <Box sx={{ flex: 1 }}>
       <Text
@@ -72,7 +74,7 @@ ConfirmCollateral.Balance = ({ icon }: any) => {
         >
           10 ETH
         </Text>
-        <CoinIcon sx={{ml: '20px', position: 'relative', top: '-2px'}} icon={icon} />
+        <CoinIcon sx={{ml: '20px', position: 'relative', top: '-2px', bg: `${theme.colors.ethPrimar}`}} icon={icon} />
       </Text>
       <Text sx={{ mb: 6, color: 'grey' }} variant="body.small">
         $2000 @ 80 USD PER ETH

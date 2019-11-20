@@ -46,14 +46,3 @@ export default () => {
     </ThemeProvider>
   );
 };
-
-// state = {
-//   maker: 'false',
-//   load: false,
-// }
-// handleMetamask = async () => {
-//   this.setState({load: true})
-//   maker = await connect()
-//   getWeb3()
-//   this.setState({ maker: true })
-// }

@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import React from 'react';
 import { Button as BaseButton } from 'rebass';
 
-export interface IButtonProps {
+export interface ButtonProps {
   onClick?: (e: any) => void;
   variant?: string;
   isDisabled?: boolean;
@@ -37,7 +37,7 @@ const disabledStyle = {
   filter: 'grayscale(1)'
 };
 
-const Button: React.FC<IButtonProps> = ({ onClick, variant, isDisabled, sx, children }) => {
+const Button: React.FC<ButtonProps> = ({ onClick, variant, isDisabled, sx, children }) => {
   let mergedStyle = baseStyle;
   if (isDisabled) {
     mergedStyle = {...mergedStyle, ...disabledStyle};

@@ -24,11 +24,16 @@ const theme = {
     darkPrimary: '#0d8577',
     primary: '#1AAB9B',
     lightPrimary: 'rgb(89, 188, 175)',
+    superLightPrimary: 'rgb(216, 238, 235)',
     secondary: '#F4B731',
     lightSecondary: 'rgb(255, 225, 160)',
+    superLightSecondary: 'rgb(253, 241, 217)',
     transparent: 'transparent', 
     lightWarning: '#ffbf00',
-    warning: '#ff0000'
+    warning: '#ff0000',
+    ethMain: 'rgb(201, 157, 102)',
+    repMain: 'rgb(65, 36, 103)',
+    batMain: 'rgb(234, 86, 19)'
   },
   fontSizes: [10, 14, 18, 26, 34, 48, 64],
   space: [0, 2, 4, 6, 8, 16, 20, 32],

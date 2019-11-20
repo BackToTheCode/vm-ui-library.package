@@ -76,9 +76,10 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
       </Wallet>
     ));
 
-  const renderVaultBuilder = (isConnected: boolean) =>
-    isConnected && <VaultBuilder />;
-
+  const renderVaultBuilder = (isConnected: boolean) => {
+    return (isConnected && <VaultBuilder />);
+  }
+    
   return (
     <FullContainer variant="container.default">
       {isConnected ? renderProgress() : null}
