@@ -1,6 +1,6 @@
 import React, { Fragment, Children } from 'react';
-import OAButton, {OAButtonProps} from './oa-button';
-import CTAButton, {CTAButtonProps} from './cta-button';
+import OAButton, { OAButtonProps } from './oa-button';
+import CTAButton, { CTAButtonProps } from './cta-button';
 import Title, { TitleProps } from '../shared/title';
 import Balance, { BalanceProps } from './balance';
 
@@ -35,10 +35,8 @@ const ConfirmCollateral: React.FC<any> & ChooseCollateral = (props: any) => {
         }
 
         if (child.type.displayName === 'OAButton') {
-          
-          const newProps = {...child.props, handleChange: dispatchSetStep}
+          const newProps = { ...child.props, handleChange: dispatchSetStep };
           return React.cloneElement(child, newProps);
-
         }
 
         return child;

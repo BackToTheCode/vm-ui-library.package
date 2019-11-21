@@ -35,7 +35,7 @@ const theme = {
     repMain: 'rgb(65, 36, 103)',
     batMain: 'rgb(234, 86, 19)'
   },
-  fontSizes: [12, 16, 18, 26, 34, 48, 64],
+  fontSizes: [14, 16, 18, 24, 30, 40, 50],
   space: [0, 2, 4, 6, 8, 16, 20, 32, 64],
   radii: {
     default: 4
@@ -57,8 +57,7 @@ const theme = {
   buttons: buttons
 };
 
-// aliases
 theme.fontSizes.body = theme.fontSizes[2]
-theme.fontSizes.display = theme.fontSizes[5]
+theme.fontSizes.title = theme.fontSizes[5]
 
 export default theme;

@@ -2,6 +2,7 @@
 import { jsx } from '@emotion/core';
 import React from 'react';
 import { Box, Image } from 'rebass';
+import styles from './styles';
 
 export interface IconProps {
   sx?: any;
@@ -20,27 +21,12 @@ const Icon: React.FC<IconProps> = ({ sx, icon }: IconProps) => {
   return (
     <Box
       sx={{
-        ...{
-          borderRadius: '50%',
-          padding: '7px',
-          justifyContent: 'center',
-          alignItems: 'center',
-          display: 'inline-flex',
-        },
         ...sx,
-        ...{bg: glowBgColor}
+        ...styles.iconContainer(glowBgColor)
+        
       }}
     >
-      <Image
-        sx={{
-          width: '45px',
-          height: '45px',
-          padding: '8px',
-          borderRadius: '50%',
-          bg: mainBgColor
-        }}
-        src={icon}
-      />
+      <Image sx={styles.icon(mainBgColor)} src={icon} />
     </Box>
   );
 };

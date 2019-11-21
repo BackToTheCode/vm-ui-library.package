@@ -21,7 +21,7 @@ export interface OptionProps {
     width: '100%',
     display: 'flex',
     justifyContent: 'left',
-    mb: 5,
+    mb: 4,
     alignItems: 'center',
     transition: '0.2s all',
     '&:hover': {

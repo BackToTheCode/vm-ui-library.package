@@ -1,23 +1,23 @@
 import Maker from '@makerdao/dai';
-import McdPlugin, { ETH, REP, BAT } from '@makerdao/dai-plugin-mcd';
+import McdPlugin,{ ETH, BAT } from '@makerdao/dai-plugin-mcd';
 import dsTokenAbi from './dsToken.abi.json';
 
 let maker = null;
 let web3 = null;
 
-const setup = async () => {
+const setup = async (network, provider) => {
   if (maker) return maker;
 
-  maker = await Maker.create('browser', {
+  maker = await Maker.create(provider, {
     plugins: [
       [
         McdPlugin,
         {
-          network: 'kovan',
+          network: network,
           cdpTypes: [
             { currency: ETH, ilk: 'ETH-A' },
-            { currency: REP, ilk: 'REP-A' },
-            { currency: BAT, ilk: 'BAT-A' }
+            { currency: BAT, ilk: 'BAT-A' },
+            // { currency: REP, ilk: 'REP-A' },
           ]
         }
       ]
@@ -44,7 +44,7 @@ const getWeb3 = async () => {
 
 // const requestTokens = async () => {
 //     try {
-//         console.log('trying to call function gulp in faucet')
+//          ('trying to call function gulp in faucet')
 //         let accounts = await web3.eth.getAccounts()
 //         let REP = '0xc7aa227823789e363f29679f23f7e8f6d9904a9b'
 //         const faucetABI = FaucetABI;
@@ -117,6 +117,5 @@ export {
   approveProxyInREP,
   approveProxyInDai,
   BAT,
-  REP,
   ETH
 };

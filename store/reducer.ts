@@ -8,11 +8,6 @@ export const initialState = {
       bal: 0,
       price: 0
     },
-    rep: {
-      name: 'REP',
-      bal: 0,
-      price: 0
-    },
     bat: {
       name: 'BAT',
       bal: 0,
@@ -28,39 +23,43 @@ export const initialState = {
 
 const reducer = (state: any, action: any) => {
   let makeVault = null;
-  console.log('action', action)
   
+  console.log('action', action);
+
+  const { payload } = action;
+
   switch (action.type) {
     case 'CONNECT':
-      return { ...state, ...action.payload, connected: true };
+      const { address } = payload;
+      return { ...state, address, connected: true };
 
     case 'DISCONNECT':
       return { ...state, connected: false };
 
-    case 'SET_COLLATERAL':
+    case 'SET_COLLATERAL':  
       makeVault = null;
       makeVault = {
         ...state.makeVault,
-        collateral: action.payload
+        collateral: payload
       };
-       return { ...state, makeVault };
+      return { ...state, makeVault };
 
     case 'SET_OPTION':
       makeVault = null;
       makeVault = {
         ...state.makeVault,
-        collateralOption: action.payload
+        collateralOption: payload
       };
       return { ...state, makeVault };
 
     case 'SET_BALANCES':
-        return { ...state, balances: action.payload };
+      return { ...state, balances: payload };
 
     case 'SET_STEP':
       makeVault = null;
       makeVault = {
         ...state.makeVault,
-        step: action.payload
+        step: payload
       };
 
       return { ...state, makeVault };

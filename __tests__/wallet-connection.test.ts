@@ -4,35 +4,39 @@ import { render, fireEvent, cleanup } from '@testing-library/react';
 
 afterEach(cleanup);
 
-// Create provider mock and share it
+// Should create the app
 
-it('should update wallet state to connected', () => {
+describe('When a user connects with Metamask and enters their password', () => {
+  it('should connect the user and show them them the Vault Maker Wizard', () => {
+    // Arrange
+
+    // Act
+
+    // Assert
+   
+  });
+});
+
+describe('Once Web3 has connected', () => {
+  it('should update the address bar text', () => {
     // Arrange
     // - Setup web3 connection using dai.js
-  
     // Act
     // - authenticate using Metamask
-  
     // Assert
     // - confirm that authentication was successful and state was updated
   });
 
-it('should, once connected, update shared provider state', () => {
-  // Arrange
-  // - render app wrapped with provider
-
-  // Act    
-
-  // Assert
-
-});
-
-it ('should update the address text', () => {
+  it('should suggest a collateral type based on a user\'s highest value balance in USD', () => {
     // Arrange
 
     // Act
-
     // Assert
+  });
 
-})
-
+  it('should update the address text', () => {
+    // Arrange
+    // Act
+    // Assert
+  });
+});

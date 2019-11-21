@@ -20,7 +20,7 @@ type Header = {
 };
 
 const Header: React.FC<IHeaderProps> & Header = props => {
-  const { children, connected } = props;
+  const { children, connected, address } = props;
   return (
     <Container variant="container.wide">
       {Children.map(children, (child: any) => {
@@ -29,7 +29,7 @@ const Header: React.FC<IHeaderProps> & Header = props => {
         }
 
         if (child.type.displayName === 'Address') {
-          const newProps = {...child.props, ...{ connected }}
+          const newProps = { ...child.props, ...{ connected, address } };
           return React.cloneElement(child, newProps);
         }
 
@@ -42,4 +42,4 @@ const Header: React.FC<IHeaderProps> & Header = props => {
 Header.Logo = Logo;
 Header.Address = Address;
 
-export default Header
+export default Header;

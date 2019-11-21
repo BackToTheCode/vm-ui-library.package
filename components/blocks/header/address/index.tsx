@@ -2,6 +2,7 @@
 import { jsx } from '@emotion/core';
 import React from 'react';
 import { Flex, Box, Text } from 'rebass';
+import styles from './styles';
 
 export interface IAddressProps {
   variant?: string;
@@ -11,51 +12,30 @@ export interface IAddressProps {
   connected?: boolean;
 }
 
-const styles = {
-  container: {
-    width: '100%',
-    justifyContent: 'flex-end',
-    mr: 20,
-    alignItems: 'center'
-  },
-  indicator: {
-    borderRadius: '50%',
-    position: 'relative',
-    width: '8px',
-    height: '8px',
-    right: 6,
-    top: 6
-  },
-  addressContainer: {
-    px: 4,
-    py: 3,
-    bg: 'lightGrey',
-    borderRadius: '4px'
-  }
-};
-
 const Address: React.FC<IAddressProps> = ({ connected, address, ern }) => {
-
   const variant = connected ? 'indicator.connected' : 'indicator.unconnected';
-  const connectedMessage = connected ? address ? address : 'Connected' : 'Not connected';
+  console.log('address', address)
+  const connectedMessage = connected
+    ? address
+      ? address
+      : 'Connected'
+    : 'Not connected';
 
   return (
     <Flex width={1} sx={styles.container}>
-      <Box
-        sx={{ textAlign: 'left', flexDirection: 'column', maxWidth: '140px', position: 'relative', top: '-5px' }}
-      >
+      <Box sx={styles.innerContainer}>
         <Box variant={variant} sx={styles.indicator} />
         <Box sx={styles.addressContainer}>
           <Text
-            sx={{ overflow: 'hidden', textOverflow: 'ellipsis' }} 
+            sx={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
             variant={'body.regular'}
           >
             {connectedMessage}
           </Text>
         </Box>
         {ern && (
-          <Box sx={{ marginTop: 3, fontWeight: 'bold', textTransform: 'uppercase' }}>
-            <Text variant={'body.small'} sx={{ color: 'grey' }}>
+          <Box sx={styles.ernContainer}>
+            <Text variant={'body.small'} sx={styles.ern}>
               {ern}
             </Text>
           </Box>

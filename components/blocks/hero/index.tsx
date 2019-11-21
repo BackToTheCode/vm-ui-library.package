@@ -6,15 +6,17 @@ import {
   setup as makerSetup,
   authenticate as makerAuthenticate,
   getWeb3 as makerGetWeb3,
-  REP, BAT, ETH
+  ETH,
+  BAT
 } from '../../../utils/web3';
-import { USD_BAT, USD_REP } from '../../../constants/coin-prices';
+import { USD_BAT } from '../../../constants/coin-prices';
 import Loading from '../../elements/loading/loading';
 import VaultBuilder from '../vault-maker/wrapped';
-import Wallet from './wallet';
+import Wallet from '../wallet';
 import metamaskLogo from '../../../public/images/metamask-fox.svg';
 import ledgerLogo from '../../../public/images/ledger-logo.png';
 import trezorLogo from '../../../public/images/trezor-logo.png';
+import toCurrency from '../../../utils/currency-formatter';
 
 export interface IHeroProps {
   variant?: string;
@@ -31,102 +33,88 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
   let maker: any;
 
   const getBalances = async () => {
+    const tokenService = maker.service('token');
+    const eth = tokenService.getToken(ETH);
+    const bat = tokenService.getToken(BAT);
 
-      const tokenService = maker.service('token');
-      const eth = tokenService.getToken(ETH);
-      const rep = tokenService.getToken(REP);
-      const bat = tokenService.getToken(BAT);
-      const ethBal = await eth.balance();
-      const repBal = await rep.balance();
-      const batBal = await bat.balance();
-      return {
-        eth: ethBal.toNumber(),
-        rep: repBal.toNumber(),
-        bat: batBal.toNumber()
-      }
-  }
+    const ethBal = await eth.balance();
+    const batBal = await bat.balance();
+
+    return {
+      eth: ethBal.toNumber(),
+      rep: 0,
+      bat: batBal.toNumber()
+    };
+  };
 
   const getAccounts = async () => {
-    await makerSetup();
+    await makerSetup(process.env.NETWORK, process.env.PROVIDER);
     const web3 = (await makerGetWeb3()) as any;
 
     if (web3) {
       const accounts = await web3.eth.getAccounts();
       const userAccount = accounts[0];
-      
+
       return userAccount;
     }
   };
 
-  const getMaxToken = (currencies: any[]) => {
-    const balances = currencies.map(currency => currency.bal);
-
+  const getLargestTokenBalance = (currencies: any[]) => {
+    const balances = currencies.map(currency => parseInt(currency.bal));
     const maxIndex = balances.indexOf(Math.max(...balances));
+
     return currencies[maxIndex];
-  }
+  };
 
   const selectDefaultCollateral = async (balances: any) => {
     const price = maker.service('price');
     const ethCurrencyRatio = await price.getEthPrice();
+    // const batCurrencyRatio = await price.getBatPrice();
+
     const ethPrice = ethCurrencyRatio.toBigNumber().toNumber();
+    // const batPrice = batCurrencyRatio.toBigNumber().toNumber();
     const batPrice = USD_BAT;
-    const repPrice = USD_REP;
 
     const tokens = {
       eth: {
         name: 'ETH',
-        bal: ethPrice * balances.eth,
-        price: ethPrice
-      },
-      rep: {
-        name: 'REP',
-        bal: repPrice * balances.rep,
-        price: repPrice
+        bal: toCurrency(ethPrice * balances.eth),
+        price: ethPrice.toFixed(2)
       },
       bat: {
         name: 'BAT',
-        bal: batPrice * balances.bat,
-        price: batPrice
+        bal: toCurrency(batPrice * balances.bat),
+        price: batPrice.toFixed(2)
       }
-    }
+    };
 
-    const tokenList = [{
-      name: 'ETH',
-      bal: ethPrice * balances.eth,
-      price: ethPrice
-    },{
-      name: 'BAT',
-      bal: batPrice * balances.bat,
-      price: batPrice
-    },{
-      name: 'REP',
-      bal: repPrice * balances.rep,
-      price: repPrice
-    }]
+    const tokenList = Object.values(tokens);
 
-    const maxBalToken = getMaxToken(tokenList)
+    const defaultToken = getLargestTokenBalance(tokenList);
 
-    return [maxBalToken, tokens];
-  }
+    return [defaultToken, tokens];
+  };
 
   const handleMetamask = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-    await makerSetup();
+
+    await makerSetup(process.env.NETWORK, process.env.PROVIDER);
     maker = await makerAuthenticate();
     const userAccount = await getAccounts();
     const simpleBalances = await getBalances();
-    const [defaultToken, balances] = await selectDefaultCollateral(simpleBalances);
+    const [defaultToken, tokenBalances] = await selectDefaultCollateral(
+      simpleBalances
+    );
+
     props.dispatchConnect({ address: userAccount });
-    props.dispatchSetBalances(balances);
+    props.dispatchSetBalances(tokenBalances);
     props.dispatchSetCollateral(defaultToken.name);
 
     setLoading(false);
   };
 
-  const renderProgress = () => (
-    <div></div>
-  );
+  const renderProgress = () => <div></div>;
 
   const renderWallet = (
     isConnected: boolean,
@@ -140,22 +128,22 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
       <Wallet>
         <Wallet.Header>Start Making a Vault</Wallet.Header>
         <Wallet.SubHeader>Connect to the Ethereum network</Wallet.SubHeader>
-        <Wallet.Button icon={metamaskLogo} onClick={handleMetamask}>
+        <Wallet.LogoButton icon={metamaskLogo} onClick={handleMetamask}>
           Connect with Metamask
-        </Wallet.Button>
-        <Wallet.Button icon={trezorLogo} isDisabled>
+        </Wallet.LogoButton>
+        <Wallet.LogoButton icon={trezorLogo} isDisabled>
           Trezor - coming soon...
-        </Wallet.Button>
-        <Wallet.Button icon={ledgerLogo} isDisabled>
+        </Wallet.LogoButton>
+        <Wallet.LogoButton icon={ledgerLogo} isDisabled>
           Ledger Blue - coming soon...
-        </Wallet.Button>
+        </Wallet.LogoButton>
       </Wallet>
     ));
 
   const renderVaultBuilder = (isConnected: boolean) => {
-    return (isConnected && <VaultBuilder.Wrapped />);
-  }
-    
+    return isConnected && <VaultBuilder.Wrapped />;
+  };
+
   return (
     <FullContainer variant="container.default">
       {isConnected ? renderProgress() : null}

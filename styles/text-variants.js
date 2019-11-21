@@ -7,7 +7,7 @@ const base = {
 let text = {
     body: {
       small: {
-        fontSize: 1,
+        fontSize: 0,
         fontFamily: 'body',
         color: 'dark'
       },
