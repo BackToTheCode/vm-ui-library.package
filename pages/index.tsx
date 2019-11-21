@@ -16,7 +16,7 @@ export default () => {
 
   const renderHeader = () => {
     return (
-      <Header.Wrapped variant={'indicator.unconnected'}>
+      <Header.Wrapped>
         <Header.Logo image={logoImage} />
         <Header.Address />
       </Header.Wrapped>

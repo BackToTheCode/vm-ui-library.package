@@ -44,5 +44,6 @@ const Icon: React.FC<IconProps> = ({ sx, icon }: IconProps) => {
     </Box>
   );
 };
+Icon.displayName = 'Icon';
 
 export default Icon;

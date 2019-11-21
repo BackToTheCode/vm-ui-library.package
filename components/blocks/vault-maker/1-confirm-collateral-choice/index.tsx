@@ -18,23 +18,23 @@ const ConfirmCollateral: React.FC<any> & ChooseCollateral = (props: any) => {
   return (
     <Fragment>
       {Children.map(children, (child: any) => {
-        if (child.type.name === 'Icon') {
+        if (child.type.displayName === 'Icon') {
           return React.cloneElement(child, child.props);
         }
 
-        if (child.type.name === 'Balance') {
+        if (child.type.displayName === 'Balance') {
           return React.cloneElement(child, child.props);
         }
 
-        if (child.type.name === 'Title') {
+        if (child.type.displayName === 'Title') {
           return React.cloneElement(child, child.props);
         }
 
-        if (child.type.name === 'CTAButton') {
+        if (child.type.displayName === 'CTAButton') {
           return React.cloneElement(child, child.props);
         }
 
-        if (child.type.name === 'OAButton') {
+        if (child.type.displayName === 'OAButton') {
           
           const newProps = {...child.props, handleChange: dispatchSetStep}
           return React.cloneElement(child, newProps);

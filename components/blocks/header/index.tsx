@@ -24,12 +24,13 @@ const Header: React.FC<IHeaderProps> & Header = props => {
   return (
     <Container variant="container.wide">
       {Children.map(children, (child: any) => {
-        if (child.type.name === 'Logo') {
-          return React.cloneElement(child, props);
+        if (child.type.displayName === 'Logo') {
+          return React.cloneElement(child, child.props);
         }
 
-        if (child.type.name === 'Address') {
-          return React.cloneElement(child, { connected });
+        if (child.type.displayName === 'Address') {
+          const newProps = {...child.props, ...{ connected }}
+          return React.cloneElement(child, newProps);
         }
 
         return child;

@@ -64,5 +64,6 @@ const Address: React.FC<IAddressProps> = ({ connected, address, ern }) => {
     </Flex>
   );
 };
+Address.displayName = 'Address';
 
 export default Address;

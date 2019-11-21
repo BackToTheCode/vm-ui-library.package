@@ -29,6 +29,9 @@ const fullStyle = {
 
 const FullContainer = (props: any) => <Container {...props} sx={fullStyle} />
 
+Container.displayName = 'Container';
+FullContainer.displayName = 'FullContainer';
+
 export {
   FullContainer,
   Container

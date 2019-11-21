@@ -63,4 +63,6 @@ export interface OptionProps {
     );
   };
 
+  Option.displayName = "Option";
+
   export default Option;

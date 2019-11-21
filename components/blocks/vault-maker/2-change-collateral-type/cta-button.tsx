@@ -21,5 +21,6 @@ const CTAButton: React.FC<ButtonProps> = ({ children }) => (
     {children}
   </Button>
 );
+CTAButton.displayName = "CTAButton";
 
 export default CTAButton;

@@ -33,16 +33,16 @@ const ChangeCollateralType: React.FC<ChangeCollateralTypeProps> & SelectCollater
     <Box as="form" sx={formStyle} onSubmit={e => e.preventDefault()}>
       {Children.map(children, (child: any) => {
         
-        if (child.type.name === 'Option') {
+        if (child.type.displayName === 'Option') {
           const newProps = {...child.props, selectedOption, dispatchSetOption, dispatchSetCollateral}
           return React.cloneElement(child, newProps);
         }
 
-        if (child.type.name === 'Title') {
+        if (child.type.displayName === 'Title') {
           return React.cloneElement(child, child.props);
         }
 
-        if (child.type.name === 'CTAButton') {
+        if (child.type.displayName === 'CTAButton') {
           return React.cloneElement(child, child.props);
         }
 

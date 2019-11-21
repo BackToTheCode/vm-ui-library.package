@@ -32,4 +32,5 @@ const Button: React.FC<ILinkProps> = ({ sx, variant, href, text }) => (
   </BaseLink>
 );
 
+
 export default Button;

@@ -22,5 +22,6 @@ const baseStyle = {
 const Card: React.FC<IContainerProps> = ({ sx, children }: any) => (
   <Box sx={{...baseStyle, ...sx}}>{children}</Box>
 );
+Card.displayName = 'Card';
 
 export default Card;

@@ -55,6 +55,9 @@ const largeStyle = {
 
 const LargeButton = (props: any) => <Button {...props} sx={{...props.sx, ...largeStyle}} ></Button>
 
+Button.displayName = 'Button';
+LargeButton.displayName = 'LargeButton';
+
 export {
   Button,
   LargeButton

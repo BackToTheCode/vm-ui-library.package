@@ -31,4 +31,6 @@ const Loading: React.FC<any> = () => (
   </Box>
 );
 
+Loading.displayName = 'Loading';
+
 export default Loading;

@@ -15,5 +15,6 @@ const Title: React.FC<TitleProps> = ({ children, sx }) => (
     {children}
   </Heading>
 );
+Title.displayName = "Title";
 
 export default Title;

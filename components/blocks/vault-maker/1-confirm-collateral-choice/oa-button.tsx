@@ -33,5 +33,6 @@ const OAButton: React.FC<OAButtonProps> = ({ children, handleChange }) => {
     </Button>
   );
 };
+OAButton.displayName = "OAButton";
 
 export default OAButton;

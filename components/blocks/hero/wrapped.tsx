@@ -11,10 +11,7 @@ function mapDispatchToProps(dispatch: any) {
   return {
     dispatchConnect: (payload: any) => dispatch({ type: 'CONNECT', payload }),
     dispatchDisconnect: (payload: any) => dispatch({ type: 'DISCONNECT', payload }),
-    dispatchSetBalances: (payload: any) => {
-      console.log('payload', payload)
-      return dispatch({ type: 'SET_BALANCES', payload })
-      },
+    dispatchSetBalances: (payload: any) => dispatch({ type: 'SET_BALANCES', payload }),
     dispatchSetCollateral: (payload: any) => dispatch({ type: 'SET_COLLATERAL', payload })
   };
 }
