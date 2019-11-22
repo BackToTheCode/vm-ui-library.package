@@ -11,7 +11,6 @@ export interface IContainerProps {
 }
 
 const Container: React.FC<IContainerProps> = ({ children, variant, sx }) => {
-  console.log('variant', variant);
   return (
     <Flex variant={variant} sx={{ ...styles.base, ...sx }}>
       {children}

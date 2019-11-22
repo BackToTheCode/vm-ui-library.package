@@ -30,12 +30,17 @@ type Hero = {
 const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
   const [isLoading, setLoading] = useState(false);
   const { isConnected } = props;
+
+  const globalRef: any = global;
   let maker: any;
 
   const getBalances = async () => {
     const tokenService = maker.service('token');
     const eth = tokenService.getToken(ETH);
     const bat = tokenService.getToken(BAT);
+
+    globalRef.ETH = ETH;
+    globalRef.tokenService = tokenService;
 
     const ethBal = await eth.balance();
     const batBal = await bat.balance();
@@ -78,13 +83,13 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
     const tokens = {
       eth: {
         name: 'ETH',
-        bal: toCurrency(ethPrice * balances.eth),
-        price: ethPrice.toFixed(2)
+        bal: toCurrency(balances.eth),
+        price: toCurrency(ethPrice)
       },
       bat: {
         name: 'BAT',
-        bal: toCurrency(batPrice * balances.bat),
-        price: batPrice.toFixed(2)
+        bal: toCurrency(balances.bat),
+        price: toCurrency(ethPrice)
       }
     };
 
