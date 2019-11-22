@@ -89,7 +89,7 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
       bat: {
         name: 'BAT',
         bal: toCurrency(balances.bat),
-        price: toCurrency(ethPrice)
+        price: toCurrency(batPrice)
       }
     };
 
