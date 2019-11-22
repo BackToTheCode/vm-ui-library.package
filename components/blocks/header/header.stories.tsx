@@ -10,13 +10,13 @@ export default {
 };
 
 export const WithAddress = () => (
-  <Header connected>
+  <Header isConnected>
     <Header.Logo image={logoImage} />
     <Header.Address ern="james.eth" address="0x61049F5e03Bfe3823f274C479158A94bcA26456c" />
   </Header>
 );
 export const Connected = () => (
-  <Header connected>
+  <Header isConnected>
     <Header.Logo image={logoImage} />
     <Header.Address />
   </Header>
