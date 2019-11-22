@@ -10,17 +10,13 @@ import Hero from '../components/blocks/hero/wrapped';
 import Progress from '../components/blocks/progress'
 import logoImage from '../public/images/mark-maker.svg';  
 import { useStore, rootReducer } from '../store/store'; 
-// import { initialState } from '../store/reducers/reducer';
 
 export const Context = React.createContext(null);
 const Provider = Context.Provider;
 
 export default () => {
-
-  const [ state, dispatch] = useStore(rootReducer, {});
-  const { isConnected } = state as any;
-
-  console.log('state', state);
+  const [ state, dispatch] = useStore(rootReducer) as any;
+  const { isConnected } = state.connection;
 
   const makeGlobalStyles = (theme: any) => css`
     ${emotionNormalize}

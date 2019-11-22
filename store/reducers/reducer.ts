@@ -1,7 +1,6 @@
 import { CONFIRM_COLLATERAL_CHOICE_NUM } from '../../constants/step-names';
 
 const initialState = {
-  isConnected: false,
   tokens: {},
   balances: {
     eth: {
@@ -28,13 +27,6 @@ const reducer = (state: any, action: any) => {
   const { payload } = action;
 
   switch (action.type) {
-    case 'SET_CONNECTED':
-      const { address } = payload;
-      return { ...state, address, isConnected: true };
-
-    case 'SET_DISCONNECTED':
-      return { ...state, isConnected: false };
-
     case 'SET_COLLATERAL':  
       makeVault = null;
       makeVault = {

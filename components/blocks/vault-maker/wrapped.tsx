@@ -2,14 +2,9 @@ import VaultMaker from './index';
 import connect from '../../../store/connect';
 
 function mapStateToProps(state: any) {
-  const { collateral, currentStep } = state.makeVault;
-  const tokenKey = collateral.toLowerCase();
-  const { balances } = state;
+  const { step } = state.vault;
   return {
-    currentStep: currentStep,
-    collateral: collateral,
-    balance: balances[tokenKey].bal,
-    price: balances[tokenKey].price
+    step
   };
 }
 

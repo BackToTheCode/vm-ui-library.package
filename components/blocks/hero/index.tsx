@@ -2,21 +2,14 @@
 import { jsx } from '@emotion/core';
 import React, { useState } from 'react';
 import { FullContainer } from '../../elements/container/index';
-import {
-  setup as mkrSetup,
-  getWeb3 as mkrGetWeb3,
-  ETH,
-  BAT
-} from '../../../utils/web3';
-import { USD_BAT } from '../../../constants/coin-prices'
+import { setup as mkrSetup, getWeb3 as mkrGetWeb3 } from '../../../utils/web3';
 import Loading from '../../elements/loading/loading';
 import VaultBuilder from '../vault-maker/wrapped';
 import Wallet from '../wallet';
 import metamaskLogo from '../../../public/images/metamask-fox.svg';
 import ledgerLogo from '../../../public/images/ledger-logo.png';
 import trezorLogo from '../../../public/images/trezor-logo.png';
-import toCurrency from '../../../utils/currency-formatter';
-// import uniqBy from 'lodash.uniqby';
+import uniqBy from 'lodash.uniqby';
 
 export interface IHeroProps {
   variant?: string;
@@ -32,115 +25,73 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
   const { isConnected } = props;
 
   let maker: any = null;
-  // const [maker, setMaker] = useState(null);
-  // const [tokens, setTokens] = useState({});
-  
+  let web3: any = null;
 
-  const getBalances = async () => {
+  const addBalances = async (tokens: any[]) => {
+    if (!maker) return;
     const tokenService = maker.service('token');
-    const eth = tokenService.getToken(ETH);
-    const bat = tokenService.getToken(BAT);
 
-    const ethBal = await eth.balance();
-    const batBal = await bat.balance();
+    const clonedTokens: any[] = tokens.map((token: any) => token);
+    for (let [idx, token] of tokens.entries()) {
+      const tokenFromService = tokenService.getToken(token.symbol);
+      const tokenBalance = await tokenFromService.balance();
+      clonedTokens[idx].balance = tokenBalance.toNumber();
+      clonedTokens[idx].usdValue = tokenBalance.toNumber() * token.price;
+    }
 
-    return {
-      eth: ethBal.toNumber(),
-      bat: batBal.toNumber()
-    };
+    return clonedTokens;
   };
 
-  // const getTokens = async () => {
-  //   const { cdpTypes } = maker.service('mcd:cdpType');
-  //   const uniqCdpTypes = uniqBy(cdpTypes, (cdpt: any) => cdpt.currency.symbol);
-  //   console.dir(uniqCdpTypes);
+  const getTokens = async () => {
+    if (!maker) return;
+    const { cdpTypes } = maker.service('mcd:cdpType');
+    const uniqCdpTypes = uniqBy(cdpTypes, (cdpt: any) => cdpt.currency.symbol);
 
-  //   const tokens: any = uniqCdpTypes.map((cdpType: any) => {
-  //     const token = {
-  //       symbol: cdpType.currency.symbol,
-  //       price: cdpType.price.toBigNumber(),
-  //     }
-  //     return Object.assign(token, tokens[token.symbol])
-  //   })
+    const dict: any = {};
+    const tokens = uniqCdpTypes.map((cdpType: any) => {
+      const token = {
+        symbol: cdpType.currency.symbol,
+        price: cdpType.price.toBigNumber().toNumber()
+      };
+      return Object.assign(token, dict[token.symbol]);
+    });
 
-  //   return tokens;
-  // };
+    return tokens;
+  };
 
   const getAccount = async () => {
-    const web3 = (await mkrGetWeb3()) as any;
+    if (!web3) return;
+    const accounts = await web3.eth.getAccounts();
+    const userAccount = accounts[0];
 
-    if (web3) {
-      const accounts = await web3.eth.getAccounts();
-      const userAccount = accounts[0];
-
-      return userAccount;
-    }
+    return userAccount;
   };
 
-  const getLargestTokenBalance = (currencies: any[]) => {
-    const balances = currencies.map(currency => parseInt(currency.bal));
-    const maxIndex = balances.indexOf(Math.max(...balances));
-
-    return currencies[maxIndex];
+  const getDefaultToken = (tokens: any[]) => {
+    const usdValues = tokens.map(token => parseInt(token.usdValue));
+    const maxIndex = usdValues.indexOf(Math.max(...usdValues));
+    return tokens[maxIndex];
   };
 
-  const selectDefaultCollateral = async (balances: any) => {
-    const price = maker.service('price');
-    const ethCurrencyRatio = await price.getEthPrice();
-    // const batCurrencyRatio = await price.getBatPrice();
-
-    const ethPrice = ethCurrencyRatio.toBigNumber().toNumber();
-    // const batPrice = batCurrencyRatio.toBigNumber().toNumber();
-    const batPrice = USD_BAT;
-
-    const tokens = {
-      eth: {
-        name: 'ETH',
-        bal: toCurrency(balances.eth),
-        price: toCurrency(ethPrice)
-      },
-      bat: {
-        name: 'BAT',
-        bal: toCurrency(balances.bat),
-        price: toCurrency(batPrice)
-      }
-    };
-
-    const tokenList = Object.values(tokens);
-
-    const defaultToken = getLargestTokenBalance(tokenList);
-
-    return [defaultToken, tokens];
+  const setupMaker = async () => {
+    maker = await mkrSetup(process.env.NETWORK, process.env.PROVIDER);
+    web3 = (await mkrGetWeb3()) as any;
   };
 
   const handleMetamask = async (e: any) => {
     e.preventDefault();
     setLoading(true);
 
-    maker = await mkrSetup(process.env.NETWORK, process.env.PROVIDER)
-    // setMaker(await mkrSetup(process.env.NETWORK, process.env.PROVIDER));
-    // setTokens(await getTokens());
-    // setBalances 
-
-    // getMaker
-    // getTokens
-    // getBalances
-    // selectDefaultToken
-
-    // dispatchAll
-    // dispatchSetConnect
-    // dispatchSetTokens
-    // dispatchSetDefaultToken
+    await setupMaker();
 
     const userAccount = await getAccount();
-    const simpleBals = await getBalances();
-    const [defaultToken, tokenBalances] = await selectDefaultCollateral(
-      simpleBals
-    );
-
+    const tokens = await getTokens();
+    const tokensWithBalances = await addBalances(tokens);
+    const defaultToken = getDefaultToken(tokensWithBalances);
+    console.log('defaultToken', defaultToken);
     props.dispatchConnect({ address: userAccount });
-    props.dispatchSetBalances(tokenBalances);
-    props.dispatchSetCollateral(defaultToken.name);
+    props.dispatchTokens({ tokens: tokensWithBalances });
+    props.dispatchDefaultToken({ defaultToken: defaultToken });
 
     setLoading(false);
   };
