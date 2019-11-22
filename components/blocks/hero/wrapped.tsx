@@ -9,8 +9,8 @@ function mapStateToProps(state: any) {
 
 function mapDispatchToProps(dispatch: any) {
   return {
-    dispatchConnect: (payload: any) => dispatch({ type: 'CONNECT', payload }),
-    dispatchDisconnect: (payload: any) => dispatch({ type: 'DISCONNECT', payload }),
+    dispatchConnect: (payload: any) => dispatch({ type: 'SET_CONNECTED', payload }),
+    dispatchDisconnect: (payload: any) => dispatch({ type: 'SET_DISCONNECT', payload }),
     dispatchSetBalances: (payload: any) => dispatch({ type: 'SET_BALANCES', payload }),
     dispatchSetCollateral: (payload: any) => dispatch({ type: 'SET_COLLATERAL', payload })
   };

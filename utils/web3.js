@@ -1,5 +1,5 @@
 import Maker from '@makerdao/dai';
-import McdPlugin,{ ETH, BAT } from '@makerdao/dai-plugin-mcd';
+import McdPlugin, { ETH, BAT } from '@makerdao/dai-plugin-mcd';
 import dsTokenAbi from './dsToken.abi.json';
 
 let maker = null;
@@ -24,10 +24,6 @@ const setup = async (network, provider) => {
     ]
   });
 
-  return maker;
-};
-
-const authenticate = async () => {
   await maker.authenticate();
   await maker.service('proxy').ensureProxy();
 
@@ -112,7 +108,6 @@ const approveProxyInDai = async () => {
 
 export {
   setup,
-  authenticate,
   getWeb3,
   approveProxyInREP,
   approveProxyInDai,

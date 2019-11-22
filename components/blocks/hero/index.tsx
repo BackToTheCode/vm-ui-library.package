@@ -3,13 +3,12 @@ import { jsx } from '@emotion/core';
 import React, { useState } from 'react';
 import { FullContainer } from '../../elements/container/index';
 import {
-  setup as makerSetup,
-  authenticate as makerAuthenticate,
-  getWeb3 as makerGetWeb3,
+  setup as mkrSetup,
+  getWeb3 as mkrGetWeb3,
   ETH,
   BAT
 } from '../../../utils/web3';
-import { USD_BAT } from '../../../constants/coin-prices';
+import { USD_BAT } from '../../../constants/coin-prices'
 import Loading from '../../elements/loading/loading';
 import VaultBuilder from '../vault-maker/wrapped';
 import Wallet from '../wallet';
@@ -17,6 +16,7 @@ import metamaskLogo from '../../../public/images/metamask-fox.svg';
 import ledgerLogo from '../../../public/images/ledger-logo.png';
 import trezorLogo from '../../../public/images/trezor-logo.png';
 import toCurrency from '../../../utils/currency-formatter';
+// import uniqBy from 'lodash.uniqby';
 
 export interface IHeroProps {
   variant?: string;
@@ -31,30 +31,43 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
   const [isLoading, setLoading] = useState(false);
   const { isConnected } = props;
 
-  const globalRef: any = global;
-  let maker: any;
+  let maker: any = null;
+  // const [maker, setMaker] = useState(null);
+  // const [tokens, setTokens] = useState({});
+  
 
   const getBalances = async () => {
     const tokenService = maker.service('token');
     const eth = tokenService.getToken(ETH);
     const bat = tokenService.getToken(BAT);
 
-    globalRef.ETH = ETH;
-    globalRef.tokenService = tokenService;
-
     const ethBal = await eth.balance();
     const batBal = await bat.balance();
 
     return {
       eth: ethBal.toNumber(),
-      rep: 0,
       bat: batBal.toNumber()
     };
   };
 
-  const getAccounts = async () => {
-    await makerSetup(process.env.NETWORK, process.env.PROVIDER);
-    const web3 = (await makerGetWeb3()) as any;
+  // const getTokens = async () => {
+  //   const { cdpTypes } = maker.service('mcd:cdpType');
+  //   const uniqCdpTypes = uniqBy(cdpTypes, (cdpt: any) => cdpt.currency.symbol);
+  //   console.dir(uniqCdpTypes);
+
+  //   const tokens: any = uniqCdpTypes.map((cdpType: any) => {
+  //     const token = {
+  //       symbol: cdpType.currency.symbol,
+  //       price: cdpType.price.toBigNumber(),
+  //     }
+  //     return Object.assign(token, tokens[token.symbol])
+  //   })
+
+  //   return tokens;
+  // };
+
+  const getAccount = async () => {
+    const web3 = (await mkrGetWeb3()) as any;
 
     if (web3) {
       const accounts = await web3.eth.getAccounts();
@@ -104,12 +117,25 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
     e.preventDefault();
     setLoading(true);
 
-    await makerSetup(process.env.NETWORK, process.env.PROVIDER);
-    maker = await makerAuthenticate();
-    const userAccount = await getAccounts();
-    const simpleBalances = await getBalances();
+    maker = await mkrSetup(process.env.NETWORK, process.env.PROVIDER)
+    // setMaker(await mkrSetup(process.env.NETWORK, process.env.PROVIDER));
+    // setTokens(await getTokens());
+    // setBalances 
+
+    // getMaker
+    // getTokens
+    // getBalances
+    // selectDefaultToken
+
+    // dispatchAll
+    // dispatchSetConnect
+    // dispatchSetTokens
+    // dispatchSetDefaultToken
+
+    const userAccount = await getAccount();
+    const simpleBals = await getBalances();
     const [defaultToken, tokenBalances] = await selectDefaultCollateral(
-      simpleBalances
+      simpleBals
     );
 
     props.dispatchConnect({ address: userAccount });
@@ -119,40 +145,40 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
     setLoading(false);
   };
 
-  const renderWallet = (
-    isConnected: boolean,
-    isLoading: boolean,
-    handleMetamask: (e: any) => Promise<void>
-  ) =>
-    !isConnected &&
-    (isLoading ? (
-      <Loading />
-    ) : (
-      <Wallet>
-        <Wallet.Header>Start Making a Vault</Wallet.Header>
-        <Wallet.SubHeader>Connect to the Ethereum network</Wallet.SubHeader>
-        <Wallet.LogoButton icon={metamaskLogo} onClick={handleMetamask}>
-          Connect with Metamask
-        </Wallet.LogoButton>
-        <Wallet.LogoButton icon={trezorLogo} isDisabled>
-          Trezor - coming soon...
-        </Wallet.LogoButton>
-        <Wallet.LogoButton icon={ledgerLogo} isDisabled>
-          Ledger - coming soon...
-        </Wallet.LogoButton>
-      </Wallet>
-    ));
-
-  const renderVaultBuilder = (isConnected: boolean) => {
-    return isConnected && <VaultBuilder.Wrapped />;
-  };
-
   return (
     <FullContainer variant="container.default">
       {renderWallet(isConnected, isLoading, handleMetamask)}
       {renderVaultBuilder(isConnected)}
     </FullContainer>
   );
+};
+
+const renderWallet = (
+  isConnected: boolean,
+  isLoading: boolean,
+  handleMetamask: (e: any) => Promise<void>
+) =>
+  !isConnected &&
+  (isLoading ? (
+    <Loading />
+  ) : (
+    <Wallet>
+      <Wallet.Header>Start Making a Vault</Wallet.Header>
+      <Wallet.SubHeader>Connect to the Ethereum network</Wallet.SubHeader>
+      <Wallet.LogoButton icon={metamaskLogo} onClick={handleMetamask}>
+        Connect with Metamask
+      </Wallet.LogoButton>
+      <Wallet.LogoButton icon={trezorLogo} isDisabled>
+        Trezor - coming soon...
+      </Wallet.LogoButton>
+      <Wallet.LogoButton icon={ledgerLogo} isDisabled>
+        Ledger - coming soon...
+      </Wallet.LogoButton>
+    </Wallet>
+  ));
+
+const renderVaultBuilder = (isConnected: boolean) => {
+  return isConnected && <VaultBuilder.Wrapped />;
 };
 
 export default Hero;

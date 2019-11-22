@@ -1,7 +1,8 @@
-import { CONFIRM_COLLATERAL_CHOICE_NUM } from '../constants/step-names';
+import { CONFIRM_COLLATERAL_CHOICE_NUM } from '../../constants/step-names';
 
-export const initialState = {
+const initialState = {
   isConnected: false,
+  tokens: {},
   balances: {
     eth: {
       name: 'ETH',
@@ -24,16 +25,14 @@ export const initialState = {
 const reducer = (state: any, action: any) => {
   let makeVault = null;
   
-  console.log('action', action);
-
   const { payload } = action;
 
   switch (action.type) {
-    case 'CONNECT':
+    case 'SET_CONNECTED':
       const { address } = payload;
       return { ...state, address, isConnected: true };
 
-    case 'DISCONNECT':
+    case 'SET_DISCONNECTED':
       return { ...state, isConnected: false };
 
     case 'SET_COLLATERAL':  
@@ -69,4 +68,7 @@ const reducer = (state: any, action: any) => {
   }
 };
 
-export default reducer;
+export {
+  reducer,
+  initialState
+}
