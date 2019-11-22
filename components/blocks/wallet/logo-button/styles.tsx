@@ -2,8 +2,10 @@ const styles = {
   button: {
     mx: 'auto',
     mb: 4,
-    width: '320px',
-    position: 'relative'
+    width: '280px',
+    position: 'relative',
+    px: 7,
+    textAlign: 'right'
   },
   logo: {
     container: {
