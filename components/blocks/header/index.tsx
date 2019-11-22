@@ -8,7 +8,7 @@ import Container from '../../elements/container/index';
 export interface IHeaderProps {
   variant?: string;
   children?: React.ReactNode;
-  connected?: boolean;
+  isConnected?: boolean;
   ern?: string;
   address?: string;
 }
@@ -20,7 +20,7 @@ type Header = {
 };
 
 const Header: React.FC<IHeaderProps> & Header = props => {
-  const { children, connected, address } = props;
+  const { children, isConnected, address } = props;
   return (
     <Container variant="container.wide">
       {Children.map(children, (child: any) => {
@@ -29,7 +29,7 @@ const Header: React.FC<IHeaderProps> & Header = props => {
         }
 
         if (child.type.displayName === 'Address') {
-          const newProps = { ...child.props, ...{ connected, address } };
+          const newProps = { ...child.props, ...{ isConnected, address } };
           return React.cloneElement(child, newProps);
         }
 

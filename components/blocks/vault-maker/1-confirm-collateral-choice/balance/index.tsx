@@ -34,7 +34,7 @@ const Balance: React.FC<BalanceProps> = ({
         <CoinIcon sx={styles.coinIconStyle(theme.colors.ethMain)} icon={icon} />
       </Box>
       <Text sx={styles.balanceDetailStyle} variant="body.small">
-        {`${balanceVal} @ ${price} USD PER ${collateral}`}
+        {`$${balanceVal} @ ${price} USD PER ${collateral}`}
       </Text>
     </Box>
   );

@@ -29,7 +29,7 @@ type Hero = {
 
 const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
   const [isLoading, setLoading] = useState(false);
-  const { connected: isConnected } = props;
+  const { isConnected } = props;
   let maker: any;
 
   const getBalances = async () => {
@@ -114,8 +114,6 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
     setLoading(false);
   };
 
-  const renderProgress = () => <div></div>;
-
   const renderWallet = (
     isConnected: boolean,
     isLoading: boolean,
@@ -146,7 +144,6 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
 
   return (
     <FullContainer variant="container.default">
-      {isConnected ? renderProgress() : null}
       {renderWallet(isConnected, isLoading, handleMetamask)}
       {renderVaultBuilder(isConnected)}
     </FullContainer>

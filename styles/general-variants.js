@@ -6,7 +6,7 @@ let variants = {
   },
   container: {
     default: {
-      maxWidth: 1024
+      maxWidth: '1024px'
     },
     wide: {
       maxWidth: '100%'

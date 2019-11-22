@@ -20,7 +20,7 @@ const styles = {
     top: '-2px',
     bg: color
   }),
-  balanceDetailStyle: { mb: 6, color: 'grey' }
+  balanceDetailStyle: { mt: 3, mb: 6, color: 'grey' }
 };
 
 export default styles;

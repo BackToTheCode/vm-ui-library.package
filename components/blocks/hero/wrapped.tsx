@@ -3,7 +3,7 @@ import connect from '../../../store/connect';
 
 function mapStateToProps(state: any) {
   return {
-    connected: state.connected
+    isConnected: state.isConnected
   };
 }
 

@@ -6,26 +6,16 @@ import emotionNormalize from 'emotion-normalize';
 
 import Header from '../components/blocks/header/wrapped';
 import Hero from '../components/blocks/hero/wrapped';
+import Progress from '../components/blocks/progress'
 import logoImage from '../public/images/mark-maker.svg';
 import reducer, { initialState } from '../store/reducer';
-
 
 export const Context = React.createContext(null);
 const Provider = Context.Provider;
 
 export default () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  const renderHeader = () => {
-    return (
-      <Header.Wrapped>
-        <Header.Logo image={logoImage} />
-        <Header.Address />
-      </Header.Wrapped>
-    );
-  };
-
-  const renderHero = () => <Hero.Wrapped />;
+  const { isConnected } = state;
 
   const makeGlobalStyles = (theme: any) => css`
     ${emotionNormalize}
@@ -43,8 +33,34 @@ export default () => {
       <GlobalStyles />
       <Provider value={{ state, dispatch }}>
         {renderHeader()}
+        {isConnected && renderProgressBar()}
         {renderHero()}
       </Provider>
     </ThemeProvider>
   );
 };
+
+// Section renderers
+const renderHeader = () => {
+  return (
+    <Header.Wrapped>
+      <Header.Logo image={logoImage} />
+      <Header.Address />
+    </Header.Wrapped>
+  );
+};
+
+const renderProgressBar = () => {
+  return (
+      <Progress>
+        <Progress.Step complete></Progress.Step>
+        <Progress.Step></Progress.Step>
+        <Progress.Step></Progress.Step>
+        <Progress.Step></Progress.Step>
+        <Progress.Step></Progress.Step>
+        <Progress.Step></Progress.Step>
+      </Progress>
+  )
+}
+
+const renderHero = () => <Hero.Wrapped />;

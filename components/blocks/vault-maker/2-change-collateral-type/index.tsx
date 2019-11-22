@@ -3,6 +3,7 @@ import { Box } from 'rebass';
 import Option, { OptionProps } from './option';
 import CTAButton, { CTAButtonProps } from './cta-button';
 import Title, { TitleProps} from '../shared/title';
+import HorizontalRule from './horizontal-rule';
 
 export interface ChangeCollateralTypeProps {
   children: any;
@@ -15,6 +16,7 @@ type SelectCollateral = {
   Option: React.FC<OptionProps>;
   CTAButton: React.FC<CTAButtonProps>;
   Title: React.FC<TitleProps>;
+  HorizontalRule: any;
   Wrapped?: any;
 };
 
@@ -42,6 +44,10 @@ const ChangeCollateralType: React.FC<ChangeCollateralTypeProps> & SelectCollater
           return React.cloneElement(child, child.props);
         }
 
+        if (child.type.displayName === 'HorizontalRule') {
+          return React.cloneElement(child, child.props);
+        }
+
         if (child.type.displayName === 'CTAButton') {
           return React.cloneElement(child, child.props);
         }
@@ -55,5 +61,6 @@ const ChangeCollateralType: React.FC<ChangeCollateralTypeProps> & SelectCollater
 ChangeCollateralType.CTAButton = CTAButton;
 ChangeCollateralType.Title = Title;
 ChangeCollateralType.Option = Option;
+ChangeCollateralType.HorizontalRule = HorizontalRule;
 
 export default ChangeCollateralType;

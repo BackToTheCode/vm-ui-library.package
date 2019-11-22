@@ -2,6 +2,7 @@
 import { jsx } from '@emotion/core';
 import React from 'react';
 import { Flex } from 'rebass';
+import styles from './styles';
 
 export interface IContainerProps {
   variant?: string;
@@ -9,32 +10,20 @@ export interface IContainerProps {
   sx?: any;
 }
 
-const baseStyle = {
-  maxHeight: '100%',
-  mx: 'auto'
-}
+const Container: React.FC<IContainerProps> = ({ children, variant, sx }) => {
+  console.log('variant', variant);
+  return (
+    <Flex variant={variant} sx={{ ...styles.base, ...sx }}>
+      {children}
+    </Flex>
+  );
+};
 
-const Container: React.FC<IContainerProps> = ({ children, variant, sx }) => (
-  <Flex variant={variant} sx={{...baseStyle, ...sx}} >
-    {children}
-  </Flex>
-);
-
-const fullStyle = {
-  height: '85vh',
-  justifyContent: 'center', 
-  alignItems: 'center', 
-  flexDirection: 'column'
-}
-
-const FullContainer = (props: any) => <Container {...props} sx={fullStyle} />
+const FullContainer = (props: any) => <Container {...props} sx={styles.full} />;
 
 Container.displayName = 'Container';
 FullContainer.displayName = 'FullContainer';
 
-export {
-  FullContainer,
-  Container
-}
+export { FullContainer, Container };
 
 export default Container;

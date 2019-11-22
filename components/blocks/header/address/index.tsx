@@ -9,13 +9,13 @@ export interface IAddressProps {
   children?: React.ReactNode;
   address?: string;
   ern?: string;
-  connected?: boolean;
+  isConnected?: boolean;
 }
 
-const Address: React.FC<IAddressProps> = ({ connected, address, ern }) => {
-  const variant = connected ? 'indicator.connected' : 'indicator.unconnected';
-  console.log('address', address)
-  const connectedMessage = connected
+const Address: React.FC<IAddressProps> = ({ isConnected, address, ern }) => {
+  const variant = isConnected ? 'indicator.connected' : 'indicator.unconnected';
+
+  const connectedMessage = isConnected
     ? address
       ? address
       : 'Connected'

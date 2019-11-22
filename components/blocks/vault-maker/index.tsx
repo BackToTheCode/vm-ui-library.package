@@ -13,6 +13,39 @@ import stepNames, {
   CHANGE_COLLATERAL_CHOICE
 } from '../../../constants/step-names';
 
+export interface VaultMakerProps {
+  children?: any;
+  currentStep?: number;
+  collateral?: string;
+  balance?: number;
+  price?: number;
+}
+
+type VaultMaker = {
+  Wrapped?: any;
+};
+
+const VaultMaker: React.FC<VaultMakerProps> & VaultMaker = ({
+  currentStep,
+  collateral,
+  balance,
+  price
+}) => {
+  console.log('currentStep', currentStep)
+  return (
+  <Card sx={cardStyle}>
+    <Container sx={containerStyle} variant="container.default">
+      {currentStep === stepNames[CONFIRM_COLLATERAL_CHOICE] &&
+        renderConfirmCollateralChoice(collateral, balance, price)}
+
+      {currentStep === stepNames[CHANGE_COLLATERAL_CHOICE] &&
+        renderChangeCollateralType()}
+    </Container>
+  </Card>
+)};
+
+VaultMaker.displayName = 'VaultMaker';
+
 const renderConfirmCollateralChoice = (
   collateral: string,
   balance: number,
@@ -59,6 +92,7 @@ const renderChangeCollateralType = () => {
       >
         ETH
       </ChangeCollateralType.Option>
+      <ChangeCollateralType.HorizontalRule />
       <ChangeCollateralType.Option
         icon={batLogo}
         name="option2"
@@ -72,34 +106,5 @@ const renderChangeCollateralType = () => {
     </ChangeCollateralType.Wrapped>
   );
 };
-
-export interface VaultMakerProps {
-  children?: any;
-  currentStep?: number;
-  collateral?: string;
-  balance?: number;
-  price?: number;
-}
-
-type VaultMaker = {
-  Wrapped?: any;
-};
-
-const VaultMaker: React.FC<VaultMakerProps> & VaultMaker = ({
-  currentStep,
-  collateral,
-  balance,
-  price
-}) => (
-  <Card sx={cardStyle}>
-    <Container sx={containerStyle} variant="container.default">
-      {currentStep === stepNames[CONFIRM_COLLATERAL_CHOICE] &&
-        renderConfirmCollateralChoice(collateral, balance, price)}
-
-      {currentStep === stepNames[CHANGE_COLLATERAL_CHOICE] &&
-        renderChangeCollateralType()}
-    </Container>
-  </Card>
-);
 
 export default VaultMaker;

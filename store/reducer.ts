@@ -1,7 +1,7 @@
 import { CONFIRM_COLLATERAL_CHOICE_NUM } from '../constants/step-names';
 
 export const initialState = {
-  connected: false,
+  isConnected: false,
   balances: {
     eth: {
       name: 'ETH',
@@ -15,7 +15,7 @@ export const initialState = {
     }
   },
   makeVault: {
-    step: CONFIRM_COLLATERAL_CHOICE_NUM,
+    currentStep: CONFIRM_COLLATERAL_CHOICE_NUM,
     collateral: 'ETH',
     collateralOption: 'no option selected'
   }
@@ -31,10 +31,10 @@ const reducer = (state: any, action: any) => {
   switch (action.type) {
     case 'CONNECT':
       const { address } = payload;
-      return { ...state, address, connected: true };
+      return { ...state, address, isConnected: true };
 
     case 'DISCONNECT':
-      return { ...state, connected: false };
+      return { ...state, isConnected: false };
 
     case 'SET_COLLATERAL':  
       makeVault = null;
@@ -59,7 +59,7 @@ const reducer = (state: any, action: any) => {
       makeVault = null;
       makeVault = {
         ...state.makeVault,
-        step: payload
+        currentStep: payload
       };
 
       return { ...state, makeVault };
