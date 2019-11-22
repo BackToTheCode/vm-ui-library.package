@@ -4,7 +4,7 @@ import { Box } from 'rebass';
 const styles = {
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'lightGrey'
+    borderColor: 'superLightGrey'
 }
 
 const HorizontalRule = () => {

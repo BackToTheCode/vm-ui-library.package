@@ -27,7 +27,7 @@ const theme = {
     superLightPrimary: 'rgb(216, 238, 235)',
     secondary: '#F4B731',
     lightSecondary: 'rgb(255, 225, 160)',
-    superLightSecondary: 'rgb(253, 241, 217)',
+    superLightSecondary: 'rgb(255, 246, 228)',
     transparent: 'transparent', 
     lightWarning: '#ffbf00',
     warning: '#ff0000',

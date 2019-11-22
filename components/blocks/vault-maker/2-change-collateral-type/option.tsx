@@ -26,13 +26,13 @@ export interface OptionProps {
     alignItems: 'center',
     transition: '0.2s all',
     '&:hover': {
-      bg: 'lightGrey',
+      bg: 'superLightSecondary',
       transform: 'translateX(-1px)'
     }
   };
   
   const selectedStyle = {
-    bg: 'lightGrey'
+    bg: 'superLightSecondary'
   };
   
   const Option: React.FC<OptionProps> = (props) => {
