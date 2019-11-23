@@ -12,6 +12,7 @@
     "start": "next start",
     "export": "yarn build && next export"
   },
+  "jest": {},
   "dependencies": {
     "@makerdao/dai": "^0.22.0",
     "@makerdao/dai-plugin-mcd": "^1.0.1",
