@@ -5,7 +5,7 @@ import dsTokenAbi from './dsToken.abi.json';
 let maker = null;
 let web3 = null;
 
-const setup = async (network, provider, url) => {
+const setup = async (network, provider, infuraOptions) => {
   if (maker) return maker;
 
   let options = {
@@ -26,7 +26,8 @@ const setup = async (network, provider, url) => {
 
   // Provide infura project url when testing
   if (provider !== 'browser') {
-    options = { ...options, url };
+    
+    options = { ...options, ...infuraOptions };
   }
 
   maker = await Maker.create(provider, options);

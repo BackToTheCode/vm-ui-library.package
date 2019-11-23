@@ -31,5 +31,5 @@
     "storybook-static",
     "public"
   ],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/connect.js", "styles/text-variants.js", "styles/general-variants.js", "styles/button-variants.js", "styles/theme.js"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/connect.js", "styles/text-variants.js", "styles/general-variants.js", "styles/button-variants.js", "styles/theme.js", "jest.setup.js"]
 }

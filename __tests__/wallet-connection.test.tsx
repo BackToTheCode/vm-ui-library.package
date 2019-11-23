@@ -15,10 +15,16 @@ describe('When a user connects and enters their password', () => {
   it('should connect the user and show them them the Vault Maker Wizard', () => {
     // Arrange
     const { getByText } = render(<Page />);
-
+    const buttonText = "Connect with Metamask";
+  
     // Act
+    fireEvent.click(getByText(buttonText));
+    const addressComponent = getByText(/0x/i);
+
 
     // Assert
+    console.log('addressComponent', addressComponent)
+    expect(getByText(/0x/i).textContent).toBe("Connected")
    
   });
 });
