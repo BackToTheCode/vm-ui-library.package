@@ -12,7 +12,7 @@ function mapDispatchToProps(dispatch: any) {
     dispatchConnect: (payload: any) => dispatch({ type: 'CONNECT', payload }),
     dispatchDisconnect: (payload: any) => dispatch({ type: 'DISCONNECT', payload }),
     dispatchTokens: (payload: any) => dispatch({ type: 'TOKENS', payload}),
-    dispatchDefaultToken: (payload: any) => dispatch({ type: 'DEFAULT_TOKEN', payload}),
+    dispatchSelectToken: (payload: any) => dispatch({ type: 'SELECT_TOKEN', payload}),
   };
 }
 

@@ -2,19 +2,26 @@ import ChangeCollateralType from './index';
 import connect from '../../../../store/connect';
 
 function mapStateToProps(state: any) {
+  const { symbol } = state.tokens.selectedToken;
+  const { tokens } = state.tokens;
+  console.log('STATE', state);
   return {
-    selectedOption: state.makeVault.collateralOption
+    symbol,
+    tokens
   };
 }
 
 function mapDispatchToProps(dispatch: any) {
   return {
-    dispatchSetOption: (payload: any) => dispatch({ type: 'SET_OPTION', payload }),
-    dispatchSetCollateral: (payload: any) => dispatch({ type: 'SET_COLLATERAL', payload })
+    dispatchSelectToken: (payload: any) => dispatch({ type: 'SELECT_TOKEN', payload }),
+    dispatchStep: (payload: any) => dispatch({ type: 'STEP', payload })
   };
 }
 
-const Wrapped = connect(mapStateToProps, mapDispatchToProps)(ChangeCollateralType);
+const Wrapped = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ChangeCollateralType);
 
 ChangeCollateralType.Wrapped = Wrapped;
 

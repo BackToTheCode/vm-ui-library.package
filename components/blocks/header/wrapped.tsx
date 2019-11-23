@@ -3,8 +3,8 @@ import connect from '../../../store/connect';
 
 function mapStateToProps(state: any) {
   return {
-    isConnected: state.isConnected,
-    address: state.address
+    isConnected: state.connection.isConnected,
+    address: state.connection.address
   };
 }
 

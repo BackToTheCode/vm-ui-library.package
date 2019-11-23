@@ -1,4 +1,3 @@
-import { reducer } from './reducers/reducer';
 import { connectReducer, tokenReducer, vaultReducer } from './reducers';
 import { useReducer } from 'react';
 

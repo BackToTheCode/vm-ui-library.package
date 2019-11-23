@@ -15,8 +15,9 @@ import stepNames, {
 
 export interface VaultMakerProps {
   children?: any;
-  currentStep?: number;
-  collateral?: string;
+  step?: number;
+  symbol?: string;
+  usdValue?: number;
   balance?: number;
   price?: number;
 }
@@ -25,47 +26,46 @@ type VaultMaker = {
   Wrapped?: any;
 };
 
-const VaultMaker: React.FC<VaultMakerProps> & VaultMaker = ({
-  currentStep,
-  collateral,
-  balance,
-  price
-}) => {
-  console.log('currentStep', currentStep)
-  return (
-  <Card sx={cardStyle}>
-    <Container sx={containerStyle} variant="container.default">
-      {currentStep === stepNames[CONFIRM_COLLATERAL_CHOICE] &&
-        renderConfirmCollateralChoice(collateral, balance, price)}
+const VaultMaker: React.FC<VaultMakerProps> & VaultMaker = (props) => {
+  const { step, symbol, usdValue, balance, price } = props;
 
-      {currentStep === stepNames[CHANGE_COLLATERAL_CHOICE] &&
-        renderChangeCollateralType()}
-    </Container>
-  </Card>
-)};
+  return (
+    <Card sx={cardStyle}>
+      <Container sx={containerStyle} variant="container.default">
+        {step === stepNames[CONFIRM_COLLATERAL_CHOICE] &&
+          renderConfirmCollateralChoice(symbol, balance, price, usdValue)}
+
+        {step === stepNames[CHANGE_COLLATERAL_CHOICE] &&
+          renderChangeCollateralType()}
+      </Container>
+    </Card>
+  );
+};
 
 VaultMaker.displayName = 'VaultMaker';
 
 const renderConfirmCollateralChoice = (
-  collateral: string,
+  symbol: string,
   balance: number,
-  price: number
+  price: number,
+  usdValue: number
 ) => {
   const icons: any = {
     ETH: ethLogo,
     REP: repLogo,
     BAT: batLogo
   };
-  const icon = icons[collateral];
+  const icon = icons[symbol];
   return (
     <ConfirmCollateralChoice.Wrapped>
       <ConfirmCollateralChoice.Title sx={{ mb: 8 }}>
-        {`We suggest ${collateral} as collateral for your Vault`}
+        {`We suggest ${symbol} as collateral for your Vault`}
       </ConfirmCollateralChoice.Title>
       <ConfirmCollateralChoice.Balance
         balance={balance}
         price={price}
-        collateral={collateral}
+        usdValue={usdValue}
+        symbol={symbol}
         icon={icon}
       />
       <ConfirmCollateralChoice.CTAButton>

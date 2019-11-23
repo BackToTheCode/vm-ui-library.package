@@ -1,10 +1,10 @@
 import React from 'react';
 import Button, { ButtonProps } from '../../../elements/button/button';
-import { CHANGE_COLLATERAL_CHOICE_NUM} from '../../../../constants/step-names';
+import { CHANGE_COLLATERAL_CHOICE_NUM } from '../../../../constants/step-names';
 
 export interface OAButtonProps extends ButtonProps {
   children: any;
-  handleChange?: (stepName: number) => void;
+  handleChange?: ({ step }: { step: number }) => void;
 }
 
 const style = {
@@ -18,7 +18,7 @@ const style = {
 const OAButton: React.FC<OAButtonProps> = ({ children, handleChange }) => {
   const handleClick = (e: any) => {
     e.preventDefault();
-    handleChange(CHANGE_COLLATERAL_CHOICE_NUM);
+    handleChange({ step: CHANGE_COLLATERAL_CHOICE_NUM });
   };
   return (
     <Button
@@ -33,6 +33,6 @@ const OAButton: React.FC<OAButtonProps> = ({ children, handleChange }) => {
     </Button>
   );
 };
-OAButton.displayName = "OAButton";
+OAButton.displayName = 'OAButton';
 
 export default OAButton;

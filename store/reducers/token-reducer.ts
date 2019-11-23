@@ -1,18 +1,25 @@
 import { types } from '../actions';
 
+const defaultToken = {
+  symbol: 'ETH',
+  price: 0,
+  balance: 0,
+  usdValue: 0
+};
+
 const initialState: any = {
-  tokens: {},
-  defaultToken: {}
+  tokens: [defaultToken],
+  selectedToken: defaultToken
 };
 
 const tokenReducer = (state: any = initialState, action: any) => {
-  const { DEFAULT_TOKEN, TOKENS } = types.tokens;
+  const { SELECT_TOKEN, TOKENS } = types.tokens;
   const { payload, type } = action;
 
   switch (type) {
-    case DEFAULT_TOKEN:
-      const { defaultToken } = payload;
-      return { ...state, defaultToken };
+    case SELECT_TOKEN:
+      const { selectedToken } = payload;
+      return { ...state, selectedToken };
 
     case TOKENS:
       const { tokens } = payload;

@@ -1,7 +1,8 @@
 import { types } from '../actions';
 
 const initialState: any = {
-  step: 1
+  step: 1,
+  selectedToken: null
 };
 
 const vaultReducer = (state: any = initialState, action: any) => {
@@ -12,7 +13,6 @@ const vaultReducer = (state: any = initialState, action: any) => {
     case STEP:
       const { step } = payload;
       return { ...state, step };
-
     default:
       return state;
   }

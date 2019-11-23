@@ -67,7 +67,7 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
     return userAccount;
   };
 
-  const getDefaultToken = (tokens: any[]) => {
+  const selectDefaultToken = (tokens: any[]) => {
     const usdValues = tokens.map(token => parseInt(token.usdValue));
     const maxIndex = usdValues.indexOf(Math.max(...usdValues));
     return tokens[maxIndex];
@@ -87,11 +87,11 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
     const userAccount = await getAccount();
     const tokens = await getTokens();
     const tokensWithBalances = await addBalances(tokens);
-    const defaultToken = getDefaultToken(tokensWithBalances);
-    console.log('defaultToken', defaultToken);
+    const selectedToken = selectDefaultToken(tokensWithBalances);
+
     props.dispatchConnect({ address: userAccount });
     props.dispatchTokens({ tokens: tokensWithBalances });
-    props.dispatchDefaultToken({ defaultToken: defaultToken });
+    props.dispatchSelectToken({ selectedToken: selectedToken });
 
     setLoading(false);
   };

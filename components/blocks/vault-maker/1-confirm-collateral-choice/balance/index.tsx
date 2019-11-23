@@ -9,18 +9,19 @@ export interface BalanceProps {
   icon: any;
   balance: number;
   price: number;
-  collateral: string;
+  symbol: string;
+  usdValue: number;
 }
 
 const Balance: React.FC<BalanceProps> = ({
   icon,
   balance,
   price,
-  collateral
+  symbol,
+  usdValue,
 }: any) => {
-  const balanceVal = toCurrency(price * balance);
-
   const theme: any = useTheme();
+  
   return (
     <Box sx={styles.boxStyle}>
       <Text sx={styles.labelStyle} variant="body.small">
@@ -30,11 +31,11 @@ const Balance: React.FC<BalanceProps> = ({
         <Text
           variant="heading.regular"
           sx={styles.balanceStyle}
-        >{`${balance} ${collateral}`}</Text>
+        >{`${toCurrency(balance)} ${symbol}`}</Text>
         <CoinIcon sx={styles.coinIconStyle(theme.colors.ethMain)} icon={icon} />
       </Box>
       <Text sx={styles.balanceDetailStyle} variant="body.small">
-        {`$${balanceVal} @ ${price} USD PER ${collateral}`}
+        {`$${toCurrency(usdValue)} @ ${toCurrency(price)} USD PER ${symbol}`}
       </Text>
     </Box>
   );

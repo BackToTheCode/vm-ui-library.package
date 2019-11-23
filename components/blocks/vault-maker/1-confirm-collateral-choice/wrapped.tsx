@@ -3,7 +3,7 @@ import connect from '../../../../store/connect';
 
 function mapDispatchToProps(dispatch: any) {
   return {
-    dispatchSetStep: (payload: any) => dispatch({ type: 'SET_STEP', payload })
+    dispatchStep: (payload: any) => dispatch({ type: 'STEP', payload })
   };
 }
 

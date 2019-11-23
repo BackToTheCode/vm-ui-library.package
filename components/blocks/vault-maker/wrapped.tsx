@@ -3,8 +3,15 @@ import connect from '../../../store/connect';
 
 function mapStateToProps(state: any) {
   const { step } = state.vault;
+  const { selectedToken } = state.tokens;
+  const { symbol, usdValue, balance, price } = selectedToken;
+
   return {
-    step
+    step,
+    symbol,
+    usdValue,
+    balance,
+    price
   };
 }
 

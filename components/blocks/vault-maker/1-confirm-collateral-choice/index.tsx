@@ -13,7 +13,7 @@ type ChooseCollateral = {
 };
 
 const ConfirmCollateral: React.FC<any> & ChooseCollateral = (props: any) => {
-  const { children, dispatchSetStep } = props;
+  const { children, dispatchStep } = props;
 
   return (
     <Fragment>
@@ -35,7 +35,7 @@ const ConfirmCollateral: React.FC<any> & ChooseCollateral = (props: any) => {
         }
 
         if (child.type.displayName === 'OAButton') {
-          const newProps = { ...child.props, handleChange: dispatchSetStep };
+          const newProps = { ...child.props, handleChange: dispatchStep };
           return React.cloneElement(child, newProps);
         }
 

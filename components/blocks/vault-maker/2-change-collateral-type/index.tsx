@@ -2,14 +2,15 @@ import React, { Children } from 'react';
 import { Box } from 'rebass';
 import Option, { OptionProps } from './option';
 import CTAButton, { CTAButtonProps } from './cta-button';
-import Title, { TitleProps} from '../shared/title';
+import Title, { TitleProps } from '../shared/title';
 import HorizontalRule from './horizontal-rule';
 
 export interface ChangeCollateralTypeProps {
   children: any;
-  selectedOption: string;
-  dispatchSetCollateral: (payload: string) => void;
-  dispatchSetOption: (payload: string) => void;
+  symbol: string;
+  tokens: any[];
+  dispatchSelectToken: (payload: string) => void;
+  dispatchStep: (payload: string) => void;
 }
 
 type SelectCollateral = {
@@ -25,18 +26,22 @@ const formStyle = {
   height: '100%',
   display: 'flex',
   flexDirection: 'column'
-}
+};
 
-const ChangeCollateralType: React.FC<ChangeCollateralTypeProps> & SelectCollateral = (
-  { children, selectedOption, dispatchSetOption, dispatchSetCollateral }
-) => {
-
+const ChangeCollateralType: React.FC<ChangeCollateralTypeProps> &
+  SelectCollateral = props => {
+    console.log('PROPS', props);
+  const { children, symbol, tokens, dispatchSelectToken, dispatchStep } = props;
   return (
     <Box as="form" sx={formStyle} onSubmit={e => e.preventDefault()}>
       {Children.map(children, (child: any) => {
-        
         if (child.type.displayName === 'Option') {
-          const newProps = {...child.props, selectedOption, dispatchSetOption, dispatchSetCollateral}
+          const newProps = {
+            ...child.props,
+            tokens,
+            selectedToken: symbol,
+            dispatchSelectToken
+          };
           return React.cloneElement(child, newProps);
         }
 
@@ -49,7 +54,7 @@ const ChangeCollateralType: React.FC<ChangeCollateralTypeProps> & SelectCollater
         }
 
         if (child.type.displayName === 'CTAButton') {
-          return React.cloneElement(child, child.props);
+          return React.cloneElement(child, { ...child.props, dispatchStep });
         }
 
         return child;
