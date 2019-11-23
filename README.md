@@ -1,6 +1,8 @@
 # Key Links
 - [`App | Vault Maker`] https://nervous-shannon-c787e5.netlify.com/
 - [`Design System | Storybook`] https://adoring-leavitt-ad4453.netlify.com
+- [`Wireframes | InvisionApp`] (https://projects.invisionapp.com/boards/FD3XNJ8SM8Q/)
+- [`Kanban Board | Vault Manager`] (https://trello.com/b/H0NV22h9/mcd-vault-manager)
 
 # Vault Maker
 
@@ -30,9 +32,9 @@ Run the test suit with with `yarn test`
 
 ## Process
 
-- Firstly, simple wireframes were drawn on paper to help the author understand the necessary flows. These are open to change as the project progresses [`Wireframes - InvisionApp`](https://projects.invisionapp.com/boards/FD3XNJ8SM8Q/)
-- Secondly, a kanban board was prepared populated with all the necessary tickets [`MCD Vault Manager Board`](https://trello.com/b/H0NV22h9/mcd-vault-manager)
-- Thirdly, setup storybook to create a design-system for the tool [`MCD Vault Manager Design System`](https://adoring-leavitt-ad4453.netlify.com)
+- Firstly, simple wireframes were drawn on paper to help the author understand the necessary flows. These are open to change as the project progresses [`Wireframes | InvisionApp`](https://projects.invisionapp.com/boards/FD3XNJ8SM8Q/)
+- Secondly, a kanban board was prepared populated with all the necessary tickets [`Kanban Board | Vault Manager`] (https://trello.com/b/H0NV22h9/mcd-vault-manager)
+- Thirdly, setup storybook to create a design-system for the tool [`Design System | Storybook`] (https://adoring-leavitt-ad4453.netlify.com)
 - Finally, built out the tool itself using Next.JS / Dai.js and an array of other tools and libraries
 
 ## Structure
