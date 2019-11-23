@@ -3,6 +3,7 @@ module.exports = {
     "^.+\\.jsx?$": "babel-jest",
     "^.+\\.tsx?$": "ts-jest"
   },
+  runner: 'jest-serial-runner',
   testPathIgnorePatterns: ['/node_modules/'],
   testRegex: '(/test/.*|\\.(test|spec))\\.(ts|tsx|js)$',
   moduleNameMapper: {
