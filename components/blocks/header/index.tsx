@@ -29,7 +29,7 @@ const Header: React.FC<IHeaderProps> & Header = props => {
         }
 
         if (child.type.displayName === 'Address') {
-          const newProps = { ...child.props, ...{ isConnected, address } };
+          const newProps = { ...{ isConnected, address }, ...child.props };
           return React.cloneElement(child, newProps);
         }
 

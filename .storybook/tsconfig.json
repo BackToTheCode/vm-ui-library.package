@@ -36,5 +36,8 @@
       "storybook-static",
       "public",
       "typings"
+    ],
+    "files": [
+      "./typings.d.ts"
     ]
   }

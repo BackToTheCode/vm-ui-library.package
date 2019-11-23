@@ -1,17 +1,23 @@
 import React from 'react';
 import { configure, addParameters, addDecorator } from '@storybook/react';
 import { themes as storyBookThemes } from '@storybook/theming';
+import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 import appTheme from '../styles/theme';
 import { ThemeProvider } from 'emotion-theming';
-import { Global, css } from '@emotion/core';
 
-// Themes for storybook itself
-const storyBookThemeParameters = {
+addParameters({
+  docs: {
+    container: DocsContainer,
+    page: DocsPage
+  },
   options: {
-    theme: storyBookThemes.light
+    theme: storyBookThemes.light,
+    isFullScreen: true,
+    name: 'Vault Maker',
+    url: 'https://github.com/BackToTheCode/project.mcd-vault-manager',
+
   }
-};
-addParameters(storyBookThemeParameters);
+});
 
 // Themes for app UI components
 const ThemeDecorator = (storyFn: any) => (
