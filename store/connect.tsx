@@ -1,4 +1,4 @@
-import { Dispatch, useContext } from 'react';
+import React, { Dispatch, useContext } from 'react';
 import { Context } from '../pages/index';
 
 import { ConnectionAction } from './reducers/connect-reducer';

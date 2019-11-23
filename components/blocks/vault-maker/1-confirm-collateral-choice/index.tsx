@@ -9,7 +9,7 @@ type ChooseCollateral = {
   Title: React.FC<TitleProps>;
   CTAButton: React.FC<CTAButtonProps>;
   OAButton: React.FC<OAButtonProps>;
-  Wrapped?: React.FC<ChooseCollateralProps> & ChooseCollateral;
+  Wrapped?: React.FC<ChooseCollateralProps>;
 };  
 
 export interface ChooseCollateralProps {

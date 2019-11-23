@@ -9,7 +9,6 @@ export interface StepProps {
 const Step: React.FC<StepProps> = ({ complete }) => {
   let mergedStyles = Object.create({});
   mergedStyles.step = styles.step;
-  console.log('complete', complete);
   if (complete) {
     mergedStyles.complete = styles.complete
   }

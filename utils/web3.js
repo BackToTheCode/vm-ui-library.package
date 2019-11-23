@@ -5,10 +5,10 @@ import dsTokenAbi from './dsToken.abi.json';
 let maker = null;
 let web3 = null;
 
-const setup = async (network, provider) => {
+const setup = async (network, provider, url) => {
   if (maker) return maker;
 
-  maker = await Maker.create(provider, {
+  let options = {
     plugins: [
       [
         McdPlugin,
@@ -16,13 +16,20 @@ const setup = async (network, provider) => {
           network: network,
           cdpTypes: [
             { currency: ETH, ilk: 'ETH-A' },
-            { currency: BAT, ilk: 'BAT-A' },
+            { currency: BAT, ilk: 'BAT-A' }
             // { currency: REP, ilk: 'REP-A' },
           ]
         }
       ]
     ]
-  });
+  };
+
+  // Provide infura project url when testing
+  if (provider !== 'browser') {
+    options = { ...options, url };
+  }
+
+  maker = await Maker.create(provider, options);
 
   await maker.authenticate();
   await maker.service('proxy').ensureProxy();
@@ -106,11 +113,4 @@ const approveProxyInDai = async () => {
   }
 };
 
-export {
-  setup,
-  getWeb3,
-  approveProxyInREP,
-  approveProxyInDai,
-  BAT,
-  ETH
-};
+export { setup, getWeb3, approveProxyInREP, approveProxyInDai, BAT, ETH };

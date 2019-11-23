@@ -1,14 +1,20 @@
 import React from 'react';
 import Header from '../components/blocks/header/index';
 import { render, fireEvent, cleanup } from '@testing-library/react';
+import Page from '../pages';
 
 afterEach(cleanup);
 
+// Override the provider used to connect to web3 - need an http version pointing at <Infura></Infura>
+// Render a page
+//
+
 // Should create the app
 
-describe('When a user connects with Metamask and enters their password', () => {
+describe('When a user connects and enters their password', () => {
   it('should connect the user and show them them the Vault Maker Wizard', () => {
     // Arrange
+    const { getByText } = render(<Page />);
 
     // Act
 
