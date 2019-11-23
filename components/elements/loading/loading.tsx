@@ -17,7 +17,7 @@ const baseStyle = {
     color: 'grey',
     mt: 5,
     position: 'relative',
-    right: '-5px'
+    right: '-5px',
   },
   image: {
     width: '120px'
