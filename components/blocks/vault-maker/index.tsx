@@ -87,7 +87,7 @@ const renderChangeCollateralType = () => {
       </ChangeCollateralType.Title>
       <ChangeCollateralType.Option
         icon={ethLogo}
-        name="option1"
+        name="ETH"
         brand={theme.colors.ethMain}
       >
         ETH
@@ -95,7 +95,7 @@ const renderChangeCollateralType = () => {
       <ChangeCollateralType.HorizontalRule />
       <ChangeCollateralType.Option
         icon={batLogo}
-        name="option2"
+        name="BAT"
         brand={theme.colors.batMain}
       >
         BAT

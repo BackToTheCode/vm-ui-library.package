@@ -1,7 +1,7 @@
 import React, { Children } from 'react';
 import { Box } from 'rebass';
 import Option, { OptionProps } from './option';
-import CTAButton, { CTAButtonProps } from './cta-button';
+import CTAButton, { CTAButtonProps } from '../shared/cta-button';
 import Title, { TitleProps } from '../shared/title';
 import HorizontalRule from './horizontal-rule';
 
@@ -30,7 +30,6 @@ const formStyle = {
 
 const ChangeCollateralType: React.FC<ChangeCollateralTypeProps> &
   SelectCollateral = props => {
-    console.log('PROPS', props);
   const { children, symbol, tokens, dispatchSelectToken, dispatchStep } = props;
   return (
     <Box as="form" sx={formStyle} onSubmit={e => e.preventDefault()}>
@@ -39,7 +38,7 @@ const ChangeCollateralType: React.FC<ChangeCollateralTypeProps> &
           const newProps = {
             ...child.props,
             tokens,
-            selectedToken: symbol,
+            symbol,
             dispatchSelectToken
           };
           return React.cloneElement(child, newProps);

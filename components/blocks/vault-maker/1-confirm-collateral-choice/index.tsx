@@ -1,6 +1,6 @@
 import React, { Fragment, Children } from 'react';
 import OAButton, { OAButtonProps } from './oa-button';
-import CTAButton, { CTAButtonProps } from './cta-button';
+import CTAButton, { CTAButtonProps } from '../shared/cta-button';
 import Title, { TitleProps } from '../shared/title';
 import Balance, { BalanceProps } from './balance';
 
@@ -9,10 +9,15 @@ type ChooseCollateral = {
   Title: React.FC<TitleProps>;
   CTAButton: React.FC<CTAButtonProps>;
   OAButton: React.FC<OAButtonProps>;
-  Wrapped?: any;
-};
+  Wrapped?: React.FC<ChooseCollateralProps> & ChooseCollateral;
+};  
 
-const ConfirmCollateral: React.FC<any> & ChooseCollateral = (props: any) => {
+export interface ChooseCollateralProps {
+  children: React.ReactNode;
+  dispatchStep?: ({ step }: { step: number }) => void;
+}
+
+const ConfirmCollateral: React.FC<ChooseCollateralProps> & ChooseCollateral = (props) => {
   const { children, dispatchStep } = props;
 
   return (

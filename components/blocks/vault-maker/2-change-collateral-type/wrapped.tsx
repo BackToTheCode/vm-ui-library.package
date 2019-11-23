@@ -4,7 +4,7 @@ import connect from '../../../../store/connect';
 function mapStateToProps(state: any) {
   const { symbol } = state.tokens.selectedToken;
   const { tokens } = state.tokens;
-  console.log('STATE', state);
+
   return {
     symbol,
     tokens
