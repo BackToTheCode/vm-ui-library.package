@@ -29,14 +29,14 @@
     "__tests__",
     ".vscode",
     "out",
-    "storybook-static",
-    "public"
+    "storybook-static"
   ],
   "include": [
     "./pages/**/*.(j|t)(s)?x*",
     "./src/**/*.(j|t)(s)?x*",
     "utils",
     "styles",
-    "typings"
+    "typings",
+    "public"
   ]
 }

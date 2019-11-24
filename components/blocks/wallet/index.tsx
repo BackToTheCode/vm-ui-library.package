@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React, { FC, Children } from 'react';
 import Header, {HeaderProps} from './header';
 import SubHeader, { SubHeaderProps} from './sub-header';
 import LogoButton, { LogoButtonProps } from './logo-button';
@@ -14,7 +14,7 @@ export interface WalletProps {
   children: any;
 }
 
-const Wallet: React.FC<WalletProps> & Wallet = ({ children }) => {
+const Wallet: FC<WalletProps> & Wallet = ({ children }) => {
   return (
     <Box>
       {Children.map(children, (child: any) => {

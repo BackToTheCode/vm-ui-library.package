@@ -31,7 +31,7 @@ export const Secondary = () => (
 export const Outline = () => (
   <LargeButton variant={'outline'}>Goodbye</LargeButton>
 );
-export const Text = () => <LargeButton variant={'text'}>Do this</LargeButton>;
+export const Text = () => <LargeButton variant={'text'}>Click me</LargeButton>;
 
 export const WithKnobs = () => (
   <LargeButton

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Text } from 'rebass';
-import CoinIcon from '../../../../elements/icon';
+import { CoinIcon } from '../../../../elements/coin-icon';
 import { useTheme } from 'emotion-theming';
 import toCurrency from '../../../../../utils/currency-formatter';
 import styles from './styles';

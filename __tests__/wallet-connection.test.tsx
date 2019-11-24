@@ -1,66 +1,69 @@
 import React from 'react';
-// import Header from '../components/blocks/header/index';
-import { render, fireEvent, cleanup, wait } from '@testing-library/react';
+import { render, fireEvent, wait } from '@testing-library/react';
 import Page from '../pages';
+// import { prettyDOM } from '@testing-library/dom'
 
-afterEach(cleanup);
+let getByText: any;
+let findByText: any;
+let debug: any;
 
-// Override the provider used to connect to web3 - need an http version pointing at <Infura></Infura>
-// Render a page
-//
-
-// Should create the app
-
-describe('When a user connects and enters their password', () => {
-  it('should connect the user and show them them the Vault Maker Wizard', async () => {
-
-    console.log('NETWORK', process.env.NETWORK);
-    console.log('PROVIDER', process.env.PROVIDER);
-
-    // Arrange
-    const buttonText = "Connect with Metamask";
-    const { getByText, findByText } = render(<Page />);
-    const vaultMakerTitleSegment = "We suggest";
-    const vaultMakerTitlePattern = new RegExp(vaultMakerTitleSegment, 'i');
-    
-    // Act
-    fireEvent.click(getByText(buttonText));
-    await wait();
-    const titleComponent = await findByText(vaultMakerTitlePattern); 
-
-    // Assert
-    expect(titleComponent.textContent).toContain(vaultMakerTitleSegment)
-   
-  });
+// setup app page
+beforeEach(async () => {
+  const {
+    getByText: _getByText,
+    findByText: _findByText,
+    debug: _debug
+  } = render(<Page />);
+  getByText = _getByText;
+  findByText = _findByText;
+  debug = _debug;
+  
+  // Setup metamask connection
+  const buttonText = 'Connect with Metamask';
+  fireEvent.click(getByText(buttonText));
 });
 
-describe('Once Web3 has connected', () => {
-  it('should update the address bar text', async () => {
-    // Arrange
-    const buttonText = "Connect with Metamask";
-    const { getByText, findByText } = render(<Page />);
-    const publicKey = "0x61049F5e03Bfe3823f274C479158A94bcA26456c";
-    const publicKeyPrefixPattern = /0x/i;
-    
-    // Act
-    fireEvent.click(getByText(buttonText));
-    await wait();
-    const addressComponent = await findByText(publicKeyPrefixPattern); 
+test('Once connected - the user and show them them the Vault Maker Wizard', async (done) => {
+  // Arrange
+  const vaultMakerTitleSegment = 'We suggest';
+  const vaultMakerTitlePattern = new RegExp(vaultMakerTitleSegment, 'i');
 
-    // Assert
-    expect(addressComponent.textContent).toBe(publicKey)
-  });
+  // Act
+  const titleComponent = await findByText(vaultMakerTitlePattern);
 
-  it('should suggest a collateral type based on a user\'s highest value balance in USD', () => {
-    // Arrange
+  // Assert
+  expect(titleComponent.textContent).toContain(vaultMakerTitleSegment);
+  done();
+});
 
-    // Act
-    // Assert
-  });
+test('Once connected - should have updated the address bar text', async (done) => {
+  // Arrange
+  const publicKey = '0x61049F5e03Bfe3823f274C479158A94bcA26456c';
+  const publicKeyPrefixPattern = /0x/i;
 
-  it('should update the address text', () => {
-    // Arrange
-    // Act
-    // Assert
-  });
+  // Act
+  const addressComponent = await findByText(publicKeyPrefixPattern);
+
+  // Assert
+  expect(addressComponent.textContent).toBe(publicKey);
+  done()
+});
+
+test("Once connected - should suggest a collateral type based on a user's highest value balance in USD", () => {
+  // Arrange
+  // const publicKey = '0x61049F5e03Bfe3823f274C479158A94bcA26456c';
+  // const publicKeyPrefixPattern = /0x/i;
+
+  // // Act
+  // const addressComponent = await findByText(publicKeyPrefixPattern);
+
+  // // Assert
+  // expect(addressComponent.textContent).toBe(publicKey);
+  // done()
+});
+
+test('Once connected - should update the address text', () => {
+  // Arrange
+  // Act
+  // Assert
 });

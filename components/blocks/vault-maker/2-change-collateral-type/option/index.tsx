@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import React from 'react';
-import CoinIcon from '../../../../elements/icon';
+import { CoinIcon } from '../../../../elements/coin-icon';
 import { Text, Box } from 'rebass';
 import { Radio } from '@rebass/forms';
 import styles from './styles';

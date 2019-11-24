@@ -23,7 +23,7 @@ const ConfirmCollateral: React.FC<ChooseCollateralProps> & ChooseCollateral = (p
   return (
     <Fragment>
       {Children.map(children, (child: any) => {
-        if (child.type.displayName === 'Icon') {
+        if (child.type.displayName === 'CoinIcon') {
           return React.cloneElement(child, child.props);
         }
 

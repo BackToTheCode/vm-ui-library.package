@@ -18,7 +18,7 @@ const OAButton: React.FC<OAButtonProps> = ({ children, handleChange }) => {
     <Button
       onClick={handleClick}
       sx={styles.oaButtonStyle}
-      variant="link"
+      variant="text"
     >
       {children}
     </Button>

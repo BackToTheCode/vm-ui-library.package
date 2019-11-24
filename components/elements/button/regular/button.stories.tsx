@@ -23,7 +23,7 @@ export const Secondary = () => <Button variant={'secondary'}>Go here</Button>;
 
 export const Outline = () => <Button variant={'outline'}>Go back</Button>;
 
-export const Text = () => <Button variant={'text'}>Do this</Button>;
+export const Text = () => <Button variant={'text'}>Click me</Button>;
 
 export const WithKnobs = () => (
   <Button
