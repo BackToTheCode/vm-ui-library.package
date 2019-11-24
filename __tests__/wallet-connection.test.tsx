@@ -13,6 +13,10 @@ afterEach(cleanup);
 
 describe('When a user connects and enters their password', () => {
   it('should connect the user and show them them the Vault Maker Wizard', async () => {
+
+    console.log('NETWORK', process.env.NETWORK);
+    console.log('PROVIDER', process.env.PROVIDER);
+
     // Arrange
     const buttonText = "Connect with Metamask";
     const { getByText, findByText } = render(<Page />);
