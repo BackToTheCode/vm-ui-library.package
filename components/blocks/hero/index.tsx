@@ -121,13 +121,13 @@ const renderWallet = (
     <Wallet>
       <Wallet.Header>Start Making a Vault</Wallet.Header>
       <Wallet.SubHeader>Connect to the Ethereum network</Wallet.SubHeader>
-      <Wallet.LogoButton icon={metamaskLogo} onClick={handleMetamask}>
+      <Wallet.LogoButton variant="outline" icon={metamaskLogo} onClick={handleMetamask}>
         Connect with Metamask
       </Wallet.LogoButton>
-      <Wallet.LogoButton icon={trezorLogo} isDisabled>
+      <Wallet.LogoButton variant="outline" icon={trezorLogo} isDisabled>
         Trezor - coming soon...
       </Wallet.LogoButton>
-      <Wallet.LogoButton icon={ledgerLogo} isDisabled>
+      <Wallet.LogoButton variant="outline" icon={ledgerLogo} isDisabled>
         Ledger - coming soon...
       </Wallet.LogoButton>
     </Wallet>

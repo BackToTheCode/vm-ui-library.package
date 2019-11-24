@@ -14,8 +14,7 @@ addParameters({
     theme: storyBookThemes.light,
     isFullScreen: true,
     name: 'Vault Maker',
-    url: 'https://github.com/BackToTheCode/project.mcd-vault-manager',
-
+    url: 'https://github.com/BackToTheCode/project.mcd-vault-manager'
   }
 });
 

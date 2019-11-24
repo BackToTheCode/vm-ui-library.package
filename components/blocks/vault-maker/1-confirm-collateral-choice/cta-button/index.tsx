@@ -1,8 +1,8 @@
 import React from 'react';
-import Button, { ButtonProps } from '../../../../elements/button/button';
+import { Button } from '../../../../elements/button/button';
 import styles from './styles';
 
-export interface CTAButtonProps extends ButtonProps {
+export interface CTAButtonProps  {
   children: any;
 }
 

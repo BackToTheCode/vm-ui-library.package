@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import React from 'react';
-import Button, { ButtonProps } from '../../../../elements/button/button';
+import { Button } from '../../../../elements/button/button';
 import { CONFIRM_COLLATERAL_CHOICE_NUM } from '../../../../../constants/step-names';
 import styles from './styles';
 
-export interface CTAButtonProps extends ButtonProps {
+export interface CTAButtonProps {
   dispatchStep?: ({ step }: { step: number }) => void;
 }
 

@@ -1,9 +1,9 @@
 import React from 'react';
-import Button, { ButtonProps } from '../../../../elements/button/button';
+import { Button } from '../../../../elements/button/button';
 import { CHANGE_COLLATERAL_CHOICE_NUM } from '../../../../../constants/step-names';
 import styles from './styles';
 
-export interface OAButtonProps extends ButtonProps {
+export interface OAButtonProps {
   children: React.ReactNode;
   handleChange?: ({ step }: { step: number }) => void;
 }

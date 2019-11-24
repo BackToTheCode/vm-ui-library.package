@@ -34,7 +34,6 @@
       ".vscode",
       "out",
       "storybook-static",
-      "public",
       "typings"
     ],
     "files": [
