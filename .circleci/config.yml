@@ -15,4 +15,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: "What are my custom variables?"
+          command: echo ${NETWORK} ${PROVIDER}
       - run: yarn test
