@@ -5,6 +5,7 @@
   "typings": "typings",
   "scripts": {
     "build-storybook": "build-storybook -c .storybook",
+    "chromatic": "CHROMATIC_APP_CODE=fyfw94kk8u chromatic",
     "storybook": "start-storybook",
     "dev": "next -p 8080",
     "test": "jest",
