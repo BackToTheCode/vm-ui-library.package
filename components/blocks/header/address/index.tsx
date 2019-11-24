@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import React from 'react';
+import React, { FC } from 'react';
 import { Flex, Box, Text } from 'rebass';
 import styles from './styles';
 
-export interface IAddressProps {
+export interface AddressProps {
   variant?: string;
   children?: React.ReactNode;
   address?: string;
@@ -12,7 +12,7 @@ export interface IAddressProps {
   isConnected?: boolean;
 }
 
-const Address: React.FC<IAddressProps> = ({ isConnected, address, ern }) => {
+const Address: FC<AddressProps> = ({ isConnected, address, ern }) => {
   const variant = isConnected ? 'indicator.connected' : 'indicator.unconnected';
 
   const connectedMessage = isConnected

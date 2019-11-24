@@ -65,9 +65,9 @@ export const Button: React.FC<ButtonProps> = ({
   );
 };
 
-// Button.defaultProps = {
-//   children: null
-// };
+Button.defaultProps = {
+  variant: 'primary'
+};
 
 const largeStyle = {
   py: 5

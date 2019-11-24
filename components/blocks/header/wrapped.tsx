@@ -1,4 +1,4 @@
-import Header from '../header';
+import { Header } from '../header';
 import connect from '../../../store/connect';
 
 function mapStateToProps(state: any) {

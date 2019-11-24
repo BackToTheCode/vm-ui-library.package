@@ -21,7 +21,7 @@ const buttons = {
       backgroundColor: 'rgba(26, 171, 155, 0.1)'
     }
   },
-  link: {
+  text: {
     color: 'primary',
     bg: 'transparent',
     borderColor: 'transparent',

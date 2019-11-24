@@ -1,22 +1,12 @@
 import React from 'react';
-import Header from '../header';
-import marked from 'marked';
+import { Header } from '.';
 import logoImage from '../../../public/images/mark-maker.svg';
 import { checkA11y } from '@storybook/addon-a11y';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 
-console.log('logoImage', logoImage);
-
 export default {
-  title: 'Blocks/Header',
+  title: 'Blocks|Header',
   component: Header,
-  parameters: {
-    info: {
-      inline: true,
-      header: false,
-      text: marked(require('./headerInfo.stories.md').default)
-    }
-  },
   decorators: [checkA11y]
 };
 

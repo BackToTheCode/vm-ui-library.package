@@ -1,12 +1,11 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import React, { Children } from 'react';
-import Logo, { ILogoProps } from './logo';
-import Address, { IAddressProps } from './address';
+import React, { FC, Children } from 'react';
+import Logo, { LogoProps } from './logo';
+import Address, { AddressProps } from './address';
 import Container from '../../elements/container/index';
 
-export interface IHeaderProps {
-  variant?: string;
+export interface HeaderProps {
   children?: React.ReactNode;
   isConnected?: boolean;
   ern?: string;
@@ -14,12 +13,12 @@ export interface IHeaderProps {
 }
 
 type Header = {
-  Logo: React.FC<ILogoProps>;
-  Address: React.FC<IAddressProps>;
+  Logo: FC<LogoProps>;
+  Address: FC<AddressProps>;
   Wrapped?: any;
 };
 
-const Header: React.FC<IHeaderProps> & Header = props => {
+export const Header: FC<HeaderProps> & Header = props => {
   const { children, isConnected, address } = props;
   return (
     <Container variant="container.wide">
@@ -39,7 +38,10 @@ const Header: React.FC<IHeaderProps> & Header = props => {
   );
 };
 
+Header.defaultProps = {
+  isConnected: false
+}
+
 Header.Logo = Logo;
 Header.Address = Address;
 
-export default Header;

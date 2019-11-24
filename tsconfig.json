@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "typeRoots": [ "./typings", "./node_modules/@types"],
+    "typeRoots": ["./typings", "./node_modules/@types"],
     "target": "esnext",
     "module": "esnext",
     "jsx": "preserve",
@@ -22,9 +22,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true
   },
-  "files": [
-    "typings/custom.d.ts"
-  ,],
+  "files": ["next-env.d.ts", "jest.setup.js"],
   "exclude": [
     "node_modules",
     "__mocks__",
@@ -34,5 +32,11 @@
     "storybook-static",
     "public"
   ],
-  "include": ["next-env.d.ts", "./typings", "**/*.ts", "**/*.tsx", "utils/connect.js", "styles/text-variants.js", "styles/general-variants.js", "styles/button-variants.js", "styles/theme.js", "jest.setup.js"]
+  "include": [
+    "./pages/**/*.(j|t)(s)?x*",
+    "./src/**/*.(j|t)(s)?x*",
+    "utils",
+    "styles",
+    "typings"
+  ]
 }

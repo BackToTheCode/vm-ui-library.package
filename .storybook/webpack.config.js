@@ -1,8 +1,8 @@
 const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const TSDocgenPlugin = require('react-docgen-typescript-webpack-plugin');
 const webpack = require('webpack');
 const pathToInlineSvg = path.resolve(__dirname, '../public/images/');
+const createCompiler = require('@storybook/addon-docs/mdx-compiler-plugin');
 
 module.exports = ({ config }) => {
   // use installed babel-loader which is v8.0-beta (which is meant to work with @babel/core@7)
@@ -19,12 +19,18 @@ module.exports = ({ config }) => {
     require.resolve('@babel/plugin-proposal-class-properties')
   ];
 
+  // TypeScript support
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
-    loader: require.resolve('babel-loader'),
-    options: {
-      presets: [['react-app', { flow: false, typescript: true }]]
-    }
+    use: [
+      {
+        loader: require.resolve('babel-loader'),
+        options: {
+          presets: [['react-app', { flow: false, typescript: true }]]
+        }
+      },
+      require.resolve('react-docgen-typescript-loader')
+    ]
   });
 
   config.resolve.extensions.push('.ts', '.tsx');
@@ -37,17 +43,31 @@ module.exports = ({ config }) => {
   config.module.rules.push({
     test: /\.svg$/,
     include: pathToInlineSvg,
-    use: ['@svgr/webpack', 'url-loader'],
+    use: ['@svgr/webpack', 'url-loader']
   });
   config.resolve.extensions.push('.svg');
 
-  config.plugins.push(new TSDocgenPlugin());
   config.module.rules.push({
     test: /\.stories\.tsx?$/,
     loaders: [require.resolve('@storybook/source-loader')],
+    exclude: [/node_modules/],
     enforce: 'pre'
   });
-  // config.resolve.extensions.push('.ts', '.tsx');
+
+  config.module.rules.push({
+    test: /\.(stories|story)\.mdx$/,
+    use: [
+      {
+        loader: 'babel-loader'
+      },
+      {
+        loader: '@mdx-js/loader',
+        options: {
+          compilers: [createCompiler({})]
+        }
+      }
+    ]
+  });
 
   config.plugins.push(
     new ForkTsCheckerWebpackPlugin({
