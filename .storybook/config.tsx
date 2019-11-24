@@ -20,9 +20,8 @@ addParameters({
 });
 
 // Themes for app UI components
-const ThemeDecorator = (storyFn: any) => (
+addDecorator((storyFn: any) => (
   <ThemeProvider theme={appTheme}>{storyFn()}</ThemeProvider>
-);
-addDecorator(ThemeDecorator);
+));
 
 configure(require.context('../components', true, /\.stories.tsx$/), module);
