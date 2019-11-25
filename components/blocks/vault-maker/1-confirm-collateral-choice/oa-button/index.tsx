@@ -1,10 +1,10 @@
 import { Button } from '@backtothecode/vault-maker-ui';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { CHANGE_COLLATERAL_CHOICE_NUM } from '../../../../../constants/step-names';
 import styles from './styles';
 
 export interface OAButtonProps {
-  children: React.ReactNode;
+  children: ReactNode;
   handleChange?: ({ step }: { step: number }) => void;
 }
 
