@@ -1,14 +1,14 @@
-import React, { FC, Children } from 'react';
-import Header, {HeaderProps} from './header';
-import SubHeader, { SubHeaderProps} from './sub-header';
-import LogoButton, { LogoButtonProps } from './logo-button';
+import React, { Children, FC } from 'react';
 import { Box } from 'rebass';
+import Header, { HeaderProps } from './header';
+import LogoButton, { LogoButtonProps } from './logo-button';
+import SubHeader, { SubHeaderProps } from './sub-header';
 
-type Wallet = {
+interface Wallet {
   Header: React.FC<HeaderProps>;
   SubHeader: React.FC<SubHeaderProps>;
   LogoButton: React.FC<LogoButtonProps>;
-};
+}
 
 export interface WalletProps {
   children: any;

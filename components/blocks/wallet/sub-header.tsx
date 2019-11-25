@@ -6,10 +6,10 @@ export interface SubHeaderProps extends TextProps {
 }
 
 const style = {
-  mb: 7,
   color: 'grey',
-  mx: 'auto',
   display: 'block',
+  mb: 7,
+  mx: 'auto',
   textAlign: 'center'
 };
 

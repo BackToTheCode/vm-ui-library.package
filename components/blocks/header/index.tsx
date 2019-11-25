@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import React, { FC, Children } from 'react';
-import Logo, { LogoProps } from './logo';
-import Address, { AddressProps } from './address';
+import React, { Children, FC } from 'react';
 import Container from '../../elements/container/index';
+import Address, { AddressProps } from './address';
+import Logo, { LogoProps } from './logo';
 
 export interface HeaderProps {
   children?: React.ReactNode;
@@ -12,7 +12,7 @@ export interface HeaderProps {
   address?: string;
 }
 
-type Header = {
+interface Header {
   Logo: FC<LogoProps>;
   Address: FC<AddressProps>;
   Wrapped?: any;
@@ -40,8 +40,7 @@ export const Header: FC<HeaderProps> & Header = props => {
 
 Header.defaultProps = {
   isConnected: false
-}
+};
 
 Header.Logo = Logo;
 Header.Address = Address;
-

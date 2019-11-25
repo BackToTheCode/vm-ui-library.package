@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button } from '../../../../elements/button/button';
+import { Button } from '@backtothecode/vault-maker-ui';
+import { FC } from 'react';
 import { CHANGE_COLLATERAL_CHOICE_NUM } from '../../../../../constants/step-names';
 import styles from './styles';
 
@@ -8,8 +8,7 @@ export interface OAButtonProps {
   handleChange?: ({ step }: { step: number }) => void;
 }
 
-
-const OAButton: React.FC<OAButtonProps> = ({ children, handleChange }) => {
+const OAButton: FC<OAButtonProps> = ({ children, handleChange }) => {
   const handleClick = (event: MouseEvent) => {
     event.preventDefault();
     handleChange({ step: CHANGE_COLLATERAL_CHOICE_NUM });

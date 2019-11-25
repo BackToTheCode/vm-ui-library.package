@@ -1,10 +1,10 @@
-import React, { Fragment, Children } from 'react';
+import React, { Children, Fragment  } from 'react';
 import OAButton, { OAButtonProps } from './oa-button';
 import CTAButton, { CTAButtonProps } from '../shared/cta-button';
 import Title, { TitleProps } from '../shared/title';
 import Balance, { BalanceProps } from './balance';
 
-type ChooseCollateral = {
+export interface ChooseCollateral {
   Balance: React.FC<BalanceProps>;
   Title: React.FC<TitleProps>;
   CTAButton: React.FC<CTAButtonProps>;

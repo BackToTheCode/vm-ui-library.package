@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import React, { FC } from 'react';
-import { Flex, Box, Text } from 'rebass';
+import { Box, Flex, Text } from 'rebass';
 import styles from './styles';
 
 export interface AddressProps {

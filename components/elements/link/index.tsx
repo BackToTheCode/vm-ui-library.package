@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { default as NextLink } from 'next/link';
-import React, {FC } from 'react';
+import React, { FC } from 'react';
 import { Link as BaseLink } from 'rebass';
 
 export interface LinkProps {

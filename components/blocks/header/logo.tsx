@@ -1,8 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { Box } from 'rebass';
-import React, { FC } from 'react';
-import { Image } from 'rebass';
+import { FC } from 'react';
+import { Box, Image } from 'rebass';
 
 export interface LogoProps {
   variant?: string;
@@ -14,7 +13,7 @@ const styles = {
   width: '100%'
 };
 
-const Logo: React.FC<LogoProps> = ({ image }) => (
+const Logo: FC<LogoProps> = ({ image }) => (
   <Box width={'100px'}>
     <Image src={image} sx={styles} />
   </Box>

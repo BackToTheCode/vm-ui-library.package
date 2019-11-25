@@ -1,11 +1,12 @@
+import { LargeButton, LargeButtonProps } from '@backtothecode/vault-maker-ui';
 import React from 'react';
 import { Box, Image } from 'rebass';
-import { LargeButton, ButtonProps } from '../../../elements/button/button';
 import styles from './styles';
 
-export interface LogoButtonProps extends ButtonProps {}
+// tslint:disable-next-line:no-empty-interface
+export interface LogoButtonProps extends LargeButtonProps {}
 
-const LogoButton: React.FC<ButtonProps> = ({
+const LogoButton: React.FC<LogoButtonProps> = ({
   sx,
   icon,
   isDisabled,
