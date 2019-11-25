@@ -1,5 +1,5 @@
 import { Button } from '@backtothecode/vault-maker-ui';
-import { FC, ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { CHANGE_COLLATERAL_CHOICE_NUM } from '../../../../../constants/step-names';
 import styles from './styles';
 

@@ -81,7 +81,6 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
 
     console.log('network', network);
     console.log('provider', provider);
-    console.log('process.env', process.env);
 
     maker = await mkrSetup(network, provider, { url, privateKey });
     web3 = (await mkrGetWeb3()) as any;
