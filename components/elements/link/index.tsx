@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import React from 'react';
-import NextLink from 'next/link';
+import { default as NextLink } from 'next/link';
+import React, {FC } from 'react';
 import { Link as BaseLink } from 'rebass';
 
-export interface ILinkProps {
+export interface LinkProps {
   variant?: string;
   style?: any;
   children?: React.ReactNode;
@@ -13,24 +13,10 @@ export interface ILinkProps {
   text: string;
 }
 
-// const defaultStyles = {
-//   fontWeight: 'body',
-//   fontSize: 2,
-//   cursor: 'pointer',
-//   fontFamily: 'body',
-//   borderStyle: 'solid',
-//   borderWidth: 2,
-//   px: 6,
-//   '&:focus': {
-//     outline: 0
-//   }
-// }
-
-const Button: React.FC<ILinkProps> = ({ sx, variant, href, text }) => (
+export const Link: FC<LinkProps> = ({ sx, variant, href, text }) => (
   <BaseLink sx={sx} variant={variant}>
     <NextLink href={href}>{text}</NextLink>
   </BaseLink>
 );
 
-
-export default Button;
+Link.displayName = 'Link';

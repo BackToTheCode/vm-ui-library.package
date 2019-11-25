@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../../elements/card';
+import { Card } from '../../elements/card';
 import ConfirmCollateralChoice from './1-confirm-collateral-choice/wrapped';
 import ChangeCollateralType from './2-change-collateral-type/wrapped';
 import Container from '../../elements/container';

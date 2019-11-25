@@ -1,20 +1,21 @@
-import React from 'react';
-import marked from 'marked';
-import { Button } from '../regular';
 import { checkA11y } from '@storybook/addon-a11y';
-import { withKnobs, select } from '@storybook/addon-knobs';
+import { select, withKnobs } from '@storybook/addon-knobs';
+import marked from 'marked';
+import React from 'react';
+import { Button } from '../regular';
 
 export default {
-  title: 'Elements|Button',
   component: Button,
+  decorators: [checkA11y],
   parameters: {
     info: {
-      inline: true,
       header: false,
+      inline: true,
+
       text: marked(require('../button.stories.md').default)
     }
   },
-  decorators: [checkA11y]
+  title: 'Elements|Button'
 };
 
 export const Primary = () => <Button variant={'primary'}>Go</Button>;
