@@ -15,6 +15,10 @@ module.exports = withMDX(
   withImages({
     webpack(config, options) {
       config.plugins.push(new webpack.EnvironmentPlugin(localEnv));
+      config.plugins.push(new DefinePlugin({
+        "process.env.NETWORK": process.env.NETWORK || "kovan",
+        "process.env.PROVIDER": process.env.PROVIDER || "browser"
+			}));
       return config;
     }
   })
