@@ -12,7 +12,8 @@ export interface AddressProps {
   isConnected?: boolean;
 }
 
-const Address: FC<AddressProps> = ({ isConnected, address, ern }) => {
+export const Address: FC<AddressProps> = ({ isConnected, address, ern }) => {
+  
   const variant = isConnected ? 'indicator.connected' : 'indicator.unconnected';
 
   const connectedMessage = isConnected
@@ -46,4 +47,4 @@ const Address: FC<AddressProps> = ({ isConnected, address, ern }) => {
 };
 Address.displayName = 'Address';
 
-export default Address;
+

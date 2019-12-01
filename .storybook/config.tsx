@@ -11,10 +11,10 @@ addParameters({
     page: DocsPage
   },
   options: {
-    theme: storyBookThemes.light,
     isFullScreen: true,
     name: 'Vault Maker',
-    url: 'https://github.com/BackToTheCode/project.mcd-vault-manager'
+    theme: storyBookThemes.light,
+    url: 'https://github.com/BackToTheCode/project.mcd-vault-manager',
   }
 });
 

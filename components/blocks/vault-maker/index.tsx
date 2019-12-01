@@ -1,17 +1,13 @@
-import React from 'react';
-import { Card } from '../../elements/card';
-import ConfirmCollateralChoice from './1-confirm-collateral-choice/wrapped';
-import ChangeCollateralType from './2-change-collateral-type/wrapped';
-import Container from '../../elements/container';
-import ethLogo from '../../../public/images/ethereum-logo.svg';
-import repLogo from '../../../public/images/rep-logo.webp';
-import batLogo from '../../../public/images/bat-logo.png';
-import { useTheme } from 'emotion-theming';
-import { cardStyle, containerStyle } from './styles';
-import stepNames, {
+import { Card, Container } from '@backtothecode/vault-maker-ui/dist/cjs/index';
+import React, { FC } from 'react';
+import steps, {
+  CHANGE_COLLATERAL_CHOICE,
   CONFIRM_COLLATERAL_CHOICE,
-  CHANGE_COLLATERAL_CHOICE
+  LOCK_COLLATERAL_CHOICE,
+  DRAW_DAI_CHOICE
 } from '../../../constants/step-names';
+import render from './render';
+import { cardStyle, containerStyle } from './styles';
 
 export interface VaultMakerProps {
   children?: any;
@@ -22,89 +18,32 @@ export interface VaultMakerProps {
   price?: number;
 }
 
-type VaultMaker = {
+interface VaultMaker {
   Wrapped?: any;
-};
+}
 
-const VaultMaker: React.FC<VaultMakerProps> & VaultMaker = (props) => {
+export const VaultMaker: FC<VaultMakerProps> & VaultMaker = props => {
   const { step, symbol, usdValue, balance, price } = props;
+  const { confirmCollateral, changeCollateral, lockCollateral, drawDai } = render;
 
   return (
     <Card sx={cardStyle}>
       <Container sx={containerStyle} variant="container.default">
-        {step === stepNames[CONFIRM_COLLATERAL_CHOICE] &&
-          renderConfirmCollateralChoice(symbol, balance, price, usdValue)}
+        {step === steps[CONFIRM_COLLATERAL_CHOICE] &&
+          confirmCollateral(symbol, balance, price, usdValue)}
 
-        {step === stepNames[CHANGE_COLLATERAL_CHOICE] &&
-          renderChangeCollateralType()}
+        {step === steps[CHANGE_COLLATERAL_CHOICE] && 
+          changeCollateral()}
+
+        {step === steps[LOCK_COLLATERAL_CHOICE] && 
+          lockCollateral(symbol)}
+
+        {step === steps[DRAW_DAI_CHOICE] && 
+          drawDai()}
+
       </Container>
     </Card>
   );
 };
 
 VaultMaker.displayName = 'VaultMaker';
-
-const renderConfirmCollateralChoice = (
-  symbol: string,
-  balance: number,
-  price: number,
-  usdValue: number
-) => {
-  const icons: any = {
-    ETH: ethLogo,
-    REP: repLogo,
-    BAT: batLogo
-  };
-  const icon = icons[symbol];
-  return (
-    <ConfirmCollateralChoice.Wrapped>
-      <ConfirmCollateralChoice.Title sx={{ mb: 8 }}>
-        {`We suggest ${symbol} as collateral for your Vault`}
-      </ConfirmCollateralChoice.Title>
-      <ConfirmCollateralChoice.Balance
-        balance={balance}
-        price={price}
-        usdValue={usdValue}
-        symbol={symbol}
-        icon={icon}
-      />
-      <ConfirmCollateralChoice.CTAButton>
-        Sounds good
-      </ConfirmCollateralChoice.CTAButton>
-      <ConfirmCollateralChoice.OAButton>
-        Switch collateral type
-      </ConfirmCollateralChoice.OAButton>
-    </ConfirmCollateralChoice.Wrapped>
-  );
-};
-
-const renderChangeCollateralType = () => {
-  const theme: any = useTheme();
-  return (
-    <ChangeCollateralType.Wrapped>
-      <ChangeCollateralType.Title sx={{ mb: 7 }}>
-        Switch to a different collateral type for your Vault
-      </ChangeCollateralType.Title>
-      <ChangeCollateralType.Option
-        icon={ethLogo}
-        name="ETH"
-        brand={theme.colors.ethMain}
-      >
-        ETH
-      </ChangeCollateralType.Option>
-      <ChangeCollateralType.HorizontalRule />
-      <ChangeCollateralType.Option
-        icon={batLogo}
-        name="BAT"
-        brand={theme.colors.batMain}
-      >
-        BAT
-      </ChangeCollateralType.Option>
-      <ChangeCollateralType.CTAButton>
-        Confirm selection
-      </ChangeCollateralType.CTAButton>
-    </ChangeCollateralType.Wrapped>
-  );
-};
-
-export default VaultMaker;

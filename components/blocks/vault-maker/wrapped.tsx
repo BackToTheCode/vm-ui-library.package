@@ -1,5 +1,5 @@
-import VaultMaker from './index';
 import connect from '../../../store/connect';
+import { VaultMaker } from '../vault-maker/index';
 
 function mapStateToProps(state: any) {
   const { step } = state.vault;
@@ -7,11 +7,11 @@ function mapStateToProps(state: any) {
   const { symbol, usdValue, balance, price } = selectedToken;
 
   return {
+    balance,
+    price,
     step,
     symbol,
-    usdValue,
-    balance,
-    price
+    usdValue
   };
 }
 
@@ -19,4 +19,4 @@ const Wrapped = connect(mapStateToProps, null)(VaultMaker);
 
 VaultMaker.Wrapped = Wrapped;
 
-export default VaultMaker;
+export { VaultMaker };

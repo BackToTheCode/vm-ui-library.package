@@ -1,17 +1,17 @@
-import React, { Children } from 'react';
-import Container from '../../elements/container/';
-import Step, { StepProps } from './step';
+import { Container } from '@backtothecode/vault-maker-ui';
+import React, { Children, FC } from 'react';
+import { Step, StepProps } from './step';
 import styles from './styles';
 
 export interface ProgressProps {
   children: any;
 }
 
-type Progress = {
+export interface Progress {
   Step: React.FC<StepProps>;
 };
 
-const Progress: React.FC<ProgressProps> & Progress = ({ children }) => {
+export const Progress: FC<ProgressProps> & Progress = ({ children }) => {
   return (
     <Container variant="container.default" sx={styles.container}>
       {Children.map(children, (child: any) => {
@@ -27,4 +27,3 @@ const Progress: React.FC<ProgressProps> & Progress = ({ children }) => {
 
 Progress.Step = Step;
 
-export default Progress;

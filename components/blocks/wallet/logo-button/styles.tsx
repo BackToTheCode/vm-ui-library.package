@@ -1,25 +1,25 @@
 const styles = {
   button: {
-    mx: 'auto',
     mb: 4,
-    width: '280px',
+    mx: 'auto',
     position: 'relative',
     px: 7,
-    textAlign: 'right'
+    textAlign: 'right',
+    width: '280px'
   },
   logo: {
     container: {
-      width: '20px',
       display: 'inline-block',
+      left: '20px',
       mr: 3,
       position: 'absolute',
-      left: '20px',
-      top: '13px'
+      top: '13px',
+      width: '20px'
     },
     icon: {
-      width: '20px',
       position: 'relative',
-      top: '4px'
+      top: '4px',
+      width: '20px'
     }
   }
 };

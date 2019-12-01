@@ -1,6 +1,6 @@
-import { Button } from '@backtothecode/vault-maker-ui';
+import { Button } from '@backtothecode/vault-maker-ui/dist/cjs/index';
 import React, { FC, ReactNode } from 'react';
-import { CHANGE_COLLATERAL_CHOICE_NUM } from '../../../../../constants/step-names';
+import { CHANGE_COLLATERAL_NUM } from '../../../../../constants/step-names';
 import styles from './styles';
 
 export interface OAButtonProps {
@@ -8,21 +8,18 @@ export interface OAButtonProps {
   handleChange?: ({ step }: { step: number }) => void;
 }
 
-const OAButton: FC<OAButtonProps> = ({ children, handleChange }) => {
-  const handleClick = (event: MouseEvent) => {
+export const OAButton: FC<OAButtonProps> = ({ children, handleChange }) => {
+  const handleClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     event.preventDefault();
-    handleChange({ step: CHANGE_COLLATERAL_CHOICE_NUM });
+    handleChange({ step: CHANGE_COLLATERAL_NUM });
   };
   return (
-    <Button
-      onClick={handleClick}
-      sx={styles.oaButtonStyle}
-      variant="text"
-    >
+    <Button onClick={handleClick} sx={styles.oaButtonStyle} variant="text">
       {children}
     </Button>
   );
 };
 OAButton.displayName = 'OAButton';
 
-export default OAButton;

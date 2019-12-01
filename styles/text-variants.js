@@ -1,41 +1,40 @@
 const base = {
-  '-webkit-font-smoothing': 'antialiased',
-  '-moz-osx-font-smoothing': 'grayscale'
-}
+  '-moz-osx-font-smoothing': 'grayscale',
+  '-webkit-font-smoothing': 'antialiased'
+};
 
-
-let text = {
-    body: {
-      small: {
-        fontSize: 0,
-        fontFamily: 'body',
-        color: 'dark'
-      },
-      regular: {
-        fontSize: 2,
-        fontFamily: 'body',
-        color: 'dark'
-      },
-      large: {
-        fontSize: 3,
-        fontFamily: 'body',
-        color: 'dark'
-      }
+const text = {
+  body: {
+    large: {
+      color: 'dark',
+      fontFamily: 'body',
+      fontSize: 3
     },
-    heading: {
-      small: {
-        fontSize: '30px',
-        fontFamily: 'heading'
-      },
-      regular: {
-        fontSize: 4,
-        fontFamily: 'heading'
-      },
-      large: {
-        fontSize: [4, 5, 5],
-        fontFamily: 'heading'
-      }
+    regular: {
+      color: 'dark',
+      fontFamily: 'body',
+      fontSize: 2
+    },
+    small: {
+      color: 'dark',
+      fontFamily: 'body',
+      fontSize: 0
+    }
+  },
+  heading: {
+    large: {
+      fontFamily: 'heading',
+      fontSize: [4, 5, 5]
+    },
+    regular: {
+      fontFamily: 'heading',
+      fontSize: 4
+    },
+    small: {
+      fontFamily: 'heading',
+      fontSize: '30px'
     }
   }
+};
 
 export default text;

@@ -1,15 +1,15 @@
 import { types } from '../actions';
 
 const defaultToken = {
-  symbol: 'ETH',
-  price: 0,
   balance: 0,
+  price: 0,
+  symbol: 'ETH',
   usdValue: 0
 };
 
 const initialState: any = {
-  tokens: [defaultToken],
-  selectedToken: defaultToken
+  selectedToken: defaultToken,
+  tokens: [defaultToken]
 };
 
 const tokenReducer = (state: any = initialState, action: any) => {

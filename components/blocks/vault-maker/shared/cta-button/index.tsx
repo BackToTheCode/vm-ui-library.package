@@ -1,19 +1,19 @@
 /** @jsx jsx */
+import { Button } from '@backtothecode/vault-maker-ui';
 import { jsx } from '@emotion/core';
-import React from 'react';
-import { Button }  from '../../../../elements/button/button';
-import { CONFIRM_COLLATERAL_CHOICE_NUM } from '../../../../../constants/step-names';
+import React, { FC } from 'react';
 import styles from './styles';
 
 export interface CTAButtonProps {
   dispatchStep?: ({ step }: { step: number }) => void;
+  step?: number;
 }
 
-const CTAButton: React.FC<CTAButtonProps> = props => {
-  const { children } = props;
-  const handleClick = (event: MouseEvent) => {
+export const CTAButton: FC<CTAButtonProps> = props => {
+  const { children, step } = props;
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
-    props.dispatchStep({ step: CONFIRM_COLLATERAL_CHOICE_NUM });
+    props.dispatchStep({ step });
   };
   return (
     <Button sx={styles.ctaButtonStyle} variant="primary" onClick={handleClick}>
@@ -22,5 +22,3 @@ const CTAButton: React.FC<CTAButtonProps> = props => {
   );
 };
 CTAButton.displayName = 'CTAButton';
-
-export default CTAButton;

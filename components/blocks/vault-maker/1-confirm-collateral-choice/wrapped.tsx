@@ -1,5 +1,5 @@
-import ConfirmCollateralChoice from './index';
 import connect from '../../../../store/connect';
+import { ConfirmCollateral } from './index';
 
 function mapDispatchToProps(dispatch: any) {
   return {
@@ -7,8 +7,8 @@ function mapDispatchToProps(dispatch: any) {
   };
 }
 
-const Wrapped = connect(null, mapDispatchToProps)(ConfirmCollateralChoice);
+const Wrapped = connect(null, mapDispatchToProps)(ConfirmCollateral);
 
-ConfirmCollateralChoice.Wrapped = Wrapped;
+ConfirmCollateral.Wrapped = Wrapped;
 
-export default ConfirmCollateralChoice;
+export { ConfirmCollateral };

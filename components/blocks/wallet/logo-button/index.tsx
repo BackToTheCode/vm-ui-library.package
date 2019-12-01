@@ -1,17 +1,19 @@
 import { LargeButton, LargeButtonProps } from '@backtothecode/vault-maker-ui';
-import React from 'react';
+import React, { FC } from 'react';
 import { Box, Image } from 'rebass';
 import styles from './styles';
 
 // tslint:disable-next-line:no-empty-interface
-export interface LogoButtonProps extends LargeButtonProps {}
+export interface LogoButtonProps extends LargeButtonProps {
+  icon: string;
+}
 
-const LogoButton: React.FC<LogoButtonProps> = ({
-  sx,
+export const LogoButton: FC<LogoButtonProps> = ({
+  children,
   icon,
   isDisabled,
   onClick,
-  children
+  sx
 }) => (
   <LargeButton
     variant="outline"
@@ -27,5 +29,3 @@ const LogoButton: React.FC<LogoButtonProps> = ({
 );
 
 LogoButton.displayName = 'LogoButton';
-
-export default LogoButton;

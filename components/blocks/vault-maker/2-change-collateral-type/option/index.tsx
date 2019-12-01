@@ -1,9 +1,9 @@
 /** @jsx jsx */
+import { CoinIcon } from '@backtothecode/vault-maker-ui/dist/cjs/index';
 import { jsx } from '@emotion/core';
-import React from 'react';
-import { CoinIcon } from '../../../../elements/coin-icon';
-import { Text, Box } from 'rebass';
 import { Radio } from '@rebass/forms';
+import React, { FC } from 'react';
+import { Box, Text } from 'rebass';
 import styles from './styles';
 
 export interface OptionProps {
@@ -15,36 +15,34 @@ export interface OptionProps {
   dispatchSelectToken?: ({ selectedToken }: { selectedToken: any }) => void;
 }
 
-const Option: React.FC<OptionProps> = props => {
+export const Option: FC<OptionProps> = props => {
   const { icon, name, brand, symbol, children, tokens } = props;
   const isSelected = name === symbol;
 
-  let mergedStyle = styles.optionStyle;
-  if (isSelected) {
-    mergedStyle = { ...mergedStyle, ...styles.selectedStyle };
-  }
-
-  const handleEvent = (e: any) => {
+  const handleEvent = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
-    const token = (tokens.filter((token: any) => token.symbol === name))[0];
-    props.dispatchSelectToken({ selectedToken: token });
+    const selectedToken = tokens.filter(
+      (token: any) => token.symbol === name
+    )[0];
+    props.dispatchSelectToken({ selectedToken });
   };
 
+  console.log('BRAND: ', brand, symbol)
+
   return (
-    <Box sx={mergedStyle} onClick={handleEvent}>
+    <Box sx={{...styles.option, ...(isSelected ? styles.selected : {})}} onClick={handleEvent}>
       <Radio
-        sx={styles.radioStyle}
+        sx={styles.radio}
         onChange={handleEvent}
         checked={isSelected}
       />
-      <Text sx={styles.symbolStyle} variant="heading.regular">
+      <Text sx={styles.symbol} variant="heading.regular">
         {children}
       </Text>
-      <CoinIcon sx={styles.iconStyle(brand)} icon={icon} />
+      <CoinIcon sx={styles.icon} brand={brand} icon={icon} />
     </Box>
   );
 };
 
 Option.displayName = 'Option';
 
-export default Option;

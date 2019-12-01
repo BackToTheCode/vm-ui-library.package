@@ -1,7 +1,7 @@
-import React from 'react';
-import { Box, Text } from 'rebass';
-import { CoinIcon } from '../../../../elements/coin-icon';
+import { CoinIcon } from '@backtothecode/vault-maker-ui';
 import { useTheme } from 'emotion-theming';
+import React, { FC } from 'react';
+import { Box, Text } from 'rebass';
 import toCurrency from '../../../../../utils/currency-formatter';
 import styles from './styles';
 
@@ -13,34 +13,31 @@ export interface BalanceProps {
   usdValue: number;
 }
 
-const Balance: React.FC<BalanceProps> = ({
+export const Balance: FC<BalanceProps> = ({
   icon,
   balance,
   price,
   symbol,
-  usdValue,
-}: any) => {
+  usdValue
+}) => {
   const theme: any = useTheme();
-  
+  const coinColor = theme.colors[symbol.toLowerCase()]
   return (
-    <Box sx={styles.boxStyle}>
-      <Text sx={styles.labelStyle} variant="body.small">
+    <Box sx={styles.box}>
+      <Text sx={styles.label} variant="body.small">
         BALANCE
       </Text>
       <Box>
-        <Text
-          variant="heading.regular"
-          sx={styles.balanceStyle}
-        >{`${toCurrency(balance)} ${symbol}`}</Text>
-        <CoinIcon sx={styles.coinIconStyle(theme.colors.ethMain)} icon={icon} />
+        <Text variant="heading.regular" sx={styles.balance}>{`${toCurrency(
+          balance
+        )} ${symbol}`}</Text>
+        <CoinIcon sx={styles.coinIcon(coinColor)} icon={icon} />
       </Box>
-      <Text sx={styles.balanceDetailStyle} variant="body.small">
-        {`$${toCurrency(usdValue)} @ ${toCurrency(price)} USD PER ${symbol}`}
+      <Text sx={styles.balanceDetail} variant="body.small">
+      <Text as='span' sx={styles.balanceValue}>{`$${toCurrency(usdValue)}`}</Text>{` @ ${toCurrency(price)} USD / ${symbol}`}
       </Text>
     </Box>
   );
 };
 
 Balance.displayName = 'Balance';
-
-export default Balance;

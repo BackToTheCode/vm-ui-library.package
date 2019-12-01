@@ -1,5 +1,5 @@
-import ChangeCollateralType from './index';
 import connect from '../../../../store/connect';
+import { ChangeCollateral } from './index';
 
 function mapStateToProps(state: any) {
   const { symbol } = state.tokens.selectedToken;
@@ -13,16 +13,14 @@ function mapStateToProps(state: any) {
 
 function mapDispatchToProps(dispatch: any) {
   return {
-    dispatchSelectToken: (payload: any) => dispatch({ type: 'SELECT_TOKEN', payload }),
+    dispatchSelectToken: (payload: any) =>
+      dispatch({ type: 'SELECT_TOKEN', payload }),
     dispatchStep: (payload: any) => dispatch({ type: 'STEP', payload })
   };
 }
 
-const Wrapped = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ChangeCollateralType);
+const Wrapped = connect(mapStateToProps, mapDispatchToProps)(ChangeCollateral);
 
-ChangeCollateralType.Wrapped = Wrapped;
+ChangeCollateral.Wrapped = Wrapped;
 
-export default ChangeCollateralType;
+export { ChangeCollateral };

@@ -1,10 +1,10 @@
-import { Header } from '../header';
 import connect from '../../../store/connect';
+import { Header } from '../header';
 
 function mapStateToProps(state: any) {
   return {
-    isConnected: state.connection.isConnected,
-    address: state.connection.address
+    address: state.connection.address,
+    isConnected: state.connection.isConnected
   };
 }
 
@@ -12,4 +12,4 @@ const Wrapped = connect(mapStateToProps, null)(Header);
 
 Header.Wrapped = Wrapped;
 
-export default Header;
+export { Header };

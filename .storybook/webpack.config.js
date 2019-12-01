@@ -41,17 +41,17 @@ module.exports = ({ config }) => {
   );
   fileLoaderRule.exclude = pathToInlineSvg;
   config.module.rules.push({
-    test: /\.svg$/,
     include: pathToInlineSvg,
+    test: /\.svg$/,
     use: ['@svgr/webpack', 'url-loader']
   });
   config.resolve.extensions.push('.svg');
 
   config.module.rules.push({
-    test: /\.stories\.tsx?$/,
     loaders: [require.resolve('@storybook/source-loader')],
+    enforce: 'pre',
     exclude: [/node_modules/],
-    enforce: 'pre'
+    test: /\.stories\.tsx?$/,
   });
 
   config.module.rules.push({

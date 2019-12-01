@@ -1,22 +1,15 @@
 import React from 'react';
-import { render, fireEvent, wait } from '@testing-library/react';
+import { fireEvent, render, wait } from '@testing-library/react';
 import Page from '../pages';
-// import { prettyDOM } from '@testing-library/dom'
 
 let getByText: any;
 let findByText: any;
-let debug: any;
 
 // setup app page
 beforeEach(async () => {
-  const {
-    getByText: _getByText,
-    findByText: _findByText,
-    debug: _debug
-  } = render(<Page />);
-  getByText = _getByText;
-  findByText = _findByText;
-  debug = _debug;
+  const component = render(<Page />);
+  getByText = component.getByText;
+  findByText = component.findByText;
   
   // Setup metamask connection
   const buttonText = 'Connect with Metamask';

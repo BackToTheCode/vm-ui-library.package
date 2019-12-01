@@ -1,21 +1,24 @@
-//import React, { useReducer } from 'react';
-import React from 'react';
-import appTheme from '../styles/theme';
-import { withTheme, ThemeProvider } from 'emotion-theming';
-import { Global, css } from '@emotion/core';
+import { css, Global } from '@emotion/core';
 import emotionNormalize from 'emotion-normalize';
-
-import Header from '../components/blocks/header/wrapped';
-import Hero from '../components/blocks/hero/wrapped';
-import Progress from '../components/blocks/progress'
-import logoImage from '../public/images/mark-maker.svg';  
-import { useStore, rootReducer } from '../store/store'; 
+import { ThemeProvider, withTheme } from 'emotion-theming';
+import React from 'react';
+import { Header } from '../components/blocks/header/wrapped';
+import { Hero } from '../components/blocks/hero/wrapped';
+import { Progress } from '../components/blocks/progress';
+import {
+  CONFIRM_COLLATERAL_NUM,
+  DRAW_DAI_NUM,
+  LOCK_COLLATERAL_NUM
+} from '../constants/step-names';
+import logoImage from '../public/images/mark-maker.svg';
+import { rootReducer, useStore } from '../store/store';
+import appTheme from '../styles/theme';
 
 export const Context = React.createContext(null);
 const Provider = Context.Provider;
 
 export default () => {
-  const [ state, dispatch] = useStore(rootReducer) as any;
+  const [state, dispatch] = useStore(rootReducer) as any;
   const { isConnected } = state.connection;
 
   const makeGlobalStyles = (theme: any) => css`
@@ -34,7 +37,7 @@ export default () => {
       <GlobalStyles />
       <Provider value={{ state, dispatch }}>
         {renderHeader()}
-        {isConnected && renderProgressBar()}
+        {isConnected && renderProgressBar(state)}
         {renderHero()}
       </Provider>
     </ThemeProvider>
@@ -51,17 +54,18 @@ const renderHeader = () => {
   );
 };
 
-const renderProgressBar = () => {
+const renderProgressBar = (state: any) => {
+  const { step } = state.vault;
   return (
-      <Progress>
-        <Progress.Step complete></Progress.Step>
-        <Progress.Step></Progress.Step>
-        <Progress.Step></Progress.Step>
-        <Progress.Step></Progress.Step>
-        <Progress.Step></Progress.Step>
-        <Progress.Step></Progress.Step>
-      </Progress>
-  )
-}
+    <Progress>
+      <Progress.Step complete={step >= CONFIRM_COLLATERAL_NUM} />
+      <Progress.Step complete={step >= LOCK_COLLATERAL_NUM} />
+      <Progress.Step complete={step >= DRAW_DAI_NUM} />
+      <Progress.Step />
+      <Progress.Step />
+      <Progress.Step />
+    </Progress>
+  );
+};
 
 const renderHero = () => <Hero.Wrapped />;

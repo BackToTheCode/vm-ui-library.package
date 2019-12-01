@@ -1,70 +1,81 @@
-import React, { Children } from 'react';
+import React, { Children, FC } from 'react';
 import { Box } from 'rebass';
-import Option, { OptionProps } from './option';
-import CTAButton, { CTAButtonProps } from '../shared/cta-button';
-import Title, { TitleProps } from '../shared/title';
+import {
+  CONFIRM_COLLATERAL_NUM,
+} from '../../../../constants/step-names';
+import { CTAButton, CTAButtonProps } from '../shared/cta-button';
+import { OAButton, OAButtonProps } from '../shared/oa-button';
+import { Title, TitleProps } from '../shared/title';
+import { ChildExtension } from './../shared/child-extension';
 import HorizontalRule from './horizontal-rule';
+import { Option, OptionProps } from './option';
+import styles from './styles';
 
-export interface ChangeCollateralTypeProps {
-  children: any;
+export interface ChangeCollateralProps {
+  children: React.ReactNode;
   symbol: string;
   tokens: any[];
   dispatchSelectToken: (payload: string) => void;
   dispatchStep: (payload: string) => void;
 }
 
-type SelectCollateral = {
-  Option: React.FC<OptionProps>;
-  CTAButton: React.FC<CTAButtonProps>;
-  Title: React.FC<TitleProps>;
+export interface SelectCollateral {
+  Option: FC<OptionProps>;
+  CTAButton: FC<CTAButtonProps>;
+  OAButton: FC<OAButtonProps>;
+  Title: FC<TitleProps>;
   HorizontalRule: any;
   Wrapped?: any;
-};
+}
 
-const formStyle = {
-  width: '100%',
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'column'
-};
-
-const ChangeCollateralType: React.FC<ChangeCollateralTypeProps> &
+export const ChangeCollateral: FC<ChangeCollateralProps> &
   SelectCollateral = props => {
   const { children, symbol, tokens, dispatchSelectToken, dispatchStep } = props;
+
+  const handleSubmit = (event: React.SyntheticEvent) => event.preventDefault();
+
   return (
-    <Box as="form" sx={formStyle} onSubmit={e => e.preventDefault()}>
-      {Children.map(children, (child: any) => {
-        if (child.type.displayName === 'Option') {
-          const newProps = {
-            ...child.props,
-            tokens,
-            symbol,
-            dispatchSelectToken
-          };
-          return React.cloneElement(child, newProps);
-        }
+    <Box as="form" sx={styles.form} onSubmit={handleSubmit}>
+      {Children.map(
+        children,
+        (child: React.ReactElement & ChildExtension) => {
+          if (child.type.displayName === 'Option') {
+            const newProps: OptionProps = {
+              ...child.props,
+              dispatchSelectToken,
+              symbol,
+              tokens
+            };
+            return React.cloneElement(child, newProps);
+          }
 
-        if (child.type.displayName === 'Title') {
-          return React.cloneElement(child, child.props);
-        }
+          if (child.type.displayName === 'Title') {
+            return React.cloneElement(child, child.props);
+          }
 
-        if (child.type.displayName === 'HorizontalRule') {
-          return React.cloneElement(child, child.props);
-        }
+          if (child.type.displayName === 'HorizontalRule') {
+            return React.cloneElement(child, child.props);
+          }
 
-        if (child.type.displayName === 'CTAButton') {
-          return React.cloneElement(child, { ...child.props, dispatchStep });
-        }
+          if (child.type.displayName === 'CTAButton') {
+            const newProps: CTAButtonProps = { ...child.props, dispatchStep, step: CONFIRM_COLLATERAL_NUM };
+            return React.cloneElement(child, newProps);
+          }
 
-        return child;
-      })}
+          if (child.type.displayName === 'OAButton') {
+            const newProps: OAButtonProps = { ...child.props, dispatchStep, step: CONFIRM_COLLATERAL_NUM };
+            return React.cloneElement(child, newProps);
+          }
+
+          return child;
+        } 
+      )}
     </Box>
   );
 };
 
-ChangeCollateralType.CTAButton = CTAButton;
-ChangeCollateralType.Title = Title;
-ChangeCollateralType.Option = Option;
-ChangeCollateralType.HorizontalRule = HorizontalRule;
-
-export default ChangeCollateralType;
+ChangeCollateral.CTAButton = CTAButton;
+ChangeCollateral.OAButton = OAButton;
+ChangeCollateral.Title = Title;
+ChangeCollateral.Option = Option;
+ChangeCollateral.HorizontalRule = HorizontalRule;

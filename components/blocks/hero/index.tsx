@@ -1,26 +1,27 @@
 /** @jsx jsx */
+import { FullContainer, Loading } from '@backtothecode/vault-maker-ui';
 import { jsx } from '@emotion/core';
-import React, { useState } from 'react';
-import { FullContainer } from '../../elements/container/index';
-import { setup as mkrSetup, getWeb3 as mkrGetWeb3 } from '../../../utils/web3';
-import Loading from '../../elements/loading/loading';
-import VaultBuilder from '../vault-maker/wrapped';
-import Wallet from '../wallet';
-import metamaskLogo from '../../../public/images/metamask-fox.svg';
-import ledgerLogo from '../../../public/images/ledger-logo.png';
-import trezorLogo from '../../../public/images/trezor-logo.png';
 import uniqBy from 'lodash.uniqby';
+import React, { FC, useState } from 'react';
+import ledgerLogo from '../../../public/images/ledger-logo.png';
+import metamaskLogo from '../../../public/images/metamask-fox.svg';
+import trezorLogo from '../../../public/images/trezor-logo.png';
+import { getWeb3 as mkrGetWeb3, setup as mkrSetup } from '../../../utils/web3';
+import { VaultMaker } from '../vault-maker/wrapped';
+import { Wallet } from '../wallet';
 
-export interface IHeroProps {
+const logoImg = "../../../public/images/rings.svg";
+
+export interface HeroProps {
   variant?: string;
   children?: React.ReactNode;
 }
 
-type Hero = {
+interface Hero {
   Wrapped?: any;
 };
 
-const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
+export const Hero: FC<HeroProps> & Hero = (props: any) => {
   const [isLoading, setLoading] = useState(false);
   const { isConnected } = props;
 
@@ -28,11 +29,11 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
   let web3: any = null;
 
   const addBalances = async (tokens: any[]) => {
-    if (!maker) return;
+    if (!maker) { return };
     const tokenService = maker.service('token');
 
     const clonedTokens: any[] = tokens.map((token: any) => token);
-    for (let [idx, token] of tokens.entries()) {
+    for (const [idx, token] of tokens.entries()[Symbol.iterator]()) {
       const tokenFromService = tokenService.getToken(token.symbol);
       const tokenBalance = await tokenFromService.balance();
       clonedTokens[idx].balance = tokenBalance.toNumber();
@@ -43,24 +44,24 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
   };
 
   const getTokens = async () => {
-    if (!maker) return;
+    if (!maker) { return };
     const { cdpTypes } = maker.service('mcd:cdpType');
     const uniqCdpTypes = uniqBy(cdpTypes, (cdpt: any) => cdpt.currency.symbol);
 
     const dict: any = {};
     const tokens = uniqCdpTypes.map((cdpType: any) => {
       const token = {
-        symbol: cdpType.currency.symbol,
-        price: cdpType.price.toBigNumber().toNumber()
+        price: cdpType.price.toBigNumber().toNumber(),
+        symbol: cdpType.currency.symbol
       };
-      return Object.assign(token, dict[token.symbol]);
+      return {...token, ...dict[token.symbol]};
     });
 
     return tokens;
   };
 
   const getAccount = async () => {
-    if (!web3) return;
+    if (!web3) { return };
     const accounts = await web3.eth.getAccounts();
     const userAccount = accounts[0];
 
@@ -68,19 +69,16 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
   };
 
   const selectDefaultToken = (tokens: any[]) => {
-    const usdValues = tokens.map(token => parseInt(token.usdValue));
+    const usdValues = tokens.map(token => parseInt(token.usdValue, 10));
     const maxIndex = usdValues.indexOf(Math.max(...usdValues));
     return tokens[maxIndex];
   };
 
   const setupMaker = async () => {
-    const network = process.env.NETWORK;
-    const provider = process.env.PROVIDER;
+    const network = process.env.NETWORK || "kovan";
+    const provider = process.env.PROVIDER || "browser";
     const url = process.env.URL;
     const privateKey = process.env.PRIVATE_KEY;
-
-    console.log('network', network);
-    console.log('provider', provider);
 
     maker = await mkrSetup(network, provider, { url, privateKey });
     web3 = (await mkrGetWeb3()) as any;
@@ -92,6 +90,10 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
 
     await setupMaker();
 
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000)
+
     const userAccount = await getAccount();
     const tokens = await getTokens();
     const tokensWithBalances = await addBalances(tokens);
@@ -99,7 +101,7 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
 
     props.dispatchConnect({ address: userAccount });
     props.dispatchTokens({ tokens: tokensWithBalances });
-    props.dispatchSelectToken({ selectedToken: selectedToken });
+    props.dispatchSelectToken({ selectedToken });
 
     setLoading(false);
   };
@@ -107,7 +109,7 @@ const Hero: React.FC<IHeroProps> & Hero = (props: any) => {
   return (
     <FullContainer variant="container.default">
       {renderWallet(isConnected, isLoading, handleMetamask)}
-      {renderVaultBuilder(isConnected)}
+      {renderVaultMaker(isConnected)}
     </FullContainer>
   );
 };
@@ -127,17 +129,16 @@ const renderWallet = (
       <Wallet.LogoButton variant="outline" icon={metamaskLogo} onClick={handleMetamask}>
         Connect with Metamask
       </Wallet.LogoButton>
-      <Wallet.LogoButton variant="outline" icon={trezorLogo} isDisabled>
+      <Wallet.LogoButton variant="outline" icon={trezorLogo} isDisabled={true}>
         Trezor - coming soon...
       </Wallet.LogoButton>
-      <Wallet.LogoButton variant="outline" icon={ledgerLogo} isDisabled>
+      <Wallet.LogoButton variant="outline" icon={ledgerLogo} isDisabled={true}>
         Ledger - coming soon...
       </Wallet.LogoButton>
     </Wallet>
   ));
 
-const renderVaultBuilder = (isConnected: boolean) => {
-  return isConnected && <VaultBuilder.Wrapped />;
+const renderVaultMaker = (isConnected: boolean) => {
+  return isConnected && <VaultMaker.Wrapped />;
 };
 
-export default Hero;

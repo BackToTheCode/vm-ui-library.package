@@ -1,20 +1,20 @@
 import React, { Children, FC } from 'react';
 import { Box } from 'rebass';
-import Header, { HeaderProps } from './header';
-import LogoButton, { LogoButtonProps } from './logo-button';
-import SubHeader, { SubHeaderProps } from './sub-header';
+import { Header, HeaderProps } from './header';
+import { LogoButton, LogoButtonProps } from './logo-button';
+import { SubHeader, SubHeaderProps } from './sub-header';
 
 interface Wallet {
-  Header: React.FC<HeaderProps>;
-  SubHeader: React.FC<SubHeaderProps>;
-  LogoButton: React.FC<LogoButtonProps>;
+  Header: FC<HeaderProps>;
+  SubHeader: FC<SubHeaderProps>;
+  LogoButton: FC<LogoButtonProps>;
 }
 
 export interface WalletProps {
   children: any;
 }
 
-const Wallet: FC<WalletProps> & Wallet = ({ children }) => {
+export const Wallet: FC<WalletProps> & Wallet = ({ children }) => {
   return (
     <Box>
       {Children.map(children, (child: any) => {
@@ -40,4 +40,3 @@ Wallet.Header = Header;
 Wallet.SubHeader = SubHeader;
 Wallet.LogoButton = LogoButton;
 
-export default Wallet;
