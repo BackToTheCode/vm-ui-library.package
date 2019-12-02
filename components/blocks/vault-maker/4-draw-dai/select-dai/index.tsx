@@ -57,17 +57,17 @@ export const SelectDai: FC<SelectDaiProps> = props => {
 
   return (
     <Box sx={styles.container}>
-      <Text variant="body.small" sx={styles.label}>
+      <Text variant="body.regular" sx={styles.label}>
         I WANT TO DRAW
       </Text>
       <Input
         id="drawAmount"
         name="drawAmount"
         type="number"
-        variant="heading.regular"
+
         value={amount}
         sx={{
-          ...theme.text.heading.regular,
+          ...theme.text.heading.extra,
           ...styles.input,
           ...{ width: width + 'ch' },
           ...(!valid ? { bg: 'superLightWarning', borderColor: 'warning' } : {})

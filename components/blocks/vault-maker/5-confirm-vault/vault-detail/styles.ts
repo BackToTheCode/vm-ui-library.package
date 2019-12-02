@@ -1,14 +1,14 @@
 const styles = {
     container: {
-        bg: 'superLightGrey',
-        borderColor: 'lightGrey',
-        borderRadius: '4px',
-        borderStyle: 'solid',
-        borderWidth: '1px',
+        
+        // borderColor: 'lightGrey',
+        // borderRadius: '4px',
+        // borderStyle: 'solid',
+        // borderWidth: '1px',
         flex: 1,
-        mb: 5,
-        px: 5,
-        py: 4,
+        // mb: 5,
+        px: 0,
+        // py: 5,
         width: '100%',
     }
 }

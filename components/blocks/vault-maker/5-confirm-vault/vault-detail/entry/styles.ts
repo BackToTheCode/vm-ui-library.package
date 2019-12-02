@@ -1,10 +1,14 @@
 const styles = {
   container: {
-    '&:hover': {
-      bg: 'lightMidGrey'
+    // '&:hover': {
+    //   bg: 'lightMidGrey'
+    // },
+    // bg: 'superLightGrey',
+    dark: {
+      bg: 'superLightGrey',
     },
-    px: 4,
-    py: 4
+    px: 5,
+    py: 5
   },
   label: {
     alignItems: 'baseline',

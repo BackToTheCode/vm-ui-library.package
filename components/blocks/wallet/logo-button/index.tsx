@@ -1,11 +1,14 @@
 import { LargeButton, LargeButtonProps } from '@backtothecode/vault-maker-ui';
 import React, { FC } from 'react';
-import { Box, Image } from 'rebass';
+import { Box, Image, SxStyleProp } from 'rebass';
 import styles from './styles';
 
 // tslint:disable-next-line:no-empty-interface
-export interface LogoButtonProps extends LargeButtonProps {
+export interface LogoButtonProps {
   icon: string;
+  sx: SxStyleProp;
+  isDisabled: boolean;
+  onClick: (e: any) => void
 }
 
 export const LogoButton: FC<LogoButtonProps> = ({
@@ -18,7 +21,7 @@ export const LogoButton: FC<LogoButtonProps> = ({
   <LargeButton
     variant="outline"
     isDisabled={isDisabled}
-    sx={styles.button}
+    sx={{...styles.button, ...(isDisabled ? styles.button.disabled : {} )}}
     onClick={onClick}
   >
     <Box sx={{ ...styles.logo.container, ...sx }}>

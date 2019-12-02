@@ -1,9 +1,15 @@
 const styles = {
   button: {
+    disabled: {
+      '&:hover': {
+        transform: 'translateY(0px)'
+      }
+    },
     mb: 4,
     mx: 'auto',
     position: 'relative',
     px: 7,
+    py: 7,
     textAlign: 'right',
     width: '280px'
   },

@@ -6,7 +6,7 @@ const styles = {
     top: '-2px'
   }),
   container: {
-    flex: 1
+    flex: 2
   },
   daiValue: {
     fontWeight: 'bold'
@@ -39,7 +39,7 @@ const styles = {
     display: 'inline-block',
     fontFamily: 'body',
     marginRight: '15px',
-    minWidth: '140px',
+    minWidth: '160px',
     px: 5,
     py: 3,
     transition: 'all 0.2s',

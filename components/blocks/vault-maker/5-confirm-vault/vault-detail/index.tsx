@@ -21,9 +21,9 @@ export const VaultDetail: FC<VaultDetailProps> = props => {
 
   return (
     <Box sx={styles.container}>
-      <Entry symbol={symbol}>{`${toCurrency(lockAmount)}`}</Entry>
+      <Entry symbol={symbol} isDark={true}>{`${toCurrency(lockAmount)}`}</Entry>
       <Entry symbol={"DAI"}>{`${toCurrency(drawAmount)}`}</Entry>
-      <Entry symbol={"COLLATERAL VALUE"}>{`${toCurrency(collateralValue)} USD`}</Entry>
+      <Entry symbol={"COLLATERAL VALUE"} isDark={true}>{`${toCurrency(collateralValue)} USD`}</Entry>
       <Entry sx={{mb: 3}}symbol={"LIQUIDATION VALUE"}>{`${toCurrency(liquidiationValue)} USD`}</Entry>
     </Box>
   );

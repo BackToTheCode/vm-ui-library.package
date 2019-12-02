@@ -17,12 +17,12 @@ const styles = {
     position: 'relative',
     width: '8px',
     height: '8px',
-    right: 6,
-    top: 6
+    right: 7,
+    top: '22px'
   },
   addressContainer: {
     px: 4,
-    py: 3,
+    py: 4,
     bg: 'lightGrey',
     borderRadius: '4px',
   },

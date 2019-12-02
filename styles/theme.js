@@ -7,6 +7,8 @@ const theme = {
     default: 2
   },
   breakpoints: ['40em', '52em', '64em'],
+  buttons: buttons,
+
   colors: {
     bat: 'rgb(234, 86, 19)',
     dark: '#222222',
@@ -45,17 +47,18 @@ const theme = {
     "Ubuntu", "Cantarell", "Fira Sans", 
     "Droid Sans", "Helvetica Neue", sans-serif;`
   },
-  radii: {
-    default: 4
-  },
-  space: [0, 2, 4, 6, 8, 16, 20, 32, 48],
   lineHeights: {
     body: 1.45,
     heading: 1.25
   },
-  variants: variants,
+  radii: {
+    default: 4
+  },
+  space: [0, 2, 4, 6, 8, 12, 16, 24, 32, 48],
   text: text,
-  buttons: buttons
+  variants: variants,
+ 
+
 };
 
 theme.fontSizes.body = theme.fontSizes[2];

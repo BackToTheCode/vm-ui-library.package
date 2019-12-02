@@ -5,18 +5,13 @@ const styles = {
     borderBottomWidth: 1,
     display: 'inline-block',
     fontFamily: 'body',
-    // mb: 3,
-    // minWidth: '140px',
-    // mr: 5,
     position: 'relative',
-    // pr: 5,
     py: 3,
     top: '-8px',
-
   },
   balanceDetail: { mt: 6, mb: 6, color: 'grey' },
   balanceValue: { fontWeight: 'bold', mt: 6 },
-  box: { flex: 1 },
+  box: { flex: 2 },
   coinIcon: (color: string) => ({
     bg: color,
     ml: 6,
@@ -29,7 +24,8 @@ const styles = {
     fontWeight: 'bold',
     justifyContent: 'left',
     letterSpacing: '0.5px',
-    mb: 3
+    mb: 3,
+    mt: 6
   },
   symbol: {
     bottom: '7px',

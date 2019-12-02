@@ -24,11 +24,11 @@ export const Balance: FC<BalanceProps> = ({
   const coinColor = theme.colors[symbol.toLowerCase()];
   return (
     <Box sx={styles.box}>
-      <Text sx={styles.label} variant="body.small">
+      <Text sx={styles.label} variant="body.regular">
         BALANCE
       </Text>
       <Box>
-        <Text variant="heading.regular" sx={styles.balance}>{`${toCurrency(
+        <Text variant="heading.extra" sx={styles.balance}>{`${toCurrency(
           balance
         )}`}</Text>
         <Text variant="heading.regular" sx={styles.symbol}>{`${symbol}`}</Text>

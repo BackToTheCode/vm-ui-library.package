@@ -1,7 +1,7 @@
 const styles = {
     container: {
       bg: 'lightGrey',
-      height: '50px',
+      height: '70px',
       my: 5,
       width: '100%',      
     }

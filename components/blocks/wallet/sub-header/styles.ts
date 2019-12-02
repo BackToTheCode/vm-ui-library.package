@@ -2,7 +2,7 @@ const styles = {
   subHeader: {
     color: 'grey',
     display: 'block',
-    mb: 7,
+    mb: 9,
     mx: 'auto',
     textAlign: 'center'
   }

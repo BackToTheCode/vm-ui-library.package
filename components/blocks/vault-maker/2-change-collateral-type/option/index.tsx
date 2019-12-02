@@ -27,8 +27,6 @@ export const Option: FC<OptionProps> = props => {
     props.dispatchSelectToken({ selectedToken });
   };
 
-  console.log('BRAND: ', brand, symbol)
-
   return (
     <Box sx={{...styles.option, ...(isSelected ? styles.selected : {})}} onClick={handleEvent}>
       <Radio
@@ -36,7 +34,7 @@ export const Option: FC<OptionProps> = props => {
         onChange={handleEvent}
         checked={isSelected}
       />
-      <Text sx={styles.symbol} variant="heading.regular">
+      <Text sx={styles.symbol} variant="heading.large">
         {children}
       </Text>
       <CoinIcon sx={styles.icon} brand={brand} icon={icon} />

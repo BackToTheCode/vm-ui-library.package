@@ -22,6 +22,10 @@ const text = {
     }
   },
   heading: {
+    extra: {
+      fontFamily: 'heading',
+      fontSize: [6, 6, 6]
+    },
     large: {
       fontFamily: 'heading',
       fontSize: [5, 5, 5]

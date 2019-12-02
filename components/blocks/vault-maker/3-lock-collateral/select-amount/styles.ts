@@ -9,7 +9,7 @@ const styles = {
     fontWeight: 'bold'
   },
   container: {
-    flex: 1
+    flex: 2
   },
   detail: {
     color: 'grey'
@@ -39,7 +39,7 @@ const styles = {
     display: 'inline-block',
     fontFamily: 'body',
     marginRight: 5,
-    minWidth: '140px',
+    minWidth: '160px',
     px: 5,
     py: 3,
     top: '7px',
