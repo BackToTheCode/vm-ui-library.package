@@ -8,12 +8,15 @@ const styles = {
   collateralValue: {
     fontWeight: 'bold'
   },
-
   container: {
     flex: 1
   },
   detail: {
     color: 'grey'
+  },
+  detailLabel: {
+    display: 'inline-block',
+    width: '75px'
   },
   input: {
     '&::placeholder': {
@@ -35,10 +38,11 @@ const styles = {
     color: 'dark',
     display: 'inline-block',
     fontFamily: 'body',
-    marginRight: '15px',
+    marginRight: 5,
     minWidth: '140px',
     px: 5,
     py: 3,
+    top: '7px',
     transition: 'all 0.2s',
     verticalAlign: 'bottom'
   },
@@ -49,16 +53,15 @@ const styles = {
     fontWeight: 'bold',
     justifyContent: 'left',
     letterSpacing: '0.5px',
-    mb: 3
+    mb: 4
   },
-
   lockDetail: { mt: 6 },
   remainingBalance: { mt: 3 },
   symbol: {
+    // bottom: '7px',
     display: 'inline-block',
     position: 'relative',
-    py: 3
-    // top: '4px'
+    py: 3,
   }
 };
 

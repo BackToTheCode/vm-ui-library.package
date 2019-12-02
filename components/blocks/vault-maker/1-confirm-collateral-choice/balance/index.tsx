@@ -21,7 +21,7 @@ export const Balance: FC<BalanceProps> = ({
   usdValue
 }) => {
   const theme: any = useTheme();
-  const coinColor = theme.colors[symbol.toLowerCase()]
+  const coinColor = theme.colors[symbol.toLowerCase()];
   return (
     <Box sx={styles.box}>
       <Text sx={styles.label} variant="body.small">
@@ -30,11 +30,15 @@ export const Balance: FC<BalanceProps> = ({
       <Box>
         <Text variant="heading.regular" sx={styles.balance}>{`${toCurrency(
           balance
-        )} ${symbol}`}</Text>
+        )}`}</Text>
+        <Text variant="heading.regular" sx={styles.symbol}>{`${symbol}`}</Text>
         <CoinIcon sx={styles.coinIcon(coinColor)} icon={icon} />
       </Box>
       <Text sx={styles.balanceDetail} variant="body.small">
-      <Text as='span' sx={styles.balanceValue}>{`$${toCurrency(usdValue)}`}</Text>{` @ ${toCurrency(price)} USD / ${symbol}`}
+        <Text as="span" sx={styles.balanceValue}>{`$${toCurrency(
+          usdValue
+        )}`}</Text>
+        {` @ ${toCurrency(price)} USD / ${symbol}`}
       </Text>
     </Box>
   );

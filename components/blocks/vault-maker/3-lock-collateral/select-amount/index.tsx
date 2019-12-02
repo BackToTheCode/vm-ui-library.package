@@ -1,12 +1,9 @@
 /** @jsx jsx */
-import { CoinIcon } from '@backtothecode/vault-maker-ui';
 import { jsx } from '@emotion/core';
 import { Input } from '@rebass/forms';
 import { useTheme } from 'emotion-theming';
 import { FC, useEffect, useState } from 'react';
 import { Box, Text } from 'rebass';
-// import batLogo from '../../../../../public/images/bat-logo.png';
-// import ethLogo from '../../../../../public/images/ethereum-logo.svg';
 import toCurrency from '../../../../../utils/currency-formatter';
 import styles from './styles';
 
@@ -20,11 +17,6 @@ export interface SelectAmountProps {
   symbol?: string;
   tokens?: any;
 }
-
-// const tokenLogos = {
-//   BAT: batLogo,
-//   ETH: ethLogo
-// }
 
 export const SelectAmount: FC<SelectAmountProps> = props => {
   const { symbol, tokens } = props;
@@ -40,6 +32,9 @@ export const SelectAmount: FC<SelectAmountProps> = props => {
   useEffect(() => {
     if (maxAvailableTokens > initialAmount) {
       setAmount(toCurrency(maxAvailableTokens));
+      props.handleLockedCollateralChange({
+        lockAmount: maxAvailableTokens
+      });
     }
   }, [maxAvailableTokens]);
 
@@ -75,8 +70,6 @@ export const SelectAmount: FC<SelectAmountProps> = props => {
   const constrainedLocked =
     locked > maxLocked ? maxLocked : locked < 0 ? 0 : locked;
 
-  // const coinColor = theme.colors[symbol.toLowerCase()];
-
   return (
     <Box sx={styles.container}>
       <Text variant="body.small" sx={styles.label}>
@@ -94,15 +87,15 @@ export const SelectAmount: FC<SelectAmountProps> = props => {
           ...{ width: width + 'ch' },
           ...(!valid ? { bg: 'superLightWarning', borderColor: 'warning' } : {})
         }}
+        placeholder="0"
         onChange={handleChange}
       />
       <Text variant="heading.regular" sx={styles.symbol}>{`${symbol}`}</Text>
-      {/* <CoinIcon sx={styles.coinIcon(coinColor)} icon={tokenLogos[symbol]} /> */}
       <Text
         sx={{ ...styles.detail, ...styles.lockDetail }}
         variant="body.small"
       >
-        <Text as="span">{`Locked: `}</Text>
+        <Text as="span" sx={styles.detailLabel}>{`Locked: `}</Text>
         <Text as="span" sx={styles.collateralValue}>{`$${toCurrency(
           constrainedLocked
         )}`}</Text>
@@ -112,7 +105,7 @@ export const SelectAmount: FC<SelectAmountProps> = props => {
         sx={{ ...styles.detail, ...styles.remainingBalance }}
         variant="body.small"
       >
-        <Text as="span">{`Remaining: `}</Text>
+        <Text as="span" sx={styles.detailLabel}>{`Remaining: `}</Text>
         <Text as="span" sx={styles.collateralValue}>{`${toCurrency(
           constrainedRemaining
         )}`}</Text>

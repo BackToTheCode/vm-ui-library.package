@@ -1,10 +1,12 @@
 import { Card, Container } from '@backtothecode/vault-maker-ui/dist/cjs/index';
 import React, { FC } from 'react';
 import steps, {
-  CHANGE_COLLATERAL_CHOICE,
-  CONFIRM_COLLATERAL_CHOICE,
-  LOCK_COLLATERAL_CHOICE,
-  DRAW_DAI_CHOICE
+  CHANGE_COLLATERAL,
+  CONFIRM_COLLATERAL,
+  CONFIRM_VAULT,
+  DRAW_DAI,
+  LOCK_COLLATERAL,
+  OPEN_VAULT
 } from '../../../constants/step-names';
 import render from './render';
 import { cardStyle, containerStyle } from './styles';
@@ -24,23 +26,30 @@ interface VaultMaker {
 
 export const VaultMaker: FC<VaultMakerProps> & VaultMaker = props => {
   const { step, symbol, usdValue, balance, price } = props;
-  const { confirmCollateral, changeCollateral, lockCollateral, drawDai } = render;
+  const {
+    confirmCollateral,
+    changeCollateral,
+    lockCollateral,
+    drawDai,
+    confirmVault,
+    openVault
+  } = render;
 
   return (
     <Card sx={cardStyle}>
       <Container sx={containerStyle} variant="container.default">
-        {step === steps[CONFIRM_COLLATERAL_CHOICE] &&
+        {step === steps[CONFIRM_COLLATERAL] &&
           confirmCollateral(symbol, balance, price, usdValue)}
 
-        {step === steps[CHANGE_COLLATERAL_CHOICE] && 
-          changeCollateral()}
+        {step === steps[CHANGE_COLLATERAL] && changeCollateral()}
 
-        {step === steps[LOCK_COLLATERAL_CHOICE] && 
-          lockCollateral(symbol)}
+        {step === steps[LOCK_COLLATERAL] && lockCollateral(symbol)}
 
-        {step === steps[DRAW_DAI_CHOICE] && 
-          drawDai()}
+        {step === steps[DRAW_DAI] && drawDai()}
 
+        {step === steps[CONFIRM_VAULT] && confirmVault()}
+
+        {step === steps[OPEN_VAULT] && openVault()}
       </Container>
     </Card>
   );

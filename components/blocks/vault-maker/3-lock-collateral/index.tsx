@@ -1,15 +1,17 @@
 import React, { Children, FC } from 'react';
 import { Box } from 'rebass';
-import { DRAW_DAI_NUM, CONFIRM_COLLATERAL_NUM } from '../../../../constants/step-names';
-import { CTAButton, CTAButtonProps } from '../shared/cta-button';
-import { OAButton, OAButtonProps } from '../shared/oa-button';
-import { Title, TitleProps } from '../shared/title';
+import { CONFIRM_COLLATERAL_NUM, DRAW_DAI_NUM } from '../../../../constants/step-names';
+import { CTAButton, CTAButtonProps } from '../../../elements/cta-button';
+import { HorizontalRule, HorizontalRuleProps} from '../../../elements/horizontal-rule';
+import { OAButton, OAButtonProps } from '../../../elements/oa-button';
+import { Title, TitleProps } from '../../../elements/title';
 import { SelectAmount, SelectAmountProps } from './select-amount';
 import styles from './styles';
 
 
 export interface LockCollateral {
   SelectAmount: FC<SelectAmountProps>;
+  HorizontalRule: FC<HorizontalRuleProps>;
   CTAButton: FC<CTAButtonProps>;
   OAButton: FC<OAButtonProps>;
   Title: FC<TitleProps>;
@@ -51,6 +53,10 @@ export const LockCollateral: FC<LockCollateralProps> &
           return React.cloneElement(child, newProps);
         }
 
+        if (child.type.displayName === 'HorizontalRule') {
+          return React.cloneElement(child, child.props);
+        }
+
         if (child.type.displayName === 'CTAButton') {
           const newProps: CTAButtonProps = {
             ...child.props,
@@ -76,6 +82,7 @@ export const LockCollateral: FC<LockCollateralProps> &
 };
 
 LockCollateral.Title = Title;
+LockCollateral.HorizontalRule = HorizontalRule;
 LockCollateral.CTAButton = CTAButton;
 LockCollateral.OAButton = OAButton;
 LockCollateral.SelectAmount = SelectAmount;

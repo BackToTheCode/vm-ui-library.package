@@ -3,11 +3,11 @@ import { Box } from 'rebass';
 import {
   CONFIRM_COLLATERAL_NUM,
 } from '../../../../constants/step-names';
-import { CTAButton, CTAButtonProps } from '../shared/cta-button';
-import { OAButton, OAButtonProps } from '../shared/oa-button';
-import { Title, TitleProps } from '../shared/title';
-import { ChildExtension } from './../shared/child-extension';
-import HorizontalRule from './horizontal-rule';
+import { CTAButton, CTAButtonProps } from '../../../elements/cta-button';
+import { HorizontalRule } from '../../../elements/horizontal-rule';
+import { OAButton, OAButtonProps } from '../../../elements/oa-button';
+import { Title, TitleProps } from '../../../elements/title';
+import { ChildExtension } from '../../../elements/shared/child-extension';
 import { Option, OptionProps } from './option';
 import styles from './styles';
 

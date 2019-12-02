@@ -3,33 +3,41 @@ import { FullContainer, Loading } from '@backtothecode/vault-maker-ui';
 import { jsx } from '@emotion/core';
 import uniqBy from 'lodash.uniqby';
 import React, { FC, useState } from 'react';
+import { useRouter } from 'next/router';
 import ledgerLogo from '../../../public/images/ledger-logo.png';
 import metamaskLogo from '../../../public/images/metamask-fox.svg';
 import trezorLogo from '../../../public/images/trezor-logo.png';
 import { getWeb3 as mkrGetWeb3, setup as mkrSetup } from '../../../utils/web3';
 import { VaultMaker } from '../vault-maker/wrapped';
 import { Wallet } from '../wallet';
-
-const logoImg = "../../../public/images/rings.svg";
+import { render } from '@testing-library/react';
 
 export interface HeroProps {
   variant?: string;
+  isComplete: boolean;
+  isConnected: boolean;
   children?: React.ReactNode;
+  dispatchConnect: ({ address }: { address: string }) => void;
+  dispatchTokens: ({ tokens }: { tokens: any[] }) => void;
+  dispatchSelectToken: ({ selectedToken }: { selectedToken: any }) => any;
 }
 
 interface Hero {
   Wrapped?: any;
-};
+}
 
-export const Hero: FC<HeroProps> & Hero = (props: any) => {
+export const Hero: FC<HeroProps> & Hero = props => {
   const [isLoading, setLoading] = useState(false);
-  const { isConnected } = props;
+  const { isConnected, isComplete } = props;
+  const router = useRouter();
 
   let maker: any = null;
   let web3: any = null;
 
   const addBalances = async (tokens: any[]) => {
-    if (!maker) { return };
+    if (!maker) {
+      return;
+    }
     const tokenService = maker.service('token');
 
     const clonedTokens: any[] = tokens.map((token: any) => token);
@@ -44,24 +52,30 @@ export const Hero: FC<HeroProps> & Hero = (props: any) => {
   };
 
   const getTokens = async () => {
-    if (!maker) { return };
+    if (!maker) {
+      return;
+    }
     const { cdpTypes } = maker.service('mcd:cdpType');
     const uniqCdpTypes = uniqBy(cdpTypes, (cdpt: any) => cdpt.currency.symbol);
 
     const dict: any = {};
     const tokens = uniqCdpTypes.map((cdpType: any) => {
       const token = {
+        penalty: cdpType.liquidationPenalty,
         price: cdpType.price.toBigNumber().toNumber(),
+        ratio: cdpType.liquidationRatio.toBigNumber().toNumber(),
         symbol: cdpType.currency.symbol
       };
-      return {...token, ...dict[token.symbol]};
+      return { ...token, ...dict[token.symbol] };
     });
 
     return tokens;
   };
 
   const getAccount = async () => {
-    if (!web3) { return };
+    if (!web3) {
+      return;
+    }
     const accounts = await web3.eth.getAccounts();
     const userAccount = accounts[0];
 
@@ -75,8 +89,8 @@ export const Hero: FC<HeroProps> & Hero = (props: any) => {
   };
 
   const setupMaker = async () => {
-    const network = process.env.NETWORK || "kovan";
-    const provider = process.env.PROVIDER || "browser";
+    const network = process.env.NETWORK || 'kovan';
+    const provider = process.env.PROVIDER || 'browser';
     const url = process.env.URL;
     const privateKey = process.env.PRIVATE_KEY;
 
@@ -92,7 +106,7 @@ export const Hero: FC<HeroProps> & Hero = (props: any) => {
 
     setTimeout(() => {
       setLoading(false);
-    }, 3000)
+    }, 3500);
 
     const userAccount = await getAccount();
     const tokens = await getTokens();
@@ -106,12 +120,24 @@ export const Hero: FC<HeroProps> & Hero = (props: any) => {
     setLoading(false);
   };
 
+  const isCreated = false;
+
   return (
     <FullContainer variant="container.default">
       {renderWallet(isConnected, isLoading, handleMetamask)}
-      {renderVaultMaker(isConnected)}
+      {!isComplete && renderVaultMaker(isConnected)}
+      {isComplete && renderDashboard(isCreated, router)}
     </FullContainer>
   );
+};
+
+const renderDashboard = (isCreated: boolean, router: any) => {
+  setTimeout(() => {
+    router.push('/dashboard');
+    isCreated = true;
+  }, 10000);
+
+  return !isCreated ? <Loading text={"Creating your new Vault..."} /> : <div>CDP Created</div>;
 };
 
 const renderWallet = (
@@ -126,7 +152,11 @@ const renderWallet = (
     <Wallet>
       <Wallet.Header>Start Making a Vault</Wallet.Header>
       <Wallet.SubHeader>Connect to the Ethereum network</Wallet.SubHeader>
-      <Wallet.LogoButton variant="outline" icon={metamaskLogo} onClick={handleMetamask}>
+      <Wallet.LogoButton
+        variant="outline"
+        icon={metamaskLogo}
+        onClick={handleMetamask}
+      >
         Connect with Metamask
       </Wallet.LogoButton>
       <Wallet.LogoButton variant="outline" icon={trezorLogo} isDisabled={true}>
@@ -141,4 +171,3 @@ const renderWallet = (
 const renderVaultMaker = (isConnected: boolean) => {
   return isConnected && <VaultMaker.Wrapped />;
 };
-

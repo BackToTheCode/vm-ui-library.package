@@ -6,6 +6,7 @@ export const lockCollateral = (symbol: string) => {
         <LockCollateral.Title>
           {`How much ${symbol} would you like to lock as collateral`}
         </LockCollateral.Title>
+        <LockCollateral.HorizontalRule sx={{mb: 8}} />
         <LockCollateral.SelectAmount />
         <LockCollateral.CTAButton>Lock</LockCollateral.CTAButton>
         <LockCollateral.OAButton>Go back</LockCollateral.OAButton>

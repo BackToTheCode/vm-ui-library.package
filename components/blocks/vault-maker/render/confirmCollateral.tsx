@@ -21,6 +21,7 @@ export const confirmCollateral = (
         <ConfirmCollateral.Title>
           {`We suggest ${symbol} as collateral for your Vault`}
         </ConfirmCollateral.Title>
+        <ConfirmCollateral.HorizontalRule sx={{mb: 8}} />
         <ConfirmCollateral.Balance
           balance={balance}
           price={price}

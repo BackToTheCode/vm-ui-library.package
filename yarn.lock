@@ -1158,10 +1158,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@backtothecode/vault-maker-ui@^0.5.3":
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/@backtothecode/vault-maker-ui/-/vault-maker-ui-0.5.3.tgz#9d7fc37aa971ef9f99799602a784b7f44806cf63"
-  integrity sha512-sxL98PG2PcfC+rWljMTsmEdjOVRbAfK8/EoBoNZOKiKAT+BSF4eJ3PHR7sfUW4IU/EnPTsPsb4NJ0oWpjkzu9g==
+"@backtothecode/vault-maker-ui@^0.5.7":
+  version "0.5.7"
+  resolved "https://registry.yarnpkg.com/@backtothecode/vault-maker-ui/-/vault-maker-ui-0.5.7.tgz#9ba19cf615ee7722ee76b8ad07aaa2d6773a0dd8"
+  integrity sha512-1kjDlC7SVGnktOEQXxjPLEQ7o9A7Vgo8nqmYj/3cO/lvMOO6mH+Rh0hfju/MYRjmD4dN2Z3EaaOlHjaQE8hLfQ==
   dependencies:
     "@emotion/core" "^10.0.22"
     "@rebass/forms" "^4.0.6"

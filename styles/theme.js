@@ -29,7 +29,7 @@ const theme = {
     transparent: 'transparent',
     warning: 'rgb(255,0,0)'
   },
-  fontSizes: [14, 16, 18, 24, 30, 40, 50],
+  fontSizes: [14, 16, 18, 24, 28, 36, 42],
   fontWeights: {
     body: 400,
     bold: 700,
@@ -45,12 +45,10 @@ const theme = {
     "Ubuntu", "Cantarell", "Fira Sans", 
     "Droid Sans", "Helvetica Neue", sans-serif;`
   },
-
   radii: {
     default: 4
   },
-  space: [0, 2, 4, 6, 8, 16, 20, 32, 64],
-
+  space: [0, 2, 4, 6, 8, 16, 20, 32, 48],
   lineHeights: {
     body: 1.45,
     heading: 1.25

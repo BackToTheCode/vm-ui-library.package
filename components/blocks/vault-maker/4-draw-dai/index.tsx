@@ -1,15 +1,22 @@
 import React, { Children, FC } from 'react';
 import { Box } from 'rebass';
-import { DRAW_DAI_NUM } from '../../../../constants/step-names';
-import { CTAButton, CTAButtonProps } from '../shared/cta-button';
-import { OAButton, OAButtonProps } from '../shared/oa-button';
-import { SelectAmount, SelectAmountProps } from '../shared/select-amount';
-import { Title, TitleProps } from '../shared/title';
+import {
+  CONFIRM_VAULT_NUM,
+  LOCK_COLLATERAL_NUM
+} from '../../../../constants/step-names';
+import { CTAButton, CTAButtonProps } from '../../../elements/cta-button';
+import {
+  HorizontalRule,
+  HorizontalRuleProps
+} from '../../../elements/horizontal-rule';
+import { OAButton, OAButtonProps } from '../../../elements/oa-button';
+import { Title, TitleProps } from '../../../elements/title';
+import { SelectDai, SelectDaiProps } from './select-dai';
 import styles from './styles';
 
-
 export interface DrawDai {
-  SelectAmount: FC<SelectAmountProps>;
+  SelectDai: FC<SelectDaiProps>;
+  HorizontalRule: FC<HorizontalRuleProps>;
   CTAButton: FC<CTAButtonProps>;
   OAButton: FC<OAButtonProps>;
   Title: FC<TitleProps>;
@@ -18,20 +25,28 @@ export interface DrawDai {
 
 export interface DrawDaiProps {
   children: React.ReactNode;
-  symbol?: string;  
+  symbol?: string;
   tokens: any[];
-  dipatchLockCollateral: ({ lockAmount }: { lockAmount: number }) => void;
+  lockAmount: number;
+  drawAmount: number;
+  dispatchDrawDai: ({ drawAmount }: { drawAmount: number }) => void;
   dispatchStep: ({ step }: { step: number }) => void;
 }
 
-export const LockCollateral: FC<DrawDaiProps> &
-  DrawDai = props => {
-  const { children, symbol, tokens, dispatchStep } = props;
+export const DrawDai: FC<DrawDaiProps> & DrawDai = props => {
+  const {
+    children,
+    symbol,
+    tokens,
+    lockAmount,
+    drawAmount,
+    dispatchStep
+  } = props;
 
   const handleSubmit = (event: React.SyntheticEvent) => event.preventDefault();
 
-  const handleLockedCollateralChange = ({ lockAmount }) => {
-    props.dipatchLockCollateral({ lockAmount });
+  const handleDrawDaiChange = (amount: number) => {
+    props.dispatchDrawDai({ drawAmount: amount });
   };
 
   return (
@@ -41,21 +56,27 @@ export const LockCollateral: FC<DrawDaiProps> &
           return React.cloneElement(child, child.props);
         }
 
-        if (child.type.displayName === 'SelectAmount') {
-          const newProps: SelectAmountProps = {
+        if (child.type.displayName === 'SelectDai') {
+          const newProps: SelectDaiProps = {
             ...child.props,
-            handleLockedCollateralChange,
+            drawAmount,
+            handleDrawDaiChange,
+            lockAmount,
             symbol,
             tokens
           };
           return React.cloneElement(child, newProps);
         }
 
+        if (child.type.displayName === 'HorizontalRule') {
+          return React.cloneElement(child, child.props);
+        }
+
         if (child.type.displayName === 'CTAButton') {
           const newProps: CTAButtonProps = {
             ...child.props,
             dispatchStep,
-            step: DRAW_DAI_NUM
+            step: CONFIRM_VAULT_NUM
           };
           return React.cloneElement(child, newProps);
         }
@@ -64,7 +85,7 @@ export const LockCollateral: FC<DrawDaiProps> &
           const newProps: OAButtonProps = {
             ...child.props,
             dispatchStep,
-            step: CONFIRM_COLLATERAL_NUM
+            step: LOCK_COLLATERAL_NUM
           };
           return React.cloneElement(child, newProps);
         }
@@ -75,7 +96,8 @@ export const LockCollateral: FC<DrawDaiProps> &
   );
 };
 
-LockCollateral.Title = Title;
-LockCollateral.CTAButton = CTAButton;
-LockCollateral.OAButton = OAButton;
-LockCollateral.SelectAmount = SelectAmount;
+DrawDai.Title = Title;
+DrawDai.HorizontalRule = HorizontalRule;
+DrawDai.CTAButton = CTAButton;
+DrawDai.OAButton = OAButton;
+DrawDai.SelectDai = SelectDai;

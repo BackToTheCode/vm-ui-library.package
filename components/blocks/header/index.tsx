@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Container } from '@backtothecode/vault-maker-ui/dist/es2015/index.js';
+import { Container } from '@backtothecode/vault-maker-ui';
 import { jsx } from '@emotion/core';
 import React, { Children, FC } from 'react';
 import { Address, AddressProps } from './address';

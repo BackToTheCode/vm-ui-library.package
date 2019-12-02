@@ -24,7 +24,7 @@ const text = {
   heading: {
     large: {
       fontFamily: 'heading',
-      fontSize: [4, 5, 5]
+      fontSize: [5, 5, 5]
     },
     regular: {
       fontFamily: 'heading',
@@ -32,7 +32,7 @@ const text = {
     },
     small: {
       fontFamily: 'heading',
-      fontSize: '30px'
+      fontSize: 3
     }
   }
 };
