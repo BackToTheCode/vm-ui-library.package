@@ -8,9 +8,10 @@ export const changeCollateral = () => {
   const theme: any = useTheme();
   return (
     <ChangeCollateral.Wrapped>
-      <ChangeCollateral.Title sx={{ mb: 7 }}>
+      <ChangeCollateral.Title>
         Switch collateral type for your Vault
       </ChangeCollateral.Title>
+      <ChangeCollateral.HorizontalRule sx={{mb: 4}} />
       <ChangeCollateral.Option
         icon={ethLogo}
         name="ETH"

@@ -1,5 +1,5 @@
-import React from 'react';
 import { fireEvent, render, wait } from '@testing-library/react';
+import React from 'react';
 import Page from '../pages';
 
 let getByText: any;

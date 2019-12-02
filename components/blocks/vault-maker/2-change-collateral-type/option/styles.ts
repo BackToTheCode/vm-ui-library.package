@@ -6,15 +6,14 @@ const styles = {
       transform: 'translateX(-1px)'
     },
     alignItems: 'center',
-    borderRadius: '8px',
+    borderRadius: '4px',
     cursor: 'pointer',
     display: 'flex',
     flex: 1,
     justifyContent: 'left',
-    mb: 3,
-    mt: 3,
+    // mb: 5,
+    mt: 6,
     transition: '0.2s all',
-
     width: '100%'
   },
   radio: { mx: 6 },

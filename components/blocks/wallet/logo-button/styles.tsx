@@ -5,7 +5,7 @@ const styles = {
         transform: 'translateY(0px)'
       }
     },
-    mb: 4,
+    mb: 5,
     mx: 'auto',
     position: 'relative',
     px: 7,
