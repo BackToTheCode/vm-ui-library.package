@@ -4,6 +4,7 @@ import { Header, HeaderProps } from './header';
 import { LogoButton, LogoButtonProps } from './logo-button';
 import { SubHeader, SubHeaderProps } from './sub-header';
 
+
 interface Wallet {
   Header: FC<HeaderProps>;
   SubHeader: FC<SubHeaderProps>;

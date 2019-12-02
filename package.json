@@ -10,7 +10,7 @@
     "lint": "tslint './components/**/*.{ts,tsx,js}'",
     "dev": "next -p 8080",
     "test": "jest",
-    "build": "next build",
+    "build": "ANALYZE=true next build",
     "start": "next start",
     "export": "yarn build && next export"
   },

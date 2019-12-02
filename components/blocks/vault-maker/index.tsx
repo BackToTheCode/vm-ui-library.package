@@ -9,7 +9,7 @@ import steps, {
   OPEN_VAULT
 } from '../../../constants/step-names';
 import render from './render';
-import { cardStyle, containerStyle } from './styles';
+import styles from './styles';
 
 export interface VaultMakerProps {
   children?: any;
@@ -36,8 +36,8 @@ export const VaultMaker: FC<VaultMakerProps> & VaultMaker = props => {
   } = render;
 
   return (
-    <Card sx={cardStyle}>
-      <Container sx={containerStyle} variant="container.default">
+    <Card sx={styles.card}>
+      <Container sx={styles.container} variant="container.default">
         {step === steps[CONFIRM_COLLATERAL] &&
           confirmCollateral(symbol, balance, price, usdValue)}
 

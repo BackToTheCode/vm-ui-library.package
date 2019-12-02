@@ -2,15 +2,15 @@
 import { FullContainer, Loading } from '@backtothecode/vault-maker-ui';
 import { jsx } from '@emotion/core';
 import uniqBy from 'lodash.uniqby';
-import React, { FC, useState } from 'react';
+// import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
+import React, { FC, useState } from 'react';
 import ledgerLogo from '../../../public/images/ledger-logo.png';
 import metamaskLogo from '../../../public/images/metamask-fox.svg';
 import trezorLogo from '../../../public/images/trezor-logo.png';
 import { getWeb3 as mkrGetWeb3, setup as mkrSetup } from '../../../utils/web3';
 import { VaultMaker } from '../vault-maker/wrapped';
 import { Wallet } from '../wallet';
-import { render } from '@testing-library/react';
 
 export interface HeroProps {
   variant?: string;
@@ -137,7 +137,11 @@ const renderDashboard = (isCreated: boolean, router: any) => {
     isCreated = true;
   }, 10000);
 
-  return !isCreated ? <Loading text={"Creating your new Vault..."} /> : <div>CDP Created</div>;
+  return !isCreated ? (
+    <Loading text={'Creating your new Vault...'} />
+  ) : (
+    <div>CDP Created</div>
+  );
 };
 
 const renderWallet = (
@@ -169,5 +173,12 @@ const renderWallet = (
   ));
 
 const renderVaultMaker = (isConnected: boolean) => {
-  return isConnected && <VaultMaker.Wrapped />;
+  // const VaultMaker: any = dynamic(() => import('../vault-maker/wrapped').then(mod => mod.VaultMaker),
+  //   {
+  //     loading: () => <Loading />
+  //   }
+  // );
+  // // console.log('DynamicVaultMaker', DynamicVaultMaker);
+  // // return isConnected && <DynamicVault />
+  return isConnected && <VaultMaker.Wrapped />
 };

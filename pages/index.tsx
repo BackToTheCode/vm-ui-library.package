@@ -78,6 +78,4 @@ const renderProgressBar = (
   );
 };
 
-const renderHero = (isComplete: boolean) => (
-  <Hero.Wrapped isComplete={isComplete} />
-);
+const renderHero = (isComplete: boolean) => <Hero.Wrapped isComplete={isComplete} />
