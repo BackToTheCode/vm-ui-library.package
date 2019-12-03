@@ -23,7 +23,7 @@ const theme = {
     midGrey: '#7a7b86',
     primary: '#1AAB9B',
     rep: 'rgb(65, 36, 103)',
-    secondary: '#F4B731',
+    secondary: 'rgb(244, 183, 49)',
     superLightGrey: '#f5f5f5',
     superLightPrimary: 'rgb(216, 238, 235)',
     superLightSecondary: 'rgb(255, 246, 228)',
