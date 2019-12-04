@@ -2,7 +2,7 @@
 
 exports[`<Button /> spec it renders the component 1`] = `
 <button
-  class="css-140ldgn"
+  class="css-ao61va"
 >
   Click me
 </button>
