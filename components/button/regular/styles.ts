@@ -1,28 +1,26 @@
 const styles = {
   button: {
-    display: 'block',
-    fontWeight: 'body',
-    fontFamily: 'body',
-    borderStyle: 'solid',
-    borderWidth: 2,
-    fontSize: 2,
-    cursor: 'pointer',
-    py: 5,
-    px: 7,
-    transition: '0.2s all',
-    opacity: '1',
-    filter: 'none',
-    '&:hover': {
-      transform: 'translateY(-1px)'
-    },
     '&:focus': {
       outline: 0
-    }
+    },
+    borderStyle: 'solid',
+    borderWidth: 2,
+    cursor: 'pointer',
+    display: 'block',
+    filter: 'none',
+    fontFamily: 'body',
+    fontSize: 2,
+    fontWeight: 'body',
+    opacity: '1',
+    px: 7,
+    py: 5,
+    transition: '0.2s all',
+
   },
   disabled: {
     cursor: 'default',
+    filter: 'grayscale(1)',
     opacity: '0.6',
-    filter: 'grayscale(1)'
   }
 };
 
