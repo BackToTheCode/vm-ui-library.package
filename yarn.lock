@@ -1158,25 +1158,6 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@backtothecode/vault-maker-ui@^0.5.9":
-  version "0.5.9"
-  resolved "https://registry.yarnpkg.com/@backtothecode/vault-maker-ui/-/vault-maker-ui-0.5.9.tgz#b7cbc83405a516e1e581628e3087c34220409c40"
-  integrity sha512-nytWLMGEc+zs5bpxxdLzJgTIFoi2EzTcRq+e1TG1nMVPwwewJbckayCqezU9xyonjX5Y/eXkMW59k0YN4qPT+Q==
-  dependencies:
-    "@emotion/core" "^10.0.22"
-    "@rebass/forms" "^4.0.6"
-    "@storybook/addon-a11y" "^5.2.6"
-    "@storybook/addon-actions" "^5.2.6"
-    "@storybook/addon-docs" "^5.2.6"
-    "@storybook/addon-knobs" "^5.2.6"
-    "@storybook/addon-links" "^5.2.6"
-    "@storybook/addon-storysource" "^5.2.6"
-    "@testing-library/react" "^9.3.2"
-    "@types/marked" "^0.7.2"
-    "@types/rebass" "^4.0.3"
-    marked "^0.7.0"
-    rebass "^4.0.7"
-
 "@chromaui/localtunnel@2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@chromaui/localtunnel/-/localtunnel-2.0.1.tgz#2d4cef4efa189a2a2f015d639e754956c54cacd1"
