@@ -1,5 +1,12 @@
+const base = {
+  '&:hover': {
+    transform: 'translateY(-1px)'
+  }
+}
+
 const buttons = {
   outline: {
+    ...base,
     '&:hover': {
       backgroundColor: 'rgba(26, 171, 155, 0.1)'
     },
@@ -8,6 +15,7 @@ const buttons = {
     color: 'primary'
   },
   primary: {
+    ...base,
     '&:hover': {
       bg: 'darkPrimary',
       borderColor: 'darkPrimary'
@@ -17,11 +25,13 @@ const buttons = {
     color: 'white'
   },
   secondary: {
+    ...base,
     bg: 'secondary',
     borderColor: 'secondary',
     color: 'white'
   },
   text: {
+    ...base,
     '&:hover': {
       backgroundColor: 'transparent',
       color: 'lightPrimary',
