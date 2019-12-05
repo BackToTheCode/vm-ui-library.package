@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 import { Button as BaseButton, SxStyleProp } from 'rebass';
 import styles from './styles';
 
-export type ButtonProps = {
+export interface ButtonProps {
   /** Click handler */
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 
@@ -17,7 +17,6 @@ export type ButtonProps = {
   /** System-UI style prop */
   sx?: SxStyleProp;
 }
-
 
 export const Button: FC<ButtonProps> = ({
   onClick,

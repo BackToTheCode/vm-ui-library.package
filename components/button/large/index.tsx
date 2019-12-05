@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import { FC } from 'react';
 import { SxStyleProp } from 'rebass';
-import { Button, ButtonProps } from '../regular';
+import { Button } from '../regular';
 import styles from './styles';
 
 export interface LargeButtonProps {
