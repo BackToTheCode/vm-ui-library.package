@@ -17,7 +17,7 @@
     "build:cjs": "tsc --module commonjs --target es5 --outDir dist/cjs",
     "build:umd": "npx webpack",
     "test": "jest",
-    "prepublishOnly": "yarn build"
+    "release": "yarn build && np"
   },
   "jest": {},
   "dependencies": {
