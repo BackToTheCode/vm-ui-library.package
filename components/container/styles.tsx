@@ -1,13 +1,16 @@
 const styles = {
   base: {
     maxHeight: '100%',
-    mx: 'auto'
+    mx: 'auto',
+    width: '1060px',
   },
-  full: {
+  grid: {
+    display: 'grid'
+  },
+  tall: {
+    flexDirection: 'column',
     height: '90vh',
     justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column'
   }
 };
 

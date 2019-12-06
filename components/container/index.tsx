@@ -1,31 +1,43 @@
 /** @jsx jsx */
+import { UIComponent } from '../interfaces/shared';
 import { jsx } from '@emotion/core';
 import React, { FC } from 'react';
-import { Flex } from 'rebass';
+import { Box, BoxProps, Flex } from 'rebass';
 import styles from './styles';
 
 export interface ContainerProps {
-  variant?: string;
   children?: React.ReactNode;
   displayName?: string;
-  sx?: any;
+  sx?: object;
 }
 
-interface Container {
-  displayName?: string;
+export interface GridContainerProps {
+
 }
 
-const Container: FC<ContainerProps> & Container = ({ children, variant, sx }) => {
+const Container: FC<ContainerProps> & UIComponent = (props) => {
+  const { base } = styles;
+  const { sx } = props;
   return (
-    <Flex variant={variant} sx={{ ...styles.base, ...sx }}>
-      {children}
-    </Flex>
+    <Flex {...props} sx={{...base, ...sx }} />
   );
 };
 
-const FullContainer: FC<ContainerProps> & Container = (props) => <Container {...props} sx={styles.full} />;
+const TallContainer: FC<ContainerProps> & UIComponent = (props) => {
+const { tall} = styles;
+const { sx } = props;
+return <Container {...props} sx={{...tall, ...sx}} />
+};
+
+const GridContainer: FC<GridContainerProps> & UIComponent = () => {
+  const { grid } = styles;
+  return (
+    <Box sx={grid} />
+  )
+}
 
 Container.displayName = 'Container';
-FullContainer.displayName = 'FullContainer';
+GridContainer.displayName = 'GridContainer';
+TallContainer.displayName = 'TallContainer';
 
-export { FullContainer, Container };
+export { GridContainer, TallContainer, Container };
