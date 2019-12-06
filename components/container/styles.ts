@@ -9,8 +9,11 @@ const styles = {
   },
   tall: {
     flexDirection: 'column',
-    height: '90vh',
+    height: '100vh',
     justifyContent: 'center',
+  },
+  wide: {
+    width: '100%'
   }
 };
 
