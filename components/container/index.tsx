@@ -28,10 +28,10 @@ return <Container {...props} sx={{...tall, ...sx}} />
 };
 
 const GridContainer: FC<GridContainerProps> & UIComponent = (props) => {
-  const { grid } = styles;
+  const { base, grid } = styles;
   const { sx } = props;
   return (
-    <Box {...props} sx={{...grid, ...sx}} />
+    <Box {...props} sx={{...base, ...grid, ...sx}} />
   )
 }
 
