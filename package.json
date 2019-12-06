@@ -1,6 +1,6 @@
 {
   "name": "@backtothecode/vm-ui-library",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "",
   "main": "./dist/umd/vault-maker.min.js",
   "module": "/dist/es2015/index.js",
