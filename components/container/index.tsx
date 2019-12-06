@@ -2,17 +2,15 @@
 import { UIComponent } from '../interfaces/shared';
 import { jsx } from '@emotion/core';
 import React, { FC } from 'react';
-import { Box, BoxProps, Flex } from 'rebass';
+import { Box, Flex } from 'rebass';
 import styles from './styles';
 
 export interface ContainerProps {
-  children?: React.ReactNode;
-  displayName?: string;
   sx?: object;
 }
 
 export interface GridContainerProps {
-
+  sx?: object;
 }
 
 const Container: FC<ContainerProps> & UIComponent = (props) => {
@@ -29,10 +27,11 @@ const { sx } = props;
 return <Container {...props} sx={{...tall, ...sx}} />
 };
 
-const GridContainer: FC<GridContainerProps> & UIComponent = () => {
+const GridContainer: FC<GridContainerProps> & UIComponent = (props) => {
   const { grid } = styles;
+  const { sx } = props;
   return (
-    <Box sx={grid} />
+    <Box {...props} sx={{...grid, ...sx}} />
   )
 }
 
