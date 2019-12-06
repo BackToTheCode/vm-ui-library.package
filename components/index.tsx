@@ -10,7 +10,8 @@ import {
   ContainerProps,
   GridContainer,
   GridContainerProps,
-  TallContainer
+  TallContainer,
+  WideContainer
 } from './container';
 
 import { Loading, LoadingProps } from './loading';
@@ -30,5 +31,6 @@ export {
   GridContainer,
   GridContainerProps,
   Loading,
-  LoadingProps
+  LoadingProps,
+  WideContainer
 };
