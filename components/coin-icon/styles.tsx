@@ -1,19 +1,20 @@
 const styles = {
-  icon:  (bgColor: string) => ({
-    width: '35px',
-    height: '35px',
-    p: 3,
-    borderRadius: '50%',
-    bg: bgColor
-  }),
-  iconContainer: (bgColor: string) => ({
+  container: (bgColor: string = 'rgba(244,183,49, 0.2)') => ({
+    alignItems: 'center',
     bg: bgColor,
     borderRadius: '50%',
-    p: 3,
+    display: 'inline-flex',
     justifyContent: 'center',
-    alignItems: 'center',
-    display: 'inline-flex'
-  })
+    p: 3,
+  }),
+  icon:  (bgColor: string = 'rgb(244,183,49, 0.5)') => ({
+    bg: bgColor,
+    borderRadius: '50%',
+    height: '35px',
+    p: 3,
+    width: '35px',
+  }),
+
 };
 
 export default styles;
